@@ -548,7 +548,7 @@
         <div class="tab active" data-tab="signin">Sign In</div>
         <div class="tab" data-tab="signup">Sign Up</div>
       </div>
-      <form class="auth-form" id="authForm">
+      <form class="auth-form" id="authForm" novalidate>
         <div class="input-group" id="usernameGroup" style="display: none;">
           <i class="fas fa-user"></i>
           <input type="text" id="username" name="username" placeholder="Username (optional)">
@@ -573,7 +573,7 @@
         </div>
         <div class="input-group" id="confirmPasswordGroup" style="display: none;">
           <i class="fas fa-lock"></i>
-          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
           <i class="fas fa-check status-icon"></i>
           <i class="fas fa-times status-icon"></i>
           <span class="show-password" id="showConfirmPassword">Show</span>
@@ -681,6 +681,14 @@
         usernameGroup.style.display = isSignIn ? 'none' : 'block';
         confirmPasswordGroup.style.display = isSignIn ? 'none' : 'block';
         profilePictureGroup.style.display = isSignIn ? 'none' : 'block';
+        
+        // Toggle required attribute for confirmPassword
+        if (isSignIn) {
+          confirmPasswordInput.removeAttribute('required');
+        } else {
+          confirmPasswordInput.setAttribute('required', 'required');
+        }
+
         successMessage.classList.remove('visible');
         clearErrors();
         validateInputs();
@@ -784,7 +792,7 @@
       }
 
       // Confirm Password Validation
-      if (confirmPasswordGroup) {
+      if (confirmPasswordGroup && !isSignIn) {
         if (confirmPassword && confirmPassword === password && passwordRegex.test(password)) {
           confirmPasswordGroup.classList.add('valid');
           confirmPasswordGroup.classList.remove('invalid');
@@ -1001,6 +1009,7 @@
           usernameGroup.style.display = 'none';
           confirmPasswordGroup.style.display = 'none';
           profilePictureGroup.style.display = 'none';
+          confirmPasswordInput.removeAttribute('required'); // Remove required when switching back to Sign In
           authForm.reset();
           filePreview.classList.remove('visible');
           console.log('Switched to Sign In tab after signup'); // Debug: Confirm tab switch
