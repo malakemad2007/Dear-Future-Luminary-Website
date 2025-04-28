@@ -551,21 +551,21 @@
       <form class="auth-form" id="authForm">
         <div class="input-group" id="usernameGroup" style="display: none;">
           <i class="fas fa-user"></i>
-          <input type="text" id="username" placeholder="Username (optional)">
+          <input type="text" id="username" name="username" placeholder="Username (optional)">
           <i class="fas fa-check status-icon"></i>
           <i class="fas fa-times status-icon"></i>
           <div class="error-message" id="usernameError"></div>
         </div>
         <div class="input-group">
           <i class="fas fa-envelope"></i>
-          <input type="email" id="email" placeholder="Email" required>
+          <input type="email" id="email" name="email" placeholder="Email" required>
           <i class="fas fa-check status-icon"></i>
           <i class="fas fa-times status-icon"></i>
           <div class="error-message" id="emailError"></div>
         </div>
         <div class="input-group">
           <i class="fas fa-lock"></i>
-          <input type="password" id="password" placeholder="Password (min 8 characters)" required>
+          <input type="password" id="password" name="password" placeholder="Password (min 8 characters)" required>
           <i class="fas fa-check status-icon"></i>
           <i class="fas fa-times status-icon"></i>
           <span class="show-password" id="showPassword">Show</span>
@@ -573,7 +573,7 @@
         </div>
         <div class="input-group" id="confirmPasswordGroup" style="display: none;">
           <i class="fas fa-lock"></i>
-          <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
           <i class="fas fa-check status-icon"></i>
           <i class="fas fa-times status-icon"></i>
           <span class="show-password" id="showConfirmPassword">Show</span>
@@ -582,7 +582,7 @@
         <div class="input-group" id="profilePictureGroup" style="display: none;">
           <label for="profilePicture" class="file-input-container" id="fileInputContainer">
             <span>Drag & Drop Profile Picture or Click to Upload (JPEG/PNG, max 2MB)</span>
-            <input type="file" id="profilePicture" class="file-input" accept="image/jpeg,image/png">
+            <input type="file" id="profilePicture" name="profilePicture" class="file-input" accept="image/jpeg,image/png">
           </label>
           <img id="filePreview" class="file-preview" alt="Profile Picture Preview">
           <div class="optional-text">Profile picture is optional</div>
