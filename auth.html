@@ -854,6 +854,8 @@
     // Handle form submission
     authForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+      console.log('Form submitted, isSignIn:', isSignIn); // Debug: Check if form submission is triggered
+
       const email = emailInput.value.trim();
       const password = passwordInput.value;
       const confirmPassword = confirmPasswordInput ? confirmPasswordInput.value : '';
@@ -864,6 +866,7 @@
       successMessage.classList.remove('visible');
       const errors = {};
 
+      // Validate inputs
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         errors.email = 'الإيميل مش صحيح، حاولي تاني!';
       }
@@ -895,21 +898,35 @@
       }
 
       try {
+        console.log('Checking Supabase client:', supabase); // Debug: Check if Supabase client exists
         if (!supabase) {
           throw new Error('مشكلة في الاتصال بالسيرفر، حاولي تاني بعد شوية!');
         }
 
         if (isSignIn) {
           // Sign In
+          console.log('Attempting to sign in with email:', email); // Debug: Check email being sent
           const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-          if (error) throw new Error('الإيميل أو الباسوورد مش صح، أو لسه ما فعّلتيش حسابك!');
+          console.log('Sign in response:', { data, error }); // Debug: Check Supabase response
+
+          if (error) {
+            console.error('Sign in error:', error.message);
+            throw new Error('الإيميل أو الباسوورد مش صح، حاولي تاني!');
+          }
+
+          if (!data || !data.user) {
+            console.error('No user data returned from sign in');
+            throw new Error('فيه مشكلة في تسجيل الدخول، حاولي تاني!');
+          }
 
           // If there's signup data (username or profile picture), save it now
           if (signupData) {
+            console.log('Processing signup data:', signupData); // Debug: Check signup data
             let profilePictureUrl = null;
             if (signupData.profilePicture) {
               const fileExt = signupData.profilePicture.name.split('.').pop();
               const fileName = `${data.user.id}.${fileExt}`;
+              console.log('Uploading profile picture:', fileName); // Debug: Check file upload
               const { error: uploadError } = await supabase.storage
                 .from('profile-pictures')
                 .upload(fileName, signupData.profilePicture, { upsert: true });
@@ -922,11 +939,14 @@
                 .from('profile-pictures')
                 .getPublicUrl(fileName);
               if (!urlData.publicUrl) {
+                console.error('No public URL for profile picture');
                 throw new Error('مشكلة في جلب رابط الصورة!');
               }
               profilePictureUrl = urlData.publicUrl;
+              console.log('Profile picture URL:', profilePictureUrl); // Debug: Check profile picture URL
             }
 
+            console.log('Upserting user data to database'); // Debug: Check database upsert
             const { error: dbError } = await supabase
               .from('users')
               .upsert({
@@ -942,17 +962,23 @@
 
             localStorage.setItem('user', JSON.stringify({ ...data.user, username: signupData.username, profile_picture: profilePictureUrl }));
             signupData = null; // Clear signup data after processing
+            console.log('User data saved to localStorage'); // Debug: Confirm localStorage save
           } else {
             localStorage.setItem('user', JSON.stringify(data.user));
+            console.log('User data (no signupData) saved to localStorage'); // Debug: Confirm localStorage save
           }
 
           authButton.style.display = 'none';
           dashboardButton.style.display = 'inline-flex';
           logoutButton.style.display = 'inline-flex';
+          console.log('Redirecting to dashboard.html'); // Debug: Confirm redirect
           window.location.href = 'dashboard.html';
         } else {
           // Sign Up
+          console.log('Attempting to sign up with email:', email); // Debug: Check email being sent
           const { data, error } = await supabase.auth.signUp({ email, password });
+          console.log('Sign up response:', { data, error }); // Debug: Check Supabase response
+
           if (error) {
             if (error.message.includes('User already registered')) {
               throw new Error('الإيميل ده مسجل قبل كده، جربي إيميل تاني!');
@@ -963,6 +989,7 @@
 
           // Store signup data temporarily
           signupData = { username, profilePicture };
+          console.log('Signup data stored:', signupData); // Debug: Confirm signup data stored
 
           // Show success message and switch to Sign In tab
           successMessage.textContent = 'تم التسجيل! افتحي الإيميل بتاعك واضغطي على لينك التأكيد عشان تفعّلي حسابك، وبعدين سجلي دخول.';
@@ -976,9 +1003,10 @@
           profilePictureGroup.style.display = 'none';
           authForm.reset();
           filePreview.classList.remove('visible');
+          console.log('Switched to Sign In tab after signup'); // Debug: Confirm tab switch
         }
       } catch (error) {
-        console.error('Authentication error:', error.message);
+        console.error('Authentication error:', error.message); // Debug: Log error
         document.getElementById('emailError').textContent = error.message;
         document.getElementById('emailError').classList.add('visible');
       }
@@ -987,6 +1015,7 @@
     // Logout
     logoutButton.addEventListener('click', async () => {
       try {
+        console.log('Attempting to log out'); // Debug: Check logout trigger
         if (!supabase) {
           throw new Error('مشكلة في الاتصال بالسيرفر، حاولي تاني بعد شوية!');
         }
@@ -996,6 +1025,7 @@
         dashboardButton.style.display = 'none';
         logoutButton.style.display = 'none';
         window.location.href = 'index.html';
+        console.log('Logged out and redirected to index.html'); // Debug: Confirm logout
       } catch (error) {
         console.error('Logout error:', error.message);
         document.getElementById('emailError').textContent = 'مشكلة في الخروج: ' + error.message;
