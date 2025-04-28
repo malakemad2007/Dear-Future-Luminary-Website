@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | Dear Future Luminary</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqzqGA89r8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    :root {
+      --primary-bg: #ffffff;
+      --secondary-bg: #f8f9fa;
+      --text-color: #2c3e50;
+      --accent-color: #6a3093;
+      --accent-light: #a044ff;
+      --highlight: #f1c40f;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --nav-bg: #ffffff;
+      --footer-bg: #f8f9fa;
+      --section-bg: #ffffff;
+      --transition-speed: 0.3s;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--primary-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .logo {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: var(--nav-bg);
+      box-shadow: 0 2px 5px var(--card-shadow);
+      z-index: 1000;
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      color: var(--accent-color);
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .logo:hover {
+      color: var(--accent-light);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .auth-button {
+      padding: 0.5rem 1rem;
+      background: var(--accent-color);
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .auth-button:hover {
+      background: var(--accent-light);
+      transform: scale(1.05);
+    }
+
+    .dashboard-section {
+      margin-top: 80px;
+      padding: 4rem 5%;
+      background: var(--secondary-bg);
+      min-height: calc(100vh - 80px);
+    }
+
+    .dashboard-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 2.5rem;
+      box-shadow: 0 5px 15px var(--card-shadow);
+    }
+
+    .dashboard-container h1 {
+      font-size: 2.2rem;
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .result-section {
+      margin-bottom: 2rem;
+      display: none;
+    }
+
+    .result-section.active {
+      display: block;
+    }
+
+    .result-section h2 {
+      font-size: 2rem;
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .result-section p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .skill-meter {
+      width: 100%;
+      margin: 1.5rem 0;
+    }
+
+    .skill-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .skill-name {
+      width: 150px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .meter-container {
+      flex-grow: 1;
+      height: 10px;
+      background: #e0e0e0;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .meter-fill {
+      height: 100%;
+      background: var(--accent-color);
+      border-radius: 5px;
+      transition: width 1s ease;
+    }
+
+    .skill-confidence {
+      font-size: 0.85rem;
+      color: var(--text-color);
+      margin-left: 1rem;
+    }
+
+    .traits-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin: 1.5rem 0;
+    }
+
+    .trait-badge {
+      background: var(--accent-light);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .trait-badge:hover::after {
+      content: attr(data-description);
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent-color);
+      color: white;
+      padding: 0.5rem;
+      border-radius: 5px;
+      font-size: 0.75rem;
+      width: 120px;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .recommendations {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .recommendation-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 3px 10px var(--card-shadow);
+      transition: transform 0.3s ease;
+    }
+
+    .recommendation-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent-light);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .card-body {
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .card-link {
+      display: inline-block;
+      margin-top: 0.8rem;
+      color: var(--accent-color);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .card-link:hover {
+      color: var(--accent-light);
+      text-decoration: underline;
+    }
+
+    .action-plan {
+      background: var(--section-bg);
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-top: 1.5rem;
+    }
+
+    .action-plan ul {
+      padding-left: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .action-plan li {
+      margin-bottom: 0.5rem;
+    }
+
+    .quiz-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .quiz-button {
+      padding: 0.8rem 2rem;
+      background: var(--accent-color);
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .quiz-button:hover {
+      background: var(--accent-light);
+      transform: scale(1.05);
+    }
+
+    .forum-section {
+      margin-top: 3rem;
+    }
+
+    .forum-section h2 {
+      font-size: 2rem;
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .comment-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .comment-form textarea {
+      padding: 0.8rem;
+      border: 1px solid var(--accent-light);
+      border-radius: 5px;
+      font-size: 1rem;
+      background: var(--primary-bg);
+      color: var(--text-color);
+      resize: vertical;
+    }
+
+    .comment-form textarea:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 5px var(--accent-light);
+    }
+
+    .comment-form .input-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .comment-form .file-input {
+      font-size: 0.9rem;
+    }
+
+    .comment-form .emoji-picker {
+      position: absolute;
+      bottom: 100%;
+      right: 0;
+      background: var(--card-bg);
+      border: 1px solid var(--accent-light);
+      border-radius: 5px;
+      padding: 0.5rem;
+      display: none;
+      z-index: 10;
+    }
+
+    .comment-form .emoji-picker.active {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.5rem;
+    }
+
+    .comment-form .emoji {
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .comment-form .emoji:hover {
+      transform: scale(1.2);
+    }
+
+    .comment-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .comment {
+      background: var(--card-bg);
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px var(--card-shadow);
+      display: flex;
+      gap: 1rem;
+    }
+
+    .comment .profile-picture {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--accent-light);
+    }
+
+    .comment .comment-content {
+      flex-grow: 1;
+    }
+
+    .comment-author {
+      font-weight: 600;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .comment-text {
+      font-size: 0.9rem;
+      white-space: pre-wrap;
+    }
+
+    .comment-media {
+      margin-top: 0.5rem;
+      max-width: 100%;
+    }
+
+    .comment-media img {
+      max-width: 200px;
+      border-radius: 5px;
+    }
+
+    .comment-media audio {
+      width: 100%;
+    }
+
+    .comment-date {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-top: 0.5rem;
+    }
+
+    .footer {
+      background-color: var(--footer-bg);
+      color: var(--text-color);
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-container {
+        padding: 2rem;
+      }
+
+      .dashboard-container h1, .result-section h2, .forum-section h2 {
+        font-size: 1.8rem;
+      }
+
+      .skill-name {
+        width: 120px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .dashboard-container h1, .result-section h2, .forum-section h2 {
+        font-size: 1.6rem;
+      }
+
+      .skill-name {
+        width: 80px;
+        font-size: 0.8rem;
+      }
+
+      .quiz-button {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      .comment .profile-picture {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo" onclick="window.location.href='index.html'">Dear Future Luminary</div>
+    <div class="nav-menu">
+      <button class="auth-button" onclick="window.location.href='quiz.html'"><i class="fas fa-question-circle"></i> Take Quiz</button>
+      <button class="auth-button" id="logoutButton"><i class="fas fa-sign-out-alt"></i> Log Out</button>
+    </div>
+  </nav>
+
+  <!-- Dashboard Section -->
+  <section class="dashboard-section">
+    <div class="dashboard-container">
+      <h1>Welcome to Your Dashboard</h1>
+      <div class="result-section" id="resultSection">
+        <h2>Your Luminary Profile: <span id="resultTitle"></span></h2>
+        <p id="resultDescription"></p>
+        <div class="skill-meter">
+          <div class="skill-row">
+            <div class="skill-name">Technical</div>
+            <div class="meter-container">
+              <div class="meter-fill" id="tech-meter" style="width: 0%"></div>
+            </div>
+            <span class="skill-confidence" id="tech-confidence"></span>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">Creative</div>
+            <div class="meter-container">
+              <div class="meter-fill" id="creative-meter" style="width: 0%"></div>
+            </div>
+            <span class="skill-confidence" id="creative-confidence"></span>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">Social</div>
+            <div class="meter-container">
+              <div class="meter-fill" id="social-meter" style="width: 0%"></div>
+            </div>
+            <span class="skill-confidence" id="social-confidence"></span>
+          </div>
+          <div class="skill-row">
+            <div class="skill-name">Leadership</div>
+            <div class="meter-container">
+              <div class="meter-fill" id="leadership-meter" style="width: 0%"></div>
+            </div>
+            <span class="skill-confidence" id="leadership-confidence"></span>
+          </div>
+        </div>
+        <div class="traits-container" id="traitsContainer"></div>
+        <h3>Recommended Career Paths</h3>
+        <div class="recommendations" id="careerPaths"></div>
+        <h3>Recommended Courses</h3>
+        <div class="recommendations" id="courses"></div>
+        <h3>Recommended Activities</h3>
+        <div class="recommendations" id="activities"></div>
+        <h3>Your Action Plan</h3>
+        <div class="action-plan" id="actionPlan"></div>
+        <div class="quiz-buttons">
+          <button class="quiz-button" onclick="window.location.href='quiz.html'">Retake Quiz</button>
+          <button class="quiz-button" id="shareButton">Share on X</button>
+          <button class="quiz-button" id="downloadBtn"><i class="fas fa-download"></i> Download PDF</button>
+        </div>
+      </div>
+      <div class="forum-section">
+        <h2>Community Chat</h2>
+        <form class="comment-form" id="commentForm">
+          <div class="input-group">
+            <textarea id="commentText" placeholder="Share your thoughts..." rows="4" required></textarea>
+            <button type="button" id="emojiButton" class="auth-button"><i class="fas fa-smile"></i></button>
+          </div>
+          <div class="emoji-picker" id="emojiPicker">
+            <span class="emoji">😊</span><span class="emoji">👍</span><span class="emoji">🎉</span><span class="emoji">🚀</span><span class="emoji">💡</span>
+            <span class="emoji">😎</span><span class="emoji">👏</span><span class="emoji">🌟</span><span class="emoji">🙌</span><span class="emoji">🔥</span>
+          </div>
+          <input type="file" id="mediaInput" class="file-input" accept="image/*,audio/*,.pdf,.doc,.docx">
+          <button type="submit">Post</button>
+        </form>
+        <div class="comment-list" id="commentList"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 Dear Future Luminary. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Supabase Configuration
+    const supabaseUrl = 'YOUR_SUPABASE_URL'; // Will be updated after setup
+    const supabaseKey = 'YOUR_SUPABASE_ANON_KEY'; // Will be updated after setup
+    let supabase;
+
+    try {
+      supabase = Supabase.createClient(supabaseUrl, supabaseKey);
+    } catch (error) {
+      console.error('Error initializing Supabase:', error);
+    }
+
+    // Check if user is logged in
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+      window.location.href = 'auth.html';
+    }
+
+    // Logout
+    document.getElementById('logoutButton').addEventListener('click', async () => {
+      try {
+        if (supabase) {
+          await supabase.auth.signOut();
+        }
+        localStorage.removeItem('user');
+        window.location.href = 'index.html';
+      } catch (error) {
+        console.error('Error during logout:', error);
+      }
+    });
+
+    // Emoji Picker
+    const emojiButton = document.getElementById('emojiButton');
+    const emojiPicker = document.getElementById('emojiPicker');
+    const commentText = document.getElementById('commentText');
+
+    emojiButton.addEventListener('click', () => {
+      emojiPicker.classList.toggle('active');
+    });
+
+    emojiPicker.querySelectorAll('.emoji').forEach(emoji => {
+      emoji.addEventListener('click', () => {
+        commentText.value += emoji.textContent;
+        emojiPicker.classList.remove('active');
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!emojiPicker.contains(e.target) && e.target !== emojiButton) {
+        emojiPicker.classList.remove('active');
+      }
+    });
+
+    // Validate file (images, audio, docs, max 5MB)
+    function validateFile(file) {
+      const allowedTypes = ['image/jpeg', 'image/png', 'audio/mpeg', 'audio/wav', 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+      const maxSize = 5 * 1024 * 1024; // 5MB
+      if (!allowedTypes.includes(file.type)) {
+        return 'Only images, audio, PDFs, or Word documents are allowed.';
+      }
+      if (file.size > maxSize) {
+        return 'File size must be less than 5MB.';
+      }
+      return null;
+    }
+
+    // Load Quiz Result
+    async function loadQuizResult() {
+      try {
+        const { data, error } = await supabase
+          .from('users')
+          .select('quiz_result')
+          .eq('id', user.id)
+          .single();
+
+        if (error || !data.quiz_result) {
+          document.getElementById('resultSection').innerHTML = '<p>You haven\'t taken the quiz yet. <a href="quiz.html">Take it now!</a></p>';
+          return;
+        }
+
+        const result = data.quiz_result;
+        document.getElementById('resultSection').classList.add('active');
+        document.getElementById('resultTitle').textContent = result.profileType;
+        document.getElementById('resultDescription').textContent = result.profileDescription;
+
+        document.getElementById('tech-meter').style.width = `${result.scores.technical}%`;
+        document.getElementById('creative-meter').style.width = `${result.scores.creative}%`;
+        document.getElementById('social-meter').style.width = `${result.scores.social}%`;
+        document.getElementById('leadership-meter').style.width = `${result.scores.leadership}%`;
+
+        document.getElementById('tech-confidence').textContent = result.skillConfidence.coding ? `Coding: ${result.skillConfidence.coding}%` : '';
+        document.getElementById('creative-confidence').textContent = result.skillConfidence.design ? `Design: ${result.skillConfidence.design}%` : '';
+        document.getElementById('social-confidence').textContent = result.skillConfidence.public_speaking ? `Public Speaking: ${result.skillConfidence.public_speaking}%` : '';
+        document.getElementById('leadership-confidence').textContent = result.skillConfidence.project_management ? `Project Management: ${result.skillConfidence.project_management}%` : '';
+
+        const traitsContainer = document.getElementById('traitsContainer');
+        result.traits.forEach(trait => {
+          const badge = document.createElement('div');
+          badge.className = 'trait-badge';
+          badge.textContent = trait.name;
+          badge.setAttribute('data-description', trait.description);
+          traitsContainer.appendChild(badge);
+        });
+
+        const careerPathsContainer = document.getElementById('careerPaths');
+        result.careerPaths.forEach((path, index) => {
+          const card = document.createElement('div');
+          card.className = 'recommendation-card';
+          const icons = ["fa-laptop-code", "fa-flask", "fa-users", "fa-palette", "fa-briefcase"];
+          card.innerHTML = `
+            <div class="card-header">
+              <div class="card-icon"><i class="fas ${icons[index % icons.length]}"></i></div>
+              <div class="card-title">${path}</div>
+            </div>
+            <div class="card-body">${result.pathDescriptions[path]}</div>
+            <a href="${result.pathLinks[path]}" class="card-link" target="_blank">Learn More <i class="fas fa-arrow-right"></i></a>
+          `;
+          careerPathsContainer.appendChild(card);
+        });
+
+        const coursesContainer = document.getElementById('courses');
+        result.courses.forEach((course, index) => {
+          const card = document.createElement('div');
+          card.className = 'recommendation-card';
+          const icons = ["fa-book", "fa-graduation-cap", "fa-laptop"];
+          card.innerHTML = `
+            <div class="card-header">
+              <div class="card-icon"><i class="fas ${icons[index % icons.length]}"></i></div>
+              <div class="card-title">${course.name}</div>
+            </div>
+            <div class="card-body">Level: ${course.level}. Start building your skills with this course.</div>
+            <a href="${course.link}" class="card-link" target="_blank">Enroll Now <i class="fas fa-arrow-right"></i></a>
+          `;
+          coursesContainer.appendChild(card);
+        });
+
+        const activitiesContainer = document.getElementById('activities');
+        result.activities.forEach((activity, index) => {
+          const card = document.createElement('div');
+          card.className = 'recommendation-card';
+          const icons = ["fa-users", "fa-microphone", "fa-robot"];
+          card.innerHTML = `
+            <div class="card-header">
+              <div class="card-icon"><i class="fas ${icons[index % icons.length]}"></i></div>
+              <div class="card-title">${activity}</div>
+            </div>
+            <div class="card-body">Get hands-on experience and build your network.</div>
+            <a href="teams.html" class="card-link">Explore Teams <i class="fas fa-arrow-right"></i></a>
+          `;
+          activitiesContainer.appendChild(card);
+        });
+
+        document.getElementById('actionPlan').innerHTML = `
+          <p>Here’s your roadmap to shine as a luminary:</p>
+          <ul>
+            <li>Start with a course from the recommendations above.</li>
+            <li>Join a club or activity from our <a href="teams.html" style="color: var(--accent-color);">Teams page</a>.</li>
+            <li>Explore summer programs like SSP or YYGS on our <a href="programs.html" style="color: var(--accent-color);">Programs page</a>.</li>
+            <li>Stay updated with scholarships and events on our <a href="radar.html" style="color: var(--accent-color);">Opportunity Radar</a>.</li>
+          </ul>
+        `;
+
+        // Share on X
+        document.getElementById('shareButton').addEventListener('click', () => {
+          const text = `I discovered my path as a ${result.profileType} on Dear Future Luminary! 🌟 Take the quiz to find yours: https://yourwebsite.com`;
+          const url = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}`;
+          window.open(url, '_blank');
+        });
+
+        // PDF Download
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+          const { jsPDF } = window.jspdf;
+          const doc = new jsPDF();
+          doc.setFontSize(16);
+          doc.text("Your Luminary Profile", 20, 20);
+          doc.setFontSize(12);
+          doc.text(`Profile: ${result.profileType}`, 20, 30);
+          doc.text(result.profileDescription, 20, 40, { maxWidth: 160 });
+          doc.text("Skills:", 20, 60);
+          doc.text(`Technical: ${result.scores.technical}%`, 20, 70);
+          doc.text(`Creative: ${result.scores.creative}%`, 20, 80);
+          doc.text(`Social: ${result.scores.social}%`, 20, 90);
+          doc.text(`Leadership: ${result.scores.leadership}%`, 20, 100);
+          doc.text("Traits:", 20, 110);
+          result.traits.forEach((trait, i) => {
+            doc.text(`- ${trait.name}`, 20, 120 + i * 10);
+          });
+          doc.text("Career Paths:", 20, 120 + result.traits.length * 10);
+          result.careerPaths.forEach((path, i) => {
+            doc.text(`- ${path}`, 20, 130 + result.traits.length * 10 + i * 10);
+          });
+          doc.save('LuminaryProfile.pdf');
+        });
+      } catch (error) {
+        console.error('Error loading quiz result:', error);
+      }
+    }
+
+    // Load Comments
+    async function loadComments() {
+      try {
+        const { data, error } = await supabase
+          .from('comments')
+          .select('*, users(profile_picture)')
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+
+        const commentList = document.getElementById('commentList');
+        commentList.innerHTML = '';
+        data.forEach(comment => {
+          const div = document.createElement('div');
+          div.className = 'comment';
+          let mediaContent = '';
+          if (comment.media_url) {
+            if (comment.media_type.startsWith('image/')) {
+              mediaContent = `<img src="${comment.media_url}" alt="Comment media">`;
+            } else if (comment.media_type.startsWith('audio/')) {
+              mediaContent = `<audio controls><source src="${comment.media_url}" type="${comment.media_type}"></audio>`;
+            } else {
+              mediaContent = `<a href="${comment.media_url}" target="_blank">View File</a>`;
+            }
+          }
+          div.innerHTML = `
+            <img src="${comment.users.profile_picture || 'https://via.placeholder.com/40'}" class="profile-picture" alt="Profile">
+            <div class="comment-content">
+              <div class="comment-author">${comment.user_email}</div>
+              <div class="comment-text">${comment.content}</div>
+              <div class="comment-media">${mediaContent}</div>
+              <div class="comment-date">${new Date(comment.created_at).toLocaleString()}</div>
+            </div>
+          `;
+          commentList.appendChild(div);
+        });
+      } catch (error) {
+        console.error('Error loading comments:', error);
+      }
+    }
+
+    // Post Comment
+    document.getElementById('commentForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const content = document.getElementById('commentText').value;
+      const mediaFile = document.getElementById('mediaInput').files[0];
+
+      try {
+        let mediaUrl = null;
+        let mediaType = null;
+
+        if (mediaFile) {
+          const validationError = validateFile(mediaFile);
+          if (validationError) {
+            throw new Error(validationError);
+          }
+
+          const fileExt = mediaFile.name.split('.').pop();
+          const fileName = `${user.id}_${Date.now()}.${fileExt}`;
+          const { error: uploadError } = await supabase.storage
+            .from('media')
+            .upload(fileName, mediaFile);
+          if (uploadError) throw uploadError;
+
+          const { data: urlData } = supabase.storage
+            .from('media')
+            .getPublicUrl(fileName);
+          mediaUrl = urlData.publicUrl;
+          mediaType = mediaFile.type;
+        }
+
+        const { error } = await supabase
+          .from('comments')
+          .insert({
+            user_id: user.id,
+            user_email: user.email,
+            content,
+            media_url: mediaUrl,
+            media_type: mediaType
+          });
+
+        if (error) throw error;
+
+        document.getElementById('commentForm').reset();
+        document.getElementById('mediaInput').value = '';
+        loadComments();
+      } catch (error) {
+        console.error('Error posting comment:', error);
+        alert(error.message);
+      }
+    });
+
+    // Initialize
+    loadQuizResult();
+    loadComments();
+  </script>
+</body>
+</html>

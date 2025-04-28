@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dear Future Luminary</title>
+  <meta name="description" content="A platform to help you start your journey towards an inspiring future">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root {
+      --primary-bg: #ffffff;
+      --secondary-bg: #f8f9fa;
+      --text-color: #2c3e50;
+      --accent-color: #6a3093;
+      --accent-light: #a044ff;
+      --highlight: #f1c40f;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --nav-bg: #ffffff;
+      --footer-bg: #f8f9fa;
+      --section-bg: #ffffff;
+      --transition-speed: 0.3s;
+    }
+
+    [data-theme="elegant"] {
+      --primary-bg: #ffffff;
+      --secondary-bg: #f5f5f5;
+      --text-color: #2c3e50;
+      --accent-color: #2e2e2e;
+      --accent-light: #4a4a4a;
+      --highlight: #d4a017;
+    }
+
+    [data-theme="cosmic"] {
+      --primary-bg: #ffffff;
+      --secondary-bg: #f0f4f8;
+      --text-color: #2c3e50;
+      --accent-color: #1e3a8a;
+      --accent-light: #3b82f6;
+      --highlight: #10b981;
+    }
+
+    [data-theme="bright"] {
+      --primary-bg: #ffffff;
+      --secondary-bg: #fef3e7;
+      --text-color: #2c3e50;
+      --accent-color: #e11d48;
+      --accent-light: #fb7185;
+      --highlight: #f59e0b;
+    }
+
+    [data-theme="vibrant"] {
+      --primary-bg: #ffffff;
+      --secondary-bg: #f4eaff;
+      --text-color: #2c3e50;
+      --accent-color: #7c3aed;
+      --accent-light: #a78bfa;
+      --highlight: #ec4899;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--primary-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .logo {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--primary-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      opacity: 1;
+      transition: opacity 0.6s ease;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      display: none;
+    }
+
+    .loader::before {
+      content: '';
+      width: 40px;
+      height: 40px;
+      border: 3px solid transparent;
+      border-top: 3px solid var(--accent-color);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: var(--nav-bg);
+      box-shadow: 0 2px 5px var(--card-shadow);
+      z-index: 1000;
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      color: var(--accent-color);
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .logo:hover {
+      color: var(--accent-light);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-toggle {
+      background: none;
+      border: none;
+      color: var(--text-color);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-toggle:hover {
+      background: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--nav-bg);
+      border-radius: 5px;
+      box-shadow: 0 5px 15px var(--card-shadow);
+      display: none;
+      flex-direction: column;
+      padding: 0.5rem;
+      min-width: 180px;
+      z-index: 1001;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: flex;
+    }
+
+    .dropdown-menu a,
+    .dropdown-menu .theme-option {
+      text-decoration: none;
+      color: var(--text-color);
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-menu a:hover,
+    .dropdown-menu .theme-option:hover {
+      background: var(--accent-light);
+      color: #ffffff;
+    }
+
+    .auth-button {
+      padding: 0.5rem 1rem;
+      background: var(--accent-color);
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .auth-button:hover {
+      background: var(--accent-light);
+      transform: scale(1.05);
+    }
+
+    .welcome-message {
+      font-size: 1rem;
+      color: #ffffff;
+      margin-top: 1rem;
+      opacity: 0.9;
+    }
+
+    .intro-section {
+      margin-top: 80px;
+      padding: 4rem 5%;
+      background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+      color: #ffffff;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    .intro-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .intro-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .intro-content p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      background: var(--accent-color);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 5px;
+      margin-top: 1.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px var(--card-shadow);
+    }
+
+    .cta-button:hover {
+      background: var(--accent-light);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px var(--card-shadow);
+    }
+
+    .tiles-section {
+      padding: 3rem 5%;
+      background-color: var(--secondary-bg);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      color: var(--accent-color);
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.5s ease;
+    }
+
+    .section-title.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tile-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .tile {
+      perspective: 1000px;
+      height: 220px;
+      text-decoration: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .tile.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .tile-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s ease;
+      transform-style: preserve-3d;
+      box-shadow: 0 5px 15px var(--card-shadow);
+      border-radius: 10px;
+      border: 1px solid var(--accent-light);
+    }
+
+    .tile:hover .tile-inner {
+      transform: rotateY(180deg);
+    }
+
+    .tile-front,
+    .tile-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      border-radius: 10px;
+    }
+
+    .tile-front {
+      background: var(--card-bg);
+      color: var(--text-color);
+    }
+
+    .tile-back {
+      background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+      color: #ffffff;
+      transform: rotateY(180deg);
+    }
+
+    .tile-front::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+    }
+
+    .tile-front i {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+
+    .tile-front h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .tile-front p {
+      font-size: 1rem;
+    }
+
+    .tile-back h4 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .tile-back a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border: 1px solid #ffffff;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    .tile-back a:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    #contact {
+      padding: 3rem 5%;
+      background-color: var(--footer-bg);
+      text-align: center;
+    }
+
+    #contact h2 {
+      font-size: 2rem;
+      color: var(--accent-color);
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.5s ease;
+    }
+
+    #contact h2.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .contact-container {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-item {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--accent-color);
+      color: #ffffff;
+      transition: all 0.3s ease;
+    }
+
+    .contact-item:hover {
+      background: var(--accent-light);
+      transform: scale(1.1);
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 2rem;
+      background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: 0 5px 15px var(--card-shadow);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 0.8rem;
+      border: 1px solid var(--accent-light);
+      border-radius: 5px;
+      font-size: 1rem;
+      background: var(--primary-bg);
+      color: var(--text-color);
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .contact-form input.visible,
+    .contact-form textarea.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 5px var(--accent-light);
+    }
+
+    .contact-form button {
+      padding: 0.8rem;
+      background: var(--accent-color);
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .contact-form button.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .contact-form button:hover {
+      background: var(--accent-light);
+      transform: scale(1.05);
+    }
+
+    .thank-you {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px var(--card-shadow);
+      text-align: center;
+      z-index: 2000;
+      display: none;
+      max-width: 90%;
+      width: 400px;
+    }
+
+    .thank-you.active {
+      display: block;
+      animation: popIn 0.5s ease;
+    }
+
+    @keyframes popIn {
+      0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+
+    .thank-you i {
+      font-size: 3rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+
+    .thank-you h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--accent-color);
+    }
+
+    .thank-you p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .thank-you-close {
+      padding: 0.8rem 2rem;
+      background: var(--accent-color);
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .thank-you-close:hover {
+      background: var(--accent-light);
+      transform: scale(1.05);
+    }
+
+    .footer {
+      background-color: var(--footer-bg);
+      color: var(--text-color);
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    .footer p {
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .intro-content h1 {
+        font-size: 2rem;
+      }
+
+      .intro-content p {
+        font-size: 1rem;
+      }
+
+      .tile-container {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-container {
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 1.5rem;
+      }
+
+      .dropdown-toggle, .auth-button {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+      }
+
+      .intro-content h1 {
+        font-size: 1.8rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      #contact h2 {
+        font-size: 1.8rem;
+      }
+
+      .tile {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Preloader -->
+  <div class="loader" id="loader"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo" onclick="window.location.href='index.html'">Dear Future Luminary</div>
+    <div class="nav-menu">
+      <div class="dropdown">
+        <button class="dropdown-toggle"><i class="fas fa-bars"></i> Menu</button>
+        <div class="dropdown-menu">
+          <a href="index.html"><i class="fas fa-home"></i> Home</a>
+          <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+          <a href="teams.html"><i class="fas fa-users"></i> Teams</a>
+          <a href="programs.html"><i class="fas fa-cogs"></i> Programs</a>
+          <a href="radar.html"><i class="fas fa-bullseye"></i> Opportunity Radar</a>
+          <a href="upgrade.html"><i class="fas fa-arrow-up"></i> Resources</a>
+          <a href="my-story.html"><i class="fas fa-star"></i> My Story</a>
+          <a href="about开门.html"><i class="fas fa-info-circle"></i> About Us</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-toggle"><i class="fas fa-palette"></i> Themes</button>
+        <div class="dropdown-menu">
+          <div class="theme-option" data-theme="luminary"><i class="fas fa-sun"></i> Luminary</div>
+          <div class="theme-option" data-theme="elegant"><i class="fas fa-gem"></i> Elegant</div>
+          <div class="theme-option" data-theme="cosmic"><i class="fas fa-star"></i> Cosmic</div>
+          <div class="theme-option" data-theme="bright"><i class="fas fa-lightbulb"></i> Bright</div>
+          <div class="theme-option" data-theme="vibrant"><i class="fas fa-bolt"></i> Vibrant</div>
+        </div>
+      </div>
+      <button class="auth-button" id="authButton"><i class="fas fa-user"></i> Sign In</button>
+      <button class="auth-button" id="dashboardButton" style="display: none;"><i class="fas fa-tachometer-alt"></i> Dashboard</button>
+      <button class="auth-button" id="logoutButton" style="display: none;"><i class="fas fa-sign-out-alt"></i> Log Out</button>
+    </div>
+  </nav>
+
+  <!-- Intro Section -->
+  <section class="intro-section" id="introSection">
+    <div class="intro-content">
+      <h1>Dear Future Luminary</h1>
+      <p>Find your path to an inspiring future! Take our quiz to discover opportunities tailored to your passions and skills.</p>
+      <p class="welcome-message" id="welcomeMessage" style="display: none;"></p>
+      <a href="quiz.html" class="cta-button">Discover Your Path</a>
+    </div>
+  </section>
+
+  <!-- Tiles Section -->
+  <section class="tiles-section" id="tilesSection">
+    <h2 class="section-title">Explore Opportunities</h2>
+    <div class="tile-container">
+      <div class="tile">
+        <div class="tile-inner">
+          <div class="tile-front">
+            <i class="fas fa-users"></i>
+            <h3>Discover Amazing Teams</h3>
+            <p>Find the best teams to join!</p>
+          </div>
+          <div class="tile-back">
+            <h4>Join Top Teams</h4>
+            <a href="teams.html">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <div class="tile">
+        <div class="tile-inner">
+          <div class="tile-front">
+            <i class="fas fa-cogs"></i>
+            <h3>Top Summer Programs</h3>
+            <p>Accelerate your growth!</p>
+          </div>
+          <div class="tile-back">
+            <h4>Explore Programs</h4>
+            <a href="programs.html">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <div class="tile">
+        <div class="tile-inner">
+          <div class="tile-front">
+            <i class="fas fa-bullseye"></i>
+            <h3>Opportunity Radar</h3>
+            <p>Never miss a chance!</p>
+          </div>
+          <div class="tile-back">
+            <h4>Find Opportunities</h4>
+            <a href="radar.html">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <div class="tile">
+        <div class="tile-inner">
+          <div class="tile-front">
+            <i class="fas fa-arrow-up"></i>
+            <h3>Upgrade Your Journey</h3>
+            <p>Elevate your skills!</p>
+          </div>
+          <div class="tile-back">
+            <h4>Boost Your Skills</h4>
+            <a href="upgrade.html">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <div class="tile">
+        <div class="tile-inner">
+          <div class="tile-front">
+            <i class="fas fa-star"></i>
+            <h3>My Story</h3>
+            <p>Learn about my journey!</p>
+          </div>
+          <div class="tile-back">
+            <h4>Read My Story</h4>
+            <a href="my-story.html">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <div class="contact-container">
+      <a href="mailto:malakemad7777777@gmail.com" class="contact-item" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      <a href="https://wa.me/201090879843" target="_blank" class="contact-item" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.facebook.com/profile.php?id=100088385822088" target="_blank" class="contact-item" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/loka_luminary/" target="_blank" class="contact-item" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/malak-savvyt-t/" target="_blank" class="contact-item" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://t.me/loka_luminaryy" target="_blank" class="contact-item" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+    </div>
+    <form class="contact-form" id="contactForm">
+      <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name">
+      <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email">
+      <textarea name="message" placeholder="Your Message" rows="4" required aria-label="Your Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="footer">
+    <p>© 2025 Dear Future Luminary. All rights reserved.</p>
+  </footer>
+
+  <!-- Thank You Card -->
+  <div class="thank-you" id="thankYouCard">
+    <i class="fas fa-check-circle"></i>
+    <h1>Thank You!</h1>
+    <p>Your message has been sent successfully. Malak will get back to you soon!</p>
+    <button class="thank-you-close" id="thankYouClose">Close</button>
+  </div>
+
+  <script>
+    // Supabase Configuration (Temporary placeholders)
+    const supabaseUrl = 'YOUR_SUPABASE_URL';
+    const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
+    let supabase;
+
+    // Initialize Supabase with error handling
+    try {
+      supabase = Supabase.createClient(supabaseUrl, supabaseKey);
+    } catch (error) {
+      console.error('Error initializing Supabase:', error);
+    }
+
+    // Preloader with faster timeout and error handling
+    function hideLoader() {
+      const loader = document.getElementById('loader');
+      if (loader) {
+        loader.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    window.onload = () => {
+      try {
+        document.fonts.ready.then(hideLoader).catch(() => {
+          console.warn('Font loading failed, hiding loader.');
+          hideLoader();
+        });
+      } catch (error) {
+        console.warn('Error in font loading:', error);
+        hideLoader();
+      }
+      // Faster timeout (1 second)
+      setTimeout(hideLoader, 1000);
+    };
+
+    // Theme Selector
+    document.querySelectorAll('.theme-option').forEach(option => {
+      option.addEventListener('click', () => {
+        const theme = option.getAttribute('data-theme');
+        document.body.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+      });
+    });
+
+    // Load Saved Theme
+    const savedTheme = localStorage.getItem('theme') || 'luminary';
+    document.body.setAttribute('data-theme', savedTheme);
+
+    // Authentication Logic
+    const authButton = document.getElementById('authButton');
+    const dashboardButton = document.getElementById('dashboardButton');
+    const logoutButton = document.getElementById('logoutButton');
+    const welcomeMessage = document.getElementById('welcomeMessage');
+
+    async function checkAuth() {
+      try {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+          authButton.style.display = 'none';
+          dashboardButton.style.display = 'inline-block';
+          logoutButton.style.display = 'inline-block';
+          welcomeMessage.style.display = 'block';
+          welcomeMessage.textContent = `Welcome back, ${user.email}!`;
+        } else {
+          authButton.style.display = 'inline-block';
+          dashboardButton.style.display = 'none';
+          logoutButton.style.display = 'none';
+          welcomeMessage.style.display = 'none';
+        }
+      } catch (error) {
+        console.error('Error checking auth:', error);
+      }
+    }
+
+    authButton.addEventListener('click', () => {
+      window.location.href = 'auth.html';
+    });
+
+    dashboardButton.addEventListener('click', () => {
+      window.location.href = 'dashboard.html';
+    });
+
+    logoutButton.addEventListener('click', async () => {
+      try {
+        if (supabase) {
+          await supabase.auth.signOut();
+        }
+        localStorage.removeItem('user');
+        window.location.href = 'index.html';
+      } catch (error) {
+        console.error('Error during logout:', error);
+      }
+    });
+
+    // Contact Form
+    const contactForm = document.getElementById('contactForm');
+    const thankYouCard = document.getElementById('thankYouCard');
+    const thankYouClose = document.getElementById('thankYouClose');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      thankYouCard.classList.add('active');
+      contactForm.reset();
+    });
+
+    thankYouClose.addEventListener('click', () => {
+      thankYouCard.classList.remove('active');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!thankYouCard.contains(e.target) && e.target !== thankYouClose) {
+        thankYouCard.classList.remove('active');
+      }
+    });
+
+    // Scroll Animations
+    window.addEventListener('scroll', () => {
+      document.querySelectorAll('.tile, .section-title, #contact h2, .contact-form input, .contact-form textarea, .contact-form button').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.9) {
+          el.classList.add('visible');
+        }
+      });
+    });
+
+    // Initialize Auth Check
+    checkAuth();
+  </script>
+</body>
+</html>

@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top Summer Programs | Dear Future Luminary</title>
+  <meta name="description" content="Discover top summer programs to accelerate your growth with Dear Future Luminary">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Default Theme (Luminary) */
+      --primary-bg: #ffffff;
+      --secondary-bg: #f8f9fa;
+      --text-color: #2c3e50;
+      --accent-color: #6a3093;
+      --accent-light: #a044ff;
+      --highlight: #f1c40f;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --nav-bg: #ffffff;
+      --footer-bg: #f8f9fa;
+      --section-bg: #ffffff;
+      --transition-speed: 0.3s;
+    }
+
+    /* Elegant Theme */
+    [data-theme="elegant"] {
+      --primary-bg: #ffffff;
+      --secondary-bg: #f5f5f5;
+      --text-color: #2c3e50;
+      --accent-color: #2e2e2e;
+      --accent-light: #4a4a4a;
+      --highlight: #d4a017;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --nav-bg: #ffffff;
+      --footer-bg: #f5f5f5;
+      --section-bg: #ffffff;
+    }
+
+    /* Cosmic Theme */
+    [data-theme="cosmic"] {
+      --primary-bg: #ffffff;
+      --secondary-bg: #f0f4f8;
+      --text-color: #2c3e50;
+      --accent-color: #1e3a8a;
+      --accent-light: #3b82f6;
+      --highlight: #10b981;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --nav-bg: #ffffff;
+      --footer-bg: #f0f4f8;
+      --section-bg: #ffffff;
+    }
+
+    /* Bright Theme */
+    [data-theme="bright"] {
+      --primary-bg: #ffffff;
+      --secondary-bg: #fef3e7;
+      --text-color: #2c3e50;
+      --accent-color: #e11d48;
+      --accent-light: #fb7185;
+      --highlight: #f59e0b;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --nav-bg: #ffffff;
+      --footer-bg: #fef3e7;
+      --section-bg: #ffffff;
+    }
+
+    /* Vibrant Theme */
+    [data-theme="vibrant"] {
+      --primary-bg: #ffffff;
+      --secondary-bg: #f4eaff;
+      --text-color: #2c3e50;
+      --accent-color: #7c3aed;
+      --accent-light: #a78bfa;
+      --highlight: #ec4899;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --nav-bg: #ffffff;
+      --footer-bg: #f4eaff;
+      --section-bg: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--primary-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .logo {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Custom Cursor */
+    .custom-cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, var(--accent-color) 30%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 8px var(--accent-light);
+      animation: pulse-cursor 2s infinite;
+    }
+
+    .custom-cursor.active {
+      transform: translate(-50%, -50%) scale(1.5);
+      background: radial-gradient(circle, var(--accent-light) 30%, transparent 70%);
+    }
+
+    @keyframes pulse-cursor {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 1; }
+    }
+
+    /* Preloader */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--primary-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      opacity: 1;
+      transition: opacity 0.6s ease;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader::before {
+      content: '';
+      width: 40px;
+      height: 40px;
+      border: 3px solid transparent;
+      border-top: 3px solid var(--accent-color);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: var(--nav-bg);
+      box-shadow: 0 2px 5px var(--card-shadow);
+      z-index: 1000;
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      color: var(--accent-color);
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .logo:hover {
+      color: var(--accent-light);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-toggle {
+      background: none;
+      border: none;
+      color: var(--text-color);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-toggle:hover {
+      background: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--nav-bg);
+      border-radius: 5px;
+      box-shadow: 0 5px 15px var(--card-shadow);
+      display: none;
+      flex-direction: column;
+      padding: 0.5rem;
+      min-width: 180px;
+      z-index: 1001;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: flex;
+    }
+
+    .dropdown-menu a,
+    .dropdown-menu .theme-option {
+      text-decoration: none;
+      color: var(--text-color);
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-menu a:hover,
+    .dropdown-menu .theme-option:hover {
+      background: var(--accent-light);
+      color: #ffffff;
+    }
+
+    /* Back to Top Button */
+    #myBtn {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 99;
+      border: none;
+      outline: none;
+      background-color: var(--accent-color);
+      color: white;
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 15px var(--card-shadow);
+      transition: all 0.3s;
+    }
+
+    #myBtn:hover {
+      background-color: var(--accent-light);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px var(--card-shadow);
+    }
+
+    /* Intro Section */
+    .intro-section {
+      margin-top: 80px;
+      padding: 4rem 5%;
+      background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+      color: #ffffff;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .intro-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .intro-content p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    /* Programs Section */
+    .programs-section {
+      padding: 3rem 5%;
+      background-color: var(--secondary-bg);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      color: var(--accent-color);
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.5s ease;
+    }
+
+    .section-title.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .program-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .program-card {
+      perspective: 1000px;
+      height: 280px; /* Fixed height for consistent flipping */
+      text-decoration: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .program-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .program-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s ease;
+      transform-style: preserve-3d;
+      box-shadow: 0 5px 15px var(--card-shadow);
+      border-radius: 10px;
+      border: 1px solid var(--accent-light);
+    }
+
+    .program-card:hover .program-inner {
+      transform: rotateY(180deg);
+    }
+
+    .program-front,
+    .program-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+      border-radius: 10px;
+    }
+
+    .program-front {
+      background: var(--card-bg);
+      color: var(--text-color);
+    }
+
+    .program-back {
+      background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+      color: #ffffff;
+      transform: rotateY(180deg);
+      overflow-y: auto; /* Allow scrolling for longer content */
+      padding: 1rem;
+    }
+
+    .program-front::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+    }
+
+    .program-front h3 {
+      font-size: 1.5rem;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .program-front p {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .program-back p {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      text-align: left;
+    }
+
+    .program-back strong {
+      color: #ffffff;
+    }
+
+    .program-back a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border: 1px solid #ffffff;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+      margin-top: 0.5rem;
+      display: inline-block;
+    }
+
+    .program-back a:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--footer-bg);
+      color: var(--text-color);
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 0.9rem;
+    }
+
+    .footer p {
+      margin: 0;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .social-icons a {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--accent-color);
+      color: #ffffff;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background: var(--accent-light);
+      transform: scale(1.1);
+    }
+
+    /* Animations */
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .intro-content h1 {
+        font-size: 2rem;
+      }
+
+      .intro-content p {
+        font-size: 1rem;
+      }
+
+      .program-container {
+        grid-template-columns: 1fr;
+      }
+
+      .program-card {
+        height: 300px; /* Slightly taller for mobile */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 1.5rem;
+      }
+
+      .dropdown-toggle {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+      }
+
+      .intro-content h1 {
+        font-size: 1.8rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .program-front h3 {
+        font-size: 1.3rem;
+      }
+
+      .program-front p {
+        font-size: 0.9rem;
+      }
+
+      .program-back p {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor"></div>
+
+  <!-- Preloader -->
+  <div class="loader" id="loader"></div>
+
+  <!-- Back to Top Button -->
+  <button onclick="topFunction()" id="myBtn" title="Go to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo" onclick="window.location.href='index.html'">Dear Future Luminary</div>
+    <div class="nav-menu">
+      <div class="dropdown">
+        <button class="dropdown-toggle"><i class="fas fa-bars"></i> Menu</button>
+        <div class="dropdown-menu">
+          <a href="index.html"><i class="fas fa-home"></i> Home</a>
+          <a href="teams.html"><i class="fas fa-users"></i> Teams</a>
+          <a href="programs.html"><i class="fas fa-cogs"></i> Programs</a>
+          <a href="radar.html"><i class="fas fa-bullseye"></i> Opportunity Radar</a>
+          <a href="upgrade.html"><i class="fas fa-arrow-up"></i> Resources</a>
+          <a href="my-story.html"><i class="fas fa-star"></i> My Story</a>
+          <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-toggle"><i class="fas fa-palette"></i> Themes</button>
+        <div class="dropdown-menu">
+          <div class="theme-option" data-theme="luminary"><i class="fas fa-sun"></i> Luminary</div>
+          <div class="theme-option" data-theme="elegant"><i class="fas fa-gem"></i> Elegant</div>
+          <div class="theme-option" data-theme="cosmic"><i class="fas fa-star"></i> Cosmic</div>
+          <div class="theme-option" data-theme="bright"><i class="fas fa-lightbulb"></i> Bright</div>
+          <div class="theme-option" data-theme="vibrant"><i class="fas fa-bolt"></i> Vibrant</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Intro Section -->
+  <section class="intro-section">
+    <div class="intro-content">
+      <h1>Top Summer Programs</h1>
+      <p>Explore transformative summer programs to accelerate your growth and unlock your potential.</p>
+    </div>
+  </section>
+
+  <!-- Programs Section -->
+  <section class="programs-section">
+    <h2 class="section-title">Discover Programs</h2>
+    <div class="program-container">
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>The Experiment Digital</h3>
+            <p><strong>Type:</strong> Online</p>
+            <p>Virtual leadership and cultural exchange program.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Eligibility:</strong> Ages 14-19, international students.</p>
+            <p><strong>Funding:</strong> Scholarships for MENA students (Egypt included).</p>
+            <p><strong>Location:</strong> Online</p>
+            <p><strong>More Info:</strong> Rolling applications; check for 2025 updates.</p>
+            <a href="https://www.experiment.org/digital/" target="_blank" rel="noopener">Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>Yale Young Global Scholars</h3>
+            <p><strong>Type:</strong> Online or In-person</p>
+            <p>2-week interdisciplinary program with STEM and humanities.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Eligibility:</strong> Ages 16-18, high school students.</p>
+            <p><strong>Funding:</strong> Need-based aid covers all costs.</p>
+            <p><strong>Location:</strong> New Haven, CT, USA</p>
+            <p><strong>More Info:</strong> Deadlines in January/February 2025.</p>
+            <a href="https://globalscholars.yale.edu/" target="_blank" rel="noopener">Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>MITES Summer Program</h3>
+            <p><strong>Type:</strong> In-person</p>
+            <p>6-week STEM program at MIT with advanced projects.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Eligibility:</strong> Rising seniors (16-17), strong STEM background.</p>
+            <p><strong>Funding:</strong> Fully funded (tuition, housing, meals, travel).</p>
+            <p><strong>Location:</strong> Cambridge, MA, USA</p>
+            <p><strong>More Info:</strong> Apply by early spring (e.g., February 2025).</p>
+            <a href="https://mites.mit.edu/" target="_blank" rel="noopener">Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>Junior Academy</h3>
+            <p><strong>Type:</strong> Online</p>
+            <p>Year-round STEM challenges with summer components.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Eligibility:</strong> Ages 13-19, STEM interest.</p>
+            <p><strong>Funding:</strong> Free for accepted students.</p>
+            <p><strong>Location:</strong> Online</p>
+            <p><strong>More Info:</strong> Rolling applications.</p>
+            <a href="https://www.nyas.org/programs/junior-academy/" target="_blank" rel="noopener">Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>AFS Global STEM Academies</h3>
+            <p><strong>Type:</strong> In-person</p>
+            <p>4-week STEM and intercultural program.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Eligibility:</strong> Ages 15-17.5, STEM interest.</p>
+            <p><strong>Funding:</strong> Full scholarships (tuition, travel, housing).</p>
+            <p><strong>Location:</strong> Varies (e.g., USA, Brazil)</p>
+            <p><strong>More Info:</strong> Apply via AFS Egypt by early spring.</p>
+            <a href="https://afs.org/global-stem/" target="_blank" rel="noopener">Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>Summer Science Program</h3>
+            <p><strong>Type:</strong> In-person</p>
+            <p>6-week STEM research in astrophysics or biochemistry.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Eligibility:</strong> Ages 15-18, rising seniors.</p>
+            <p><strong>Funding:</strong> Need-based full scholarships.</p>
+            <p><strong>Location:</strong> USA (varies)</p>
+            <p><strong>More Info:</strong> Apply by February 2025.</p>
+            <a href="https://summerscience.org/" target="_blank" rel="noopener">Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>National Youth Science Camp</h3>
+            <p><strong>Type:</strong> In-person</p>
+            <p>3-week STEM and leadership camp.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Eligibility:</strong> Recent graduates (17-18), international slots.</p>
+            <p><strong>Funding:</strong> Fully funded (travel, tuition).</p>
+            <p><strong>Location:</strong> West Virginia, USA</p>
+            <p><strong>More Info:</strong> Apply during senior year.</p>
+            <a href="https://nyscamp.org/" target="_blank" rel="noopener">Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>TechGirls</h3>
+            <p><strong>Type:</strong> In-person</p>
+            <p>4-week STEM program for girls from MENA.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Eligibility:</strong> Girls ages 15-17, STEM interest.</p>
+            <p><strong>Funding:</strong> Fully funded (travel, tuition).</p>
+            <p><strong>Location:</strong> USA</p>
+            <p><strong>More Info:</strong> Apply via U.S. Embassy Egypt.</p>
+            <a href="https://techgirlsglobal.org/" target="_blank" rel="noopener">Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>PROMYS</h3>
+            <p><strong>Type:</strong> In-person</p>
+            <p>6-week math program at Boston University.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Eligibility:</strong> Ages 14-18, math enthusiasts.</p>
+            <p><strong>Funding:</strong> Full scholarships available.</p>
+            <p><strong>Location:</strong> Boston, MA, USA</p>
+            <p><strong>More Info:</strong> Apply by March 2025.</p>
+            <a href="https://promys.org/" target="_blank" rel="noopener">Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>Research Science Institute</h3>
+            <p><strong>Type:</strong> In-person</p>
+            <p>6-week intensive STEM research at MIT.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Eligibility:</strong> Rising seniors (16-17), exceptional students.</p>
+            <p><strong>Funding:</strong> Fully funded (tuition, travel, housing).</p>
+            <p><strong>Location:</strong> Cambridge, MA, USA</p>
+            <p><strong>More Info:</strong> Apply by December 2024.</p>
+            <a href="https://www.cee.org/programs/research-science-institute" target="_blank" rel="noopener">Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>Google CSSI</h3>
+            <p><strong>Type:</strong> Online</p>
+            <p>3-week virtual coding program with Google mentorship.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Eligibility:</strong> Ages 16-18, coding interest.</p>
+            <p><strong>Funding:</strong> Free (online).</p>
+            <p><strong>Location:</strong> Online</p>
+            <p><strong>More Info:</strong> Apply by February/March 2025.</p>
+            <a href="https://buildyourfuture.withgoogle.com/programs/computer-science-summer-institute/" target="_blank" rel="noopener">Visit Website</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Connect With Us:</p>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/profile.php?id=100088385822088" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/loka_luminary/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/malak-savvyt-t/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    <p>© 2025 Dear Future Luminary | Designed by Malak Emad</p>
+  </footer>
+
+  <script>
+    // Custom Cursor
+    const customCursor = document.getElementById('customCursor');
+    document.addEventListener('mousemove', (e) => {
+      customCursor.style.left = `${e.clientX}px`;
+      customCursor.style.top = `${e.clientY}px`;
+    });
+
+    document.querySelectorAll('a, button, input, textarea, .program-card, .social-icons a').forEach(el => {
+      el.addEventListener('mouseenter', () => customCursor.classList.add('active'));
+      el.addEventListener('mouseleave', () => customCursor.classList.remove('active'));
+    });
+
+    // Preloader
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }, 800);
+    });
+
+    // Theme Selector
+    document.querySelectorAll('.theme-option').forEach(option => {
+      option.addEventListener('click', () => {
+        const theme = option.getAttribute('data-theme');
+        document.body.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+      });
+    });
+
+    // Load Saved Theme
+    const savedTheme = localStorage.getItem('theme') || 'luminary';
+    document.body.setAttribute('data-theme', savedTheme);
+
+    // Back to Top Button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+      } else {
+        document.getElementById("myBtn").style.display = "none";
+      }
+    }
+
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+
+    // Scroll Animations
+    window.addEventListener('scroll', () => {
+      document.querySelectorAll('.program-card, .section-title').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.9) {
+          el.classList.add('visible');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

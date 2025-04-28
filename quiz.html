@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discover Your Path | Dear Future Luminary</title>
+  <meta name="description" content="Take our quiz to discover your unique path and unlock tailored opportunities!">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqzqGA89r8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    :root {
+      --primary-bg: #ffffff;
+      --secondary-bg: #f8f9fa;
+      --text-color: #2c3e50;
+      --accent-color: #6a3093;
+      --accent-light: #a044ff;
+      --highlight: #f1c40f;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --nav-bg: #ffffff;
+      --footer-bg: #f8f9fa;
+      --section-bg: #ffffff;
+      --transition-speed: 0.3s;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--primary-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .logo {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: var(--nav-bg);
+      box-shadow: 0 2px 5px var(--card-shadow);
+      z-index: 1000;
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      color: var(--accent-color);
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .logo:hover {
+      color: var(--accent-light);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .auth-button {
+      padding: 0.5rem 1rem;
+      background: var(--accent-color);
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .auth-button:hover {
+      background: var(--accent-light);
+      transform: scale(1.05);
+    }
+
+    .quiz-section {
+      margin-top: 80px;
+      padding: 4rem 5%;
+      background: var(--secondary-bg);
+      min-height: calc(100vh - 80px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .quiz-container {
+      max-width: 800px;
+      width: 100%;
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px var(--card-shadow);
+    }
+
+    .quiz-container h1 {
+      font-size: 2.2rem;
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      background: #e0e0e0;
+      border-radius: 5px;
+      margin-bottom: 2rem;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--accent-color);
+      border-radius: 5px;
+      transition: width 0.3s ease;
+    }
+
+    .question {
+      margin-bottom: 2rem;
+    }
+
+    .question h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .option {
+      padding: 1rem;
+      background: var(--primary-bg);
+      border: 1px solid var(--accent-light);
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .option:hover {
+      background: var(--accent-light);
+      color: #ffffff;
+    }
+
+    .option input {
+      display: none;
+    }
+
+    .option label {
+      cursor: pointer;
+      display: block;
+    }
+
+    .quiz-navigation {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-button {
+      padding: 0.8rem 2rem;
+      background: var(--accent-color);
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .nav-button:hover {
+      background: var(--accent-light);
+      transform: scale(1.05);
+    }
+
+    .nav-button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .result-section {
+      display: none;
+      text-align: center;
+    }
+
+    .result-section.active {
+      display: block;
+    }
+
+    .result-section h2 {
+      font-size: 2rem;
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .result-section p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .skill-meter {
+      width: 100%;
+      margin: 1.5rem 0;
+    }
+
+    .skill-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .skill-name {
+      width: 150px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .meter-container {
+      flex-grow: 1;
+      height: 10px;
+      background: #e0e0e0;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .meter-fill {
+      height: 100%;
+      background: var(--accent-color);
+      border-radius: 5px;
+      transition: width 1s ease;
+    }
+
+    .skill-confidence {
+      font-size: 0.85rem;
+      color: var(--text-color);
+      margin-left: 1rem;
+    }
+
+    .traits-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin: 1.5rem 0;
+    }
+
+    .trait-badge {
+      background: var(--accent-light);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .trait-badge:hover::after {
+      content: attr(data-description);
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent-color);
+      color: white;
+      padding: 0.5rem;
+      border-radius: 5px;
+      font-size: 0.75rem;
+      width: 120px;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .recommendations {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .recommendation-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 3px 10px var(--card-shadow);
+      transition: transform 0.3s ease;
+    }
+
+    .recommendation-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent-light);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .card-body {
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .card-link {
+      display: inline-block;
+      margin-top: 0.8rem;
+      color: var(--accent-color);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .card-link:hover {
+      color: var(--accent-light);
+      text-decoration: underline;
+    }
+
+    .action-plan {
+      background: var(--section-bg);
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-top: 1.5rem;
+    }
+
+    .action-plan ul {
+      padding-left: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .action-plan li {
+      margin-bottom: 0.5rem;
+    }
+
+    .quiz-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      justify-content: center;
+    }
+
+    .quiz-button {
+      padding: 0.8rem 2rem;
+      background: var(--accent-color);
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .quiz-button:hover {
+      background: var(--accent-light);
+      transform: scale(1.05);
+    }
+
+    .footer {
+      background-color: var(--footer-bg);
+      color: var(--text-color);
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    @media (max-width: 768px) {
+      .quiz-container {
+        padding: 1.5rem;
+      }
+
+      .quiz-container h1, .result-section h2 {
+        font-size: 1.8rem;
+      }
+
+      .question h2 {
+        font-size: 1.3rem;
+      }
+
+      .skill-name {
+        width: 120px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .quiz-container h1, .result-section h2 {
+        font-size: 1.6rem;
+      }
+
+      .question h2 {
+        font-size: 1.2rem;
+      }
+
+      .skill-name {
+        width: 80px;
+        font-size: 0.8rem;
+      }
+
+      .nav-button, .quiz-button {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="loader" id="loader">
+      <div class="loader-inner"></div>
+    </div>
+  
+    <!-- Error Message Fallback -->
+    <div class="error-message" id="errorMessage">
+      Oops! Something went wrong. Please refresh the page or try again later.
+    </div>
+  
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo" onclick="window.location.href='index.html'">Dear Future Luminary</div>
+      <div class="nav-menu">
+        <div class="dropdown">
+          <button class="dropdown-toggle"><i class="fas fa-bars"></i> Menu</button>
+          <div class="dropdown-menu">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="teams.html"><i class="fas fa-users"></i> Teams</a>
+            <a href="programs.html"><i class="fas fa-cogs"></i> Programs</a>
+            <a href="radar.html"><i class="fas fa-bullseye"></i> Opportunity Radar</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+          </div>
+        </div>
+        <div class="dropdown">
+          <button class="dropdown-toggle"><i class="fas fa-palette"></i> Themes</button>
+          <div class="dropdown-menu">
+            <div class="theme-option" data-theme="luminary"><i class="fas fa-sun"></i> Luminary</div>
+            <div class="theme-option" data-theme="elegant"><i class="fas fa-gem"></i> Elegant</div>
+            <div class="theme-option" data-theme="cosmic"><i class="fas fa-star"></i> Cosmic</div>
+            <div class="theme-option" data-theme="bright"><i class="fas fa-lightbulb"></i> Bright</div>
+            <div class="theme-option" data-theme="vibrant"><i class="fas fa-bolt"></i> Vibrant</div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  
+    <!-- Quiz Section -->
+    <section class="quiz-section" id="quizSection">
+      <div class="quiz-container">
+        <div class="quiz-header">
+          <h1>Discover Your Luminary Path</h1>
+          <p class="subtitle">Take this 10–15 minute quiz to uncover your strengths, skills, and ideal opportunities in STEM and beyond!</p>
+          <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+          </div>
+        </div>
+  
+        <!-- Personality Section -->
+        <div class="section-title" id="section1">Your Personality & Work Style</div>
+        <!-- Q1: Personality Type -->
+        <div class="question" id="question1">
+          <h2>Which description best fits you?</h2>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q1" value="analytical" required>
+              <i class="fas fa-brain"></i>
+              <span><strong>Analytical Thinker</strong><br>I love solving complex problems and working with data</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q1" value="creative">
+              <i class="fas fa-paint-brush"></i>
+              <span><strong>Creative Innovator</strong><br>I enjoy coming up with new ideas and artistic expression</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q1" value="social">
+              <i class="fas fa-users"></i>
+              <span><strong>Social Connector</strong><br>I thrive when working with people and building relationships</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q1" value="practical">
+              <i class="fas fa-tools"></i>
+              <span><strong>Practical Doer</strong><br>I prefer hands-on work and seeing tangible results</span>
+            </label>
+          </div>
+        </div>
+        <!-- Q2: Work Environment -->
+        <div class="question" id="question2" style="display: none;">
+          <h2>Preferred work environment?</h2>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q2" value="structured" required>
+              <i class="fas fa-list"></i>
+              <span><strong>Structured</strong> - Clear tasks and predictable routines</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q2" value="flexible">
+              <i class="fas fa-random"></i>
+              <span><strong>Flexible</strong> - Changing projects and creative freedom</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q2" value="team">
+              <i class="fas fa-users-cog"></i>
+              <span><strong>Team-based</strong> - Collaborative with lots of interaction</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q2" value="independent">
+              <i class="fas fa-user"></i>
+              <span><strong>Independent</strong> - Working alone with minimal supervision</span>
+            </label>
+          </div>
+        </div>
+        <!-- Q3: Leadership Style -->
+        <div class="question" id="question3" style="display: none;">
+          <h2>How do you prefer to contribute to a team?</h2>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q3" value="leading" required>
+              <i class="fas fa-user-tie"></i>
+              <span><strong>Leading</strong> - Guiding and directing the team</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q3" value="supporting">
+              <i class="fas fa-hands-helping"></i>
+              <span><strong>Supporting</strong> - Helping others succeed</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q3" value="executing">
+              <i class="fas fa-check-circle"></i>
+              <span><strong>Executing</strong> - Focusing on tasks and results</span>
+            </label>
+          </div>
+        </div>
+  
+        <!-- Skills Section -->
+        <div class="section-title" id="section2" style="display: none;">Your Skills & Competencies</div>
+        <!-- Q4: Top Skills -->
+        <div class="question" id="question4" style="display: none;">
+          <h2>Select your top 3 skills:</h2>
+          <div class="options" style="grid-template-columns: repeat(2, 1fr);">
+            <label class="option">
+              <input type="checkbox" name="q4" value="coding">
+              <i class="fas fa-code"></i> Coding/Programming
+            </label>
+            <label class="option">
+              <input type="checkbox" name="q4" value="public_speaking">
+              <i class="fas fa-microphone"></i> Public Speaking
+            </label>
+            <label class="option">
+              <input type="checkbox" name="q4" value="project_management">
+              <i class="fas fa-tasks"></i> Project Management
+            </label>
+            <label class="option">
+              <input type="checkbox" name="q4" value="research">
+              <i class="fas fa-search"></i> Research
+            </label>
+            <label class="option">
+              <input type="checkbox" name="q4" value="design">
+              <i class="fas fa-pen-nib"></i> Design/Art
+            </label>
+            <label class="option">
+              <input type="checkbox" name="q4" value="data_analysis">
+              <i class="fas fa-chart-bar"></i> Data Analysis
+            </label>
+          </div>
+          <small>Select exactly 3 options</small>
+        </div>
+        <!-- Q5: Skill Confidence -->
+        <div class="question" id="question5" style="display: none;">
+          <h2>Rate your confidence in your selected skills:</h2>
+          <div class="options" id="skillConfidence"></div>
+        </div>
+        <!-- Q6: Applied Skills -->
+        <div class="question" id="question6" style="display: none;">
+          <h2>Which skills have you applied in a real project?</h2>
+          <div class="options" style="grid-template-columns: repeat(2, 1fr);">
+            <label class="option">
+              <input type="checkbox" name="q6" value="coding">
+              <i class="fas fa-code"></i> Built a website/app
+            </label>
+            <label class="option">
+              <input type="checkbox" name="q6" value="public_speaking">
+              <i class="fas fa-microphone"></i> Presented at an event
+            </label>
+            <label class="option">
+              <input type="checkbox" name="q6" value="project_management">
+              <i class="fas fa-tasks"></i> Organized a project/event
+            </label>
+            <label class="option">
+              <input type="checkbox" name="q6" value="research">
+              <i class="fas fa-flask"></i> Conducted research
+            </label>
+          </div>
+          <small>Select all that apply</small>
+        </div>
+  
+        <!-- Interests Section -->
+        <div class="section-title" id="section3" style="display: none;">Your Interests & Passions</div>
+        <!-- Q7: Interests -->
+        <div class="question" id="question7" style="display: none;">
+          <h2>What topics excite you most?</h2>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q7" value="technology" required>
+              <i class="fas fa-laptop-code"></i> Technology & Innovation
+            </label>
+            <label class="option">
+              <input type="radio" name="q7" value="science">
+              <i class="fas fa-flask"></i> Science & Research
+            </label>
+            <label class="option">
+              <input type="radio" name="q7" value="leadership">
+              <i class="fas fa-user-tie"></i> Leadership & Organizing
+            </label>
+            <label class="option">
+              <input type="radio" name="q7" value="social">
+              <i class="fas fa-hands-helping"></i> Social Impact
+            </label>
+          </div>
+        </div>
+        <!-- Q8: Exciting Activities -->
+        <div class="question" id="question8" style="display: none;">
+          <h2>Which event would you most enjoy attending?</h2>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q8" value="hackathon" required>
+              <i class="fas fa-code"></i> A hackathon
+            </label>
+            <label class="option">
+              <input type="radio" name="q8" value="tedx">
+              <i class="fas fa-microphone"></i> A TEDx conference
+            </label>
+            <label class="option">
+              <input type="radio" name="q8" value="science_fair">
+              <i class="fas fa-flask"></i> A science fair
+            </label>
+            <label class="option">
+              <input type="radio" name="q8" value="leadership_summit">
+              <i class="fas fa-users"></i> A leadership summit
+            </label>
+          </div>
+        </div>
+  
+        <!-- Values Section -->
+        <div class="section-title" id="section4" style="display: none;">Your Values & Goals</div>
+        <!-- Q9: Career Values -->
+        <div class="question" id="question9" style="display: none;">
+          <h2>What's most important in your future career?</h2>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q9" value="impact" required>
+              <i class="fas fa-globe"></i> Making a positive impact
+            </label>
+            <label class="option">
+              <input type="radio" name="q9" value="innovation">
+              <i class="fas fa-lightbulb"></i> Driving innovation
+            </label>
+            <label class="option">
+              <input type="radio" name="q9" value="leadership">
+              <i class="fas fa-user-tie"></i> Leading others
+            </label>
+            <label class="option">
+              <input type="radio" name="q9" value="learning">
+              <i class="fas fa-book"></i> Continuous learning
+            </label>
+          </div>
+        </div>
+        <!-- Q10: Dream Impact -->
+        <div class="question" id="question10" style="display: none;">
+          <h2>What’s your dream impact?</h2>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q10" value="global_problem" required>
+              <i class="fas fa-globe"></i> Solve a global problem
+            </label>
+            <label class="option">
+              <input type="radio" name="q10" value="inspire_others">
+              <i class="fas fa-star"></i> Inspire others
+            </label>
+            <label class="option">
+              <input type="radio" name="q10" value="build_career">
+              <i class="fas fa-briefcase"></i> Build a successful career
+            </label>
+          </div>
+        </div>
+  
+        <!-- Experience Section -->
+        <div class="section-title" id="section5" style="display: none;">Your Experience</div>
+        <!-- Q11: Prior Activities -->
+        <div class="question" id="question11" style="display: none;">
+          <h2>Have you participated in any of these activities?</h2>
+          <div class="options" style="grid-template-columns: repeat(2, 1fr);">
+            <label class="option">
+              <input type="checkbox" name="q11" value="stem_club">
+              <i class="fas fa-robot"></i> STEM Club
+            </label>
+            <label class="option">
+              <input type="checkbox" name="q11" value="mun">
+              <i class="fas fa-gavel"></i> Model United Nations
+            </label>
+            <label class="option">
+              <input type="checkbox" name="q11" value="tedx">
+              <i class="fas fa-microphone"></i> TEDx
+            </label>
+            <label class="option">
+              <input type="checkbox" name="q11" value="hackathon">
+              <i class="fas fa-code"></i> Hackathon
+            </label>
+          </div>
+          <small>Select all that apply</small>
+        </div>
+        <!-- Q12: Dream Word -->
+        <div class="question" id="question12" style="display: none;">
+          <h2>What’s one word that describes your dream career?</h2>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q12" value="impactful" required>
+              <i class="fas fa-globe"></i> Impactful
+            </label>
+            <label class="option">
+              <input type="radio" name="q12" value="innovative">
+              <i class="fas fa-lightbulb"></i> Innovative
+            </label>
+            <label class="option">
+              <input type="radio" name="q12" value="inspiring">
+              <i class="fas fa-star"></i> Inspiring
+            </label>
+            <label class="option">
+              <input type="radio" name="q12" value="technical">
+              <i class="fas fa-code"></i> Technical
+            </label>
+          </div>
+        </div>
+  
+        <div class="milestone-message" id="milestoneMessage"></div>
+        <div class="quiz-buttons">
+          <button class="quiz-button" id="prevBtn" disabled>Previous</button>
+          <button class="quiz-button" id="nextBtn">Next</button>
+        </div>
+      </div>
+  
+      <!-- Result Section -->
+      <div class="result" id="result">
+        <h2>Your Luminary Profile: <span id="resultTitle"></span></h2>
+        <p id="resultDescription"></p>
+  
+        <div class="result-section">
+          <h3>Your Skills Analysis</h3>
+          <div class="skill-meter">
+            <div class="skill-row">
+              <div class="skill-name">Technical</div>
+              <div class="meter-container">
+                <div class="meter-fill" id="tech-meter" style="width: 0%"></div>
+              </div>
+              <span class="skill-confidence" id="tech-confidence"></span>
+            </div>
+            <div class="skill-row">
+              <div class="skill-name">Creative</div>
+              <div class="meter-container">
+                <div class="meter-fill" id="creative-meter" style="width: 0%"></div>
+              </div>
+              <span class="skill-confidence" id="creative-confidence"></span>
+            </div>
+            <div class="skill-row">
+              <div class="skill-name">Social</div>
+              <div class="meter-container">
+                <div class="meter-fill" id="social-meter" style="width: 0%"></div>
+              </div>
+              <span class="skill-confidence" id="social-confidence"></span>
+            </div>
+            <div class="skill-row">
+              <div class="skill-name">Leadership</div>
+              <div class="meter-container">
+                <div class="meter-fill" id="leadership-meter" style="width: 0%"></div>
+              </div>
+              <span class="skill-confidence" id="leadership-confidence"></span>
+            </div>
+          </div>
+        </div>
+  
+        <div class="result-section">
+          <h3>Your Personality Traits</h3>
+          <div class="traits-container" id="traitsContainer"></div>
+        </div>
+  
+        <div class="result-section">
+          <h3>Recommended Career Paths</h3>
+          <div class="recommendations" id="careerPaths"></div>
+        </div>
+  
+        <div class="result-section">
+          <h3>Recommended Courses</h3>
+          <div class="recommendations" id="courses"></div>
+        </div>
+  
+        <div class="result-section">
+          <h3>Recommended Activities</h3>
+          <div class="recommendations" id="activities"></div>
+        </div>
+  
+        <div class="result-section">
+          <h3>Your Action Plan</h3>
+          <div class="action-plan" id="actionPlan"></div>
+        </div>
+  
+        <a id="resultLink" href="#" class="quiz-button">Explore Opportunities</a>
+        <button class="print-btn" onclick="window.print()">
+          <i class="fas fa-print"></i> Print Your Results
+        </button>
+        <button class="download-btn" id="downloadBtn">
+          <i class="fas fa-download"></i> Download PDF
+        </button>
+      </div>
+    </section>
+  
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2025 Dear Future Luminary. Powered by Malak Emad.</p>
+    </footer>
+
+  <script>
+    const supabaseUrl = 'YOUR_SUPABASE_URL';
+    const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
+    const supabase = Supabase.createClient(supabaseUrl, supabaseKey);
+
+    // Check if user is logged in
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+      window.location.href = 'auth.html';
+    }
+
+    // Logout
+    document.getElementById('logoutButton').addEventListener('click', async () => {
+      await supabase.auth.signOut();
+      localStorage.removeItem('user');
+      window.location.href = 'index.html';
+    });
+
+    const questions = [
+      {
+        text: "How would you describe your approach to problem-solving?",
+        options: [
+          { text: "I dive into data and analyze patterns.", value: { analytical: 3, technical: 2 } },
+          { text: "I brainstorm creative solutions and think outside the box.", value: { creative: 3 } },
+          { text: "I collaborate with others to find the best solution.", value: { social: 3, leadership: 1 } },
+          { text: "I rely on practical experience and hands-on methods.", value: { practical: 3 } }
+        ]
+      },
+      {
+        text: "What type of project excites you the most?",
+        options: [
+          { text: "Building a new app or software.", value: { technical: 3, analytical: 1 } },
+          { text: "Designing a marketing campaign or artwork.", value: { creative: 3 } },
+          { text: "Leading a team to achieve a goal.", value: { leadership: 3, social: 1 } },
+          { text: "Fixing a real-world issue with tangible results.", value: { practical: 3 } }
+        ]
+      },
+      {
+        text: "How comfortable are you with coding or technical tools?",
+        options: [
+          { text: "Very confident, I love coding!", value: { technical: 3, skill: { coding: 80 } } },
+          { text: "Somewhat confident, I can learn.", value: { technical: 2, skill: { coding: 50 } } },
+          { text: "Not very confident, but I'm open to trying.", value: { technical: 1, skill: { coding: 20 } } },
+          { text: "I prefer non-technical tasks.", value: { technical: 0, skill: { coding: 0 } } }
+        ]
+      },
+      {
+        text: "How do you feel about public speaking or presenting ideas?",
+        options: [
+          { text: "I thrive in front of an audience!", value: { social: 3, skill: { public_speaking: 80 } } },
+          { text: "I'm okay with it, but it’s not my favorite.", value: { social: 2, skill: { public_speaking: 50 } } },
+          { text: "It’s a bit challenging, but I can manage.", value: { social: 1, skill: { public_speaking: 20 } } },
+          { text: "I avoid it if possible.", value: { social: 0, skill: { public_speaking: 0 } } }
+        ]
+      },
+      {
+        text: "What’s your strength in a team setting?",
+        options: [
+          { text: "I lead and organize the team.", value: { leadership: 3, skill: { project_management: 80 } } },
+          { text: "I come up with innovative ideas.", value: { creative: 3, skill: { design: 80 } } },
+          { text: "I analyze data to guide decisions.", value: { analytical: 3 } },
+          { text: "I ensure tasks are completed efficiently.", value: { practical: 3 } }
+        ]
+      },
+      {
+        text: "How do you prefer to learn new skills?",
+        options: [
+          { text: "Through online courses and tutorials.", value: { technical: 2, analytical: 1 } },
+          { text: "By experimenting and creating projects.", value: { creative: 2, practical: 1 } },
+          { text: "Through group discussions or workshops.", value: { social: 2, leadership: 1 } },
+          { text: "By doing hands-on tasks.", value: { practical: 2 } }
+        ]
+      },
+      {
+        text: "What motivates you the most?",
+        options: [
+          { text: "Solving complex problems.", value: { analytical: 3, technical: 1 } },
+          { text: "Creating something unique.", value: { creative: 3 } },
+          { text: "Helping others or making an impact.", value: { social: 3 } },
+          { text: "Achieving tangible results.", value: { practical: 3 } }
+        ]
+      },
+      {
+        text: "How confident are you in designing visuals or creative content?",
+        options: [
+          { text: "Very confident, it’s my strength!", value: { creative: 3, skill: { design: 80 } } },
+          { text: "Somewhat confident, I enjoy it.", value: { creative: 2, skill: { design: 50 } } },
+          { text: "Not very confident, but I can try.", value: { creative: 1, skill: { design: 20 } } },
+          { text: "I prefer other tasks.", value: { creative: 0, skill: { design: 0 } } }
+        ]
+      },
+      {
+        text: "How do you handle leadership roles?",
+        options: [
+          { text: "I naturally take charge and guide others.", value: { leadership: 3, skill: { project_management: 80 } } },
+          { text: "I can lead when needed.", value: { leadership: 2, skill: { project_management: 50 } } },
+          { text: "I prefer contributing as a team member.", value: { leadership: 1, skill: { project_management: 20 } } },
+          { text: "I avoid leadership roles.", value: { leadership: 0, skill: { project_management: 0 } } }
+        ]
+      },
+      {
+        text: "What’s your dream project?",
+        options: [
+          { text: "Developing a new tech product.", value: { technical: 3, analytical: 1 } },
+          { text: "Creating a film, book, or artwork.", value: { creative: 3 } },
+          { text: "Organizing a community event.", value: { social: 3, leadership: 1 } },
+          { text: "Building something practical like a tool or system.", value: { practical: 3 } }
+        ]
+      }
+    ];
+
+    let currentQuestion = 0;
+    let answers = [];
+
+    const questionContainer = document.getElementById('questionContainer');
+    const progressFill = document.getElementById('progressFill');
+    const prevButton = document.getElementById('prevButton');
+    const nextButton = document.getElementById('nextButton');
+    const resultSection = document.getElementById('resultSection');
+
+    function loadQuestion() {
+      const q = questions[currentQuestion];
+      questionContainer.innerHTML = `
+        <h2>${q.text}</h2>
+        <div class="options">
+          ${q.options.map((option, index) => `
+            <div class="option">
+              <input type="radio" name="option" id="option${index}" value="${index}" ${answers[currentQuestion] === index ? 'checked' : ''}>
+              <label for="option${index}">${option.text}</label>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      progressFill.style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
+      prevButton.disabled = currentQuestion === 0;
+      nextButton.textContent = currentQuestion === questions.length - 1 ? 'Submit' : 'Next';
+    }
+
+    function saveAnswer() {
+      const selected = document.querySelector('input[name="option"]:checked');
+      if (selected) {
+        answers[currentQuestion] = parseInt(selected.value);
+      }
+    }
+
+    prevButton.addEventListener('click', () => {
+      saveAnswer();
+      currentQuestion--;
+      loadQuestion();
+    });
+
+    nextButton.addEventListener('click', () => {
+      saveAnswer();
+      if (!document.querySelector('input[name="option"]:checked') && currentQuestion < questions.length - 1) {
+        alert('Please select an option!');
+        return;
+      }
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        loadQuestion();
+      } else {
+        calculateResult();
+      }
+    });
+
+    async function calculateResult() {
+      const scores = {
+        technical: 0,
+        creative: 0,
+        social: 0,
+        leadership: 0,
+        analytical: 0,
+        practical: 0
+      };
+
+      const skillConfidence = {};
+      const traits = [];
+      const careerPaths = [];
+      const courses = [];
+      const activities = [];
+      let profileType = "";
+      let profileDescription = "";
+      const pathDescriptions = {};
+      const pathLinks = {};
+
+      answers.forEach((answerIndex, questionIndex) => {
+        const option = questions[questionIndex].options[answerIndex];
+        for (const [key, value] of Object.entries(option.value)) {
+          if (key === 'skill') {
+            Object.assign(skillConfidence, option.value.skill);
+          } else {
+            scores[key] += value;
+          }
+        }
+      });
+
+      // Normalize scores to percentages
+      const maxPossibleScore = questions.length * 3;
+      for (const key in scores) {
+        scores[key] = Math.round((scores[key] / maxPossibleScore) * 100);
+      }
+
+      // Determine Profile Type
+      const maxScore = Math.max(
+        scores.technical + scores.analytical,
+        scores.creative,
+        scores.social + scores.leadership,
+        scores.practical
+      );
+
+      if (maxScore === scores.technical + scores.analytical) {
+        profileType = "Tech Innovator";
+        profileDescription = "You're a problem-solver with a passion for technology and analysis. Your skills make you a great fit for STEM fields like software engineering or data science.";
+        careerPaths.push("AI Engineer", "Cybersecurity Specialist", "Data Scientist");
+        pathDescriptions["AI Engineer"] = "Develop intelligent systems that learn and adapt.";
+        pathDescriptions["Cybersecurity Specialist"] = "Protect organizations from digital threats.";
+        pathDescriptions["Data Scientist"] = "Analyze data to uncover insights and drive decisions.";
+        pathLinks["AI Engineer"] = "https://www.coursera.org/learn/ai-engineer";
+        pathLinks["Cybersecurity Specialist"] = "https://www.coursera.org/learn/cybersecurity";
+        pathLinks["Data Scientist"] = "https://www.coursera.org/learn/data-science";
+        courses.push(
+          { name: "Python for Everybody", link: "https://www.coursera.org/learn/python", level: "Beginner" },
+          { name: "Machine Learning by Stanford", link: "https://www.coursera.org/learn/machine-learning", level: "Intermediate" }
+        );
+        activities.push("Join a coding club", "Participate in hackathons");
+        traits.push(
+          { name: "Analytical", description: "You excel at breaking down complex problems." },
+          { name: "Detail-Oriented", description: "You notice the small things that matter." }
+        );
+      } else if (maxScore === scores.creative) {
+        profileType = "Creative Visionary";
+        profileDescription = "Your imagination knows no bounds! You're destined for fields like design, writing, or media production.";
+        careerPaths.push("Graphic Designer", "Content Creator", "UX Designer");
+        pathDescriptions["Graphic Designer"] = "Create visually stunning designs for brands.";
+        pathDescriptions["Content Creator"] = "Produce engaging content for digital platforms.";
+        pathDescriptions["UX Designer"] = "Design user-friendly digital experiences.";
+        pathLinks["Graphic Designer"] = "https://www.coursera.org/learn/graphic-design";
+        pathLinks["Content Creator"] = "https://www.coursera.org/learn/content-marketing";
+        pathLinks["UX Designer"] = "https://www.coursera.org/learn/ux-design";
+        courses.push(
+          { name: "Fundamentals of Graphic Design", link: "https://www.coursera.org/learn/graphic-design", level: "Beginner" },
+          { name: "Digital Photography", link: "https://www.coursera.org/learn/photography", level: "Beginner" }
+        );
+        activities.push("Start a personal blog", "Join a photography club");
+        traits.push(
+          { name: "Imaginative", description: "You think outside the box." },
+          { name: "Expressive", description: "You communicate ideas vividly." }
+        );
+      } else if (maxScore === scores.social + scores.leadership) {
+        profileType = "Social Leader";
+        profileDescription = "You thrive in connecting with people and leading teams. Careers in management, HR, or public relations suit you.";
+        careerPaths.push("Project Manager", "HR Specialist", "Event Planner");
+        pathDescriptions["Project Manager"] = "Lead teams to deliver projects on time.";
+        pathDescriptions["HR Specialist"] = "Build a positive workplace culture.";
+        pathDescriptions["Event Planner"] = "Organize memorable events.";
+        pathLinks["Project Manager"] = "https://www.coursera.org/learn/project-management";
+        pathLinks["HR Specialist"] = "https://www.coursera.org/learn/human-resources";
+        pathLinks["Event Planner"] = "https://www.coursera.org/learn/event-planning";
+        courses.push(
+          { name: "Leadership and Emotional Intelligence", link: "https://www.coursera.org/learn/leadership-emotional-intelligence", level: "Intermediate" },
+          { name: "Public Speaking", link: "https://www.coursera.org/learn/public-speaking", level: "Beginner" }
+        );
+        activities.push("Organize a community event", "Join a debate club");
+        traits.push(
+          { name: "Empathetic", description: "You understand and connect with others." },
+          { name: "Influential", description: "You inspire people to take action." }
+        );
+      } else {
+        profileType = "Practical Doer";
+        profileDescription = "You’re hands-on and results-driven, perfect for fields like engineering, logistics, or entrepreneurship.";
+        careerPaths.push("Entrepreneur", "Mechanical Engineer", "Operations Manager");
+        pathDescriptions["Entrepreneur"] = "Start your own business and innovate.";
+        pathDescriptions["Mechanical Engineer"] = "Design and build mechanical systems.";
+        pathDescriptions["Operations Manager"] = "Streamline processes for efficiency.";
+        pathLinks["Entrepreneur"] = "https://www.coursera.org/learn/entrepreneurship";
+        pathLinks["Mechanical Engineer"] = "https://www.coursera.org/learn/mechanical-engineering";
+        pathLinks["Operations Manager"] = "https://www.coursera.org/learn/operations-management";
+        courses.push(
+          { name: "Entrepreneurship 101", link: "https://www.coursera.org/learn/entrepreneurship", level: "Beginner" },
+          { name: "Supply Chain Management", link: "https://www.coursera.org/learn/supply-chain-management", level: "Intermediate" }
+        );
+        activities.push("Start a small business", "Join a robotics club");
+        traits.push(
+          { name: "Resourceful", description: "You find practical solutions." },
+          { name: "Proactive", description: "You take initiative to get things done." }
+        );
+      }
+
+      // Save result to Supabase
+      const result = {
+        profileType,
+        profileDescription,
+        scores: {
+          technical: scores.technical,
+          creative: scores.creative,
+          social: scores.social,
+          leadership: scores.leadership
+        },
+        skillConfidence,
+        traits,
+        careerPaths,
+        pathDescriptions,
+        pathLinks,
+        courses,
+        activities
+      };
+
+      const { error } = await supabase
+        .from('users')
+        .update({ quiz_result: result })
+        .eq('id', user.id);
+
+      if (error) {
+        console.error('Error saving quiz result:', error);
+        alert('There was an error saving your result. Please try again.');
+        return;
+      }
+
+      // Display result
+      questionContainer.style.display = 'none';
+      prevButton.style.display = 'none';
+      nextButton.style.display = 'none';
+      resultSection.classList.add('active');
+
+      document.getElementById('resultTitle').textContent = profileType;
+      document.getElementById('resultDescription').textContent = profileDescription;
+
+      document.getElementById('tech-meter').style.width = `${scores.technical}%`;
+      document.getElementById('creative-meter').style.width = `${scores.creative}%`;
+      document.getElementById('social-meter').style.width = `${scores.social}%`;
+      document.getElementById('leadership-meter').style.width = `${scores.leadership}%`;
+
+      document.getElementById('tech-confidence').textContent = skillConfidence.coding ? `Coding: ${skillConfidence.coding}%` : '';
+      document.getElementById('creative-confidence').textContent = skillConfidence.design ? `Design: ${skillConfidence.design}%` : '';
+      document.getElementById('social-confidence').textContent = skillConfidence.public_speaking ? `Public Speaking: ${skillConfidence.public_speaking}%` : '';
+      document.getElementById('leadership-confidence').textContent = skillConfidence.project_management ? `Project Management: ${skillConfidence.project_management}%` : '';
+
+      const traitsContainer = document.getElementById('traitsContainer');
+      traits.forEach(trait => {
+        const badge = document.createElement('div');
+        badge.className = 'trait-badge';
+        badge.textContent = trait.name;
+        badge.setAttribute('data-description', trait.description);
+        traitsContainer.appendChild(badge);
+      });
+
+      const careerPathsContainer = document.getElementById('careerPaths');
+      careerPaths.forEach((path, index) => {
+        const card = document.createElement('div');
+        card.className = 'recommendation-card';
+        const icons = ["fa-laptop-code", "fa-flask", "fa-users", "fa-palette", "fa-briefcase"];
+        card.innerHTML = `
+          <div class="card-header">
+            <div class="card-icon"><i class="fas ${icons[index % icons.length]}"></i></div>
+            <div class="card-title">${path}</div>
+          </div>
+          <div class="card-body">${pathDescriptions[path]}</div>
+          <a href="${pathLinks[path]}" class="card-link" target="_blank">Learn More <i class="fas fa-arrow-right"></i></a>
+        `;
+        careerPathsContainer.appendChild(card);
+      });
+
+      const coursesContainer = document.getElementById('courses');
+      courses.forEach((course, index) => {
+        const card = document.createElement('div');
+        card.className = 'recommendation-card';
+        const icons = ["fa-book", "fa-graduation-cap", "fa-laptop"];
+        card.innerHTML = `
+          <div class="card-header">
+            <div class="card-icon"><i class="fas ${icons[index % icons.length]}"></i></div>
+            <div class="card-title">${course.name}</div>
+          </div>
+          <div class="card-body">Level: ${course.level}. Start building your skills with this course.</div>
+          <a href="${course.link}" class="card-link" target="_blank">Enroll Now <i class="fas fa-arrow-right"></i></a>
+        `;
+        coursesContainer.appendChild(card);
+      });
+
+      const activitiesContainer = document.getElementById('activities');
+      activities.forEach((activity, index) => {
+        const card = document.createElement('div');
+        card.className = 'recommendation-card';
+        const icons = ["fa-users", "fa-microphone", "fa-robot"];
+        card.innerHTML = `
+          <div class="card-header">
+            <div class="card-icon"><i class="fas ${icons[index % icons.length]}"></i></div>
+            <div class="card-title">${activity}</div>
+          </div>
+          <div class="card-body">Get hands-on experience and build your network.</div>
+          <a href="teams.html" class="card-link">Explore Teams <i class="fas fa-arrow-right"></i></a>
+        `;
+        activitiesContainer.appendChild(card);
+      });
+
+      document.getElementById('actionPlan').innerHTML = `
+        <p>Here’s your roadmap to shine as a luminary:</p>
+        <ul>
+          <li>Start with a course from the recommendations above.</li>
+          <li>Join a club or activity from our <a href="teams.html" style="color: var(--accent-color);">Teams page</a>.</li>
+          <li>Explore summer programs like SSP or YYGS on our <a href="programs.html" style="color: var(--accent-color);">Programs page</a>.</li>
+          <li>Stay updated with scholarships and events on our <a href="radar.html" style="color: var(--accent-color);">Opportunity Radar</a>.</li>
+        </ul>
+      `;
+
+      // Share on X
+      document.getElementById('shareButton').addEventListener('click', () => {
+        const text = `I discovered my path as a ${profileType} on Dear Future Luminary! 🌟 Take the quiz to find yours: https://yourwebsite.com`;
+        const url = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}`;
+        window.open(url, '_blank');
+      });
+
+      // Download PDF
+      document.getElementById('downloadBtn').addEventListener('click', () => {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        doc.setFontSize(16);
+        doc.text("Your Luminary Profile", 20, 20);
+        doc.setFontSize(12);
+        doc.text(`Profile: ${profileType}`, 20, 30);
+        doc.text(profileDescription, 20, 40, { maxWidth: 160 });
+        doc.text("Skills:", 20, 60);
+        doc.text(`Technical: ${scores.technical}%`, 20, 70);
+        doc.text(`Creative: ${scores.creative}%`, 20, 80);
+        doc.text(`Social: ${scores.social}%`, 20, 90);
+        doc.text(`Leadership: ${scores.leadership}%`, 20, 100);
+        doc.text("Traits:", 20, 110);
+        traits.forEach((trait, i) => {
+          doc.text(`- ${trait.name}`, 20, 120 + i * 10);
+        });
+        doc.text("Career Paths:", 20, 120 + traits.length * 10);
+        careerPaths.forEach((path, i) => {
+          doc.text(`- ${path}`, 20, 130 + traits.length * 10 + i * 10);
+        });
+        doc.save('LuminaryProfile.pdf');
+      });
+    }
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme') || 'luminary';
+    document.body.setAttribute('data-theme', savedTheme);
+
+    // Load first question
+    loadQuestion();
+  </script>
+</body>
+</html>

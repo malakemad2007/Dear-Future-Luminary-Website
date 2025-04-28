@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Malak Emad | Dear Future Luminary</title>
+  <meta name="description" content="Learn more about Malak Emad, the founder of Dear Future Luminary, and her journey in STEM and social impact.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Default Theme (Luminary) */
+      --primary-bg: #ffffff;
+      --secondary-bg: #f8f9fa;
+      --text-color: #2c3e50;
+      --accent-color: #6a3093;
+      --accent-light: #a044ff;
+      --highlight: #f1c40f;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --nav-bg: #ffffff;
+      --footer-bg: #f8f9fa;
+      --section-bg: #ffffff;
+      --transition-speed: 0.3s;
+    }
+
+    /* Elegant Theme */
+    [data-theme="elegant"] {
+      --primary-bg: #ffffff;
+      --secondary-bg: #f5f5f5;
+      --text-color: #2c3e50;
+      --accent-color: #2e2e2e;
+      --accent-light: #4a4a4a;
+      --highlight: #d4a017;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --nav-bg: #ffffff;
+      --footer-bg: #f5f5f5;
+      --section-bg: #ffffff;
+    }
+
+    /* Cosmic Theme */
+    [data-theme="cosmic"] {
+      --primary-bg: #ffffff;
+      --secondary-bg: #f0f4f8;
+      --text-color: #2c3e50;
+      --accent-color: #1e3a8a;
+      --accent-light: #3b82f6;
+      --highlight: #10b981;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --nav-bg: #ffffff;
+      --footer-bg: #f0f4f8;
+      --section-bg: #ffffff;
+    }
+
+    /* Bright Theme */
+    [data-theme="bright"] {
+      --primary-bg: #ffffff;
+      --secondary-bg: #fef3e7;
+      --text-color: #2c3e50;
+      --accent-color: #e11d48;
+      --accent-light: #fb7185;
+      --highlight: #f59e0b;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --nav-bg: #ffffff;
+      --footer-bg: #fef3e7;
+      --section-bg: #ffffff;
+    }
+
+    /* Vibrant Theme */
+    [data-theme="vibrant"] {
+      --primary-bg: #ffffff;
+      --secondary-bg: #f4eaff;
+      --text-color: #2c3e50;
+      --accent-color: #7c3aed;
+      --accent-light: #a78bfa;
+      --highlight: #ec4899;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --nav-bg: #ffffff;
+      --footer-bg: #f4eaff;
+      --section-bg: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--primary-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .logo {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Custom Cursor */
+    .custom-cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, var(--accent-color) 30%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 8px var(--accent-light);
+      animation: pulse-cursor 2s infinite;
+    }
+
+    .custom-cursor.active {
+      transform: translate(-50%, -50%) scale(1.5);
+      background: radial-gradient(circle, var(--accent-light) 30%, transparent 70%);
+    }
+
+    @keyframes pulse-cursor {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 1; }
+    }
+
+    /* Preloader */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--primary-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      opacity: 1;
+      transition: opacity 0.6s ease;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader::before {
+      content: '';
+      width: 40px;
+      height: 40px;
+      border: 3px solid transparent;
+      border-top: 3px solid var(--accent-color);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: var(--nav-bg);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 5px var(--card-shadow);
+      z-index: 1000;
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      color: var(--accent-color);
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .logo:hover {
+      color: var(--accent-light);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-toggle {
+      background: none;
+      border: none;
+      color: var(--text-color);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-toggle:hover {
+      background: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--nav-bg);
+      border-radius: 5px;
+      box-shadow: 0 5px 15px var(--card-shadow);
+      display: none;
+      flex-direction: column;
+      padding: 0.5rem;
+      min-width: 180px;
+      z-index: 1001;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: flex;
+    }
+
+    .dropdown-menu a,
+    .dropdown-menu .theme-option {
+      text-decoration: none;
+      color: var(--text-color);
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-menu a:hover,
+    .dropdown-menu .theme-option:hover {
+      background: var(--accent-light);
+      color: #ffffff;
+    }
+
+    /* Back to Top Button */
+    #myBtn {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 99;
+      border: none;
+      outline: none;
+      background-color: var(--accent-color);
+      color: white;
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 15px var(--card-shadow);
+      transition: all 0.3s;
+    }
+
+    #myBtn:hover {
+      background-color: var(--accent-light);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px var(--card-shadow);
+    }
+
+    /* Intro Section */
+    .intro-section {
+      margin-top: 80px;
+      padding: 4rem 5%;
+      background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+      color: #ffffff;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .intro-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .intro-content p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    /* Profile Section */
+    .more-info-section {
+      padding: 3rem 5%;
+      background-color: var(--secondary-bg);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      color: var(--accent-color);
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.5s ease;
+    }
+
+    .section-title.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .profile-section {
+      text-align: center;
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px var(--card-shadow);
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+
+    .profile-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .profile-pic {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent-color);
+      margin-bottom: 1.5rem;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .profile-section:hover .profile-pic {
+      transform: scale(1.05);
+      border-color: var(--accent-light);
+    }
+
+    .profile-section h3 {
+      font-size: 1.8rem;
+      color: var(--text-color);
+      margin-bottom: 1rem;
+    }
+
+    .bio {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text-color);
+    }
+
+    /* Experience Section */
+    .experience-section {
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px var(--card-shadow);
+      margin-bottom: 3rem;
+    }
+
+    .experience-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .experience-item {
+      background: var(--section-bg);
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 3px 10px var(--card-shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      height: 100px; /* Initial compact height */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+
+    .experience-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .experience-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px var(--card-shadow);
+      height: auto; /* Expand to fit content */
+    }
+
+    .experience-item h4 {
+      font-size: 1.2rem;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-title {
+      color: var(--accent-light);
+      font-weight: bold;
+    }
+
+    .experience-item p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--text-color);
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 0.3s ease, max-height 0.4s ease;
+    }
+
+    .experience-item:hover p {
+      opacity: 1;
+      max-height: 200px;
+    }
+
+    /* Contact Section */
+    .contact-me-section {
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px var(--card-shadow);
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+
+    .contact-me-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .contact-me-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-me-icons a {
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--accent-color);
+      color: #ffffff;
+      font-size: 1.3rem;
+      transition: all 0.3s ease;
+    }
+
+    .contact-me-icons a:hover {
+      background: var(--accent-light);
+      transform: scale(1.1);
+    }
+
+    .contact-details {
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .contact-details a {
+      color: var(--accent-light);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-details a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--footer-bg);
+      color: var(--text-color);
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+
+    .footer p {
+      margin: 0;
+    }
+
+    /* Animations */
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .intro-content h1 {
+        font-size: 2rem;
+      }
+
+      .intro-content p {
+        font-size: 1rem;
+      }
+
+      .profile-pic {
+        width: 150px;
+        height: 150px;
+      }
+
+      .experience-items {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-item {
+        height: 120px; /* Slightly taller for mobile */
+      }
+
+      .contact-me-icons {
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 1.5rem;
+      }
+
+      .dropdown-toggle {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+      }
+
+      .intro-content h1 {
+        font-size: 1.8rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .profile-section h3 {
+        font-size: 1.5rem;
+      }
+
+      .bio {
+        font-size: 0.9rem;
+      }
+
+      .experience-item h4 {
+        font-size: 1.1rem;
+      }
+
+      .experience-item p {
+        font-size: 0.85rem;
+      }
+
+      .contact-details {
+        font-size: 0.9rem;
+      }
+
+      .contact-me-icons a {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor"></div>
+
+  <!-- Preloader -->
+  <div class="loader" id="loader"></div>
+
+  <!-- Back to Top Button -->
+  <button onclick="topFunction()" id="myBtn" title="Go to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo" onclick="window.location.href='index.html'">Dear Future Luminary</div>
+    <div class="nav-menu">
+      <div class="dropdown">
+        <button class="dropdown-toggle"><i class="fas fa-bars"></i> Menu</button>
+        <div class="dropdown-menu">
+          <a href="index.html"><i class="fas fa-home"></i> Home</a>
+          <a href="teams.html"><i class="fas fa-users"></i> Teams</a>
+          <a href="programs.html"><i class="fas fa-cogs"></i> Programs</a>
+          <a href="radar.html"><i class="fas fa-bullseye"></i> Opportunity Radar</a>
+          <a href="upgrade.html"><i class="fas fa-arrow-up"></i> Extra</a>
+          <a href="my-story.html" aria-current="page"><i class="fas fa-star"></i> My Story</a>
+          <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-toggle"><i class="fas fa-palette"></i> Themes</button>
+        <div class="dropdown-menu">
+          <div class="theme-option" data-theme="luminary"><i class="fas fa-sun"></i> Luminary</div>
+          <div class="theme-option" data-theme="elegant"><i class="fas fa-gem"></i> Elegant</div>
+          <div class="theme-option" data-theme="cosmic"><i class="fas fa-star"></i> Cosmic</div>
+          <div class="theme-option" data-theme="bright"><i class="fas fa-lightbulb"></i> Bright</div>
+          <div class="theme-option" data-theme="vibrant"><i class="fas fa-bolt"></i> Vibrant</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Intro Section -->
+  <section class="intro-section">
+    <div class="intro-content">
+      <h1>Meet our Team</h1>
+      <p>Featuring: Founder of the Team</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="more-info-section">
+    <h2 class="section-title">About Malak Emad</h2>
+    <div class="info-content">
+      <div class="profile-section">
+        <img src="photo_2025-02-10_19-17-06.jpg" alt="Malak Emad" class="profile-pic">
+        <h3>Malak Emad</h3>
+        <p class="bio">
+          I am passionate about Chemistry, STEM, and Environmental Science. I believe in the power of community, and I strive to create opportunities for young people to learn, grow, and thrive. I love working on projects that have a positive impact, whether it's through tutoring, volunteering, or creating content that educates and inspires others.
+        </p>
+      </div>
+
+      <!-- Experience Section -->
+      <div class="experience-section">
+        <h3 class="section-title">Experience & Projects</h3>
+        <div class="experience-items">
+          <!-- Project Lead: Optimizing Crop Growth -->
+          <div class="experience-item">
+            <h4>Project Lead: <span class="project-title">"Optimizing Crop Growth"</span></h4>
+            <p>Developed a smart system for automating crop irrigation using temperature and soil humidity sensors, optimizing water usage. This project was recognized with a Certificate of Excellence by AFS and aimed at conserving water resources while improving agricultural yields.</p>
+          </div>
+
+          <!-- AFS Global STEM Academies -->
+          <div class="experience-item">
+            <h4>Participant: <span class="project-title">AFS Global STEM Academies</span></h4>
+            <p>Selected to participate in the AFS Global STEM Academies program, focusing on global citizenship, intercultural exchange, and STEM-based problem-solving, while collaborating with international peers to address sustainability challenges.</p>
+          </div>
+
+          <!-- Kode with Klossy -->
+          <div class="experience-item">
+            <h4>Participant: <span class="project-title">Kode with Klossy</span></h4>
+            <p>Participated in the Kode with Klossy summer program, learning front-end web development and collaborating with a team to build a tech project that addressed real-world challenges.</p>
+          </div>
+
+          <!-- Girls Who Code -->
+          <div class="experience-item">
+            <h4>Participant: <span class="project-title">Girls Who Code</span></h4>
+            <p>Joined the Girls Who Code program, gaining hands-on coding experience and expanding knowledge in programming concepts, web development, and leadership skills in tech.</p>
+          </div>
+
+          <!-- BUILD-IN-A-BOX -->
+          <div class="experience-item">
+            <h4>Participant: <span class="project-title">BUILD-IN-A-BOX</span></h4>
+            <p>Engaged in the BUILD-IN-A-BOX program, exploring entrepreneurship fundamentals, business idea generation, and leadership while developing innovative solutions with a team.</p>
+          </div>
+
+          <!-- Microsoft Student Ambassadors Learn -->
+          <div class="experience-item">
+            <h4>Participant: <span class="project-title">Microsoft Student Ambassadors Learn</span></h4>
+            <p>Completed multiple programming and tech workshops under the Microsoft Student Ambassadors Learn initiative, enhancing technical and problem-solving skills through project-based learning.</p>
+          </div>
+
+          <!-- Head of Social Media: Resala STEM -->
+          <div class="experience-item">
+            <h4>Head of Social Media: <span class="project-title">Resala STEM</span></h4>
+            <p>Managed social media strategies and campaigns, boosting the visibility of the organization. Led online workshops, social media engagement, and awareness-building for youth in STEM, building a dedicated online community.</p>
+          </div>
+
+          <!-- Social Media Supervisor for Mr. Mahmoud ElKholy -->
+          <div class="experience-item">
+            <h4>Social Media Supervisor: <span class="project-title">Mr. Mahmoud ElKholy (Mathematics)</span></h4>
+            <p>Managed and designed social media content for Mr. Mahmoud ElKholy, focusing on Mathematics tutoring. Increased his online presence and engagement, contributing to the growth of his tutoring business.</p>
+          </div>
+
+          <!-- Front-End Developer: Star Girls Africa -->
+          <div class="experience-item">
+            <h4>Front-End Developer: <span class="project-title">Star Girls Africa</span></h4>
+            <p>Worked as a front-end developer, creating an online book review website to promote literacy and encourage reading among young girls. This platform provided a space for sharing reviews and recommendations.</p>
+          </div>
+
+          <!-- Head of Social Media: Mr. Mahmoud ElKholy Learning Center -->
+          <div class="experience-item">
+            <h4>Social Media Manager: <span class="project-title">Mr. Mahmoud ElKholy Learning Center</span></h4>
+            <p>Developed social media strategies and content to enhance the visibility of the learning center. Focused on engaging parents and students through well-designed posts and promotional content.</p>
+          </div>
+
+          <!-- Assistant for Mathematics Teacher (Freelancer) -->
+          <div class="experience-item">
+            <h4>Assistant for Mathematics Teacher (Freelancer): <span class="project-title">Freelance Work</span></h4>
+            <p>Assisted in designing social media posts, creating interactive quizzes, and managing the Facebook page for a Mathematics tutor. Focused on increasing student engagement and attracting more clients through online platforms.</p>
+          </div>
+
+          <!-- Facilitator for Entrepreneurship Summer Camp -->
+          <div class="experience-item">
+            <h4>Facilitator: <span class="project-title">Entrepreneurship Summer Camp</span></h4>
+            <p>Facilitated a summer camp focused on entrepreneurship and business, guiding a team in researching and developing a solution to an African problem. Managed task delegation and helped the team achieve first-place in the competition.</p>
+          </div>
+
+          <!-- Certificate of Excellence: Climate Science Olympiad -->
+          <div class="experience-item">
+            <h4>Climate Science Olympiad: <span class="project-title">Gold Medal Award</span></h4>
+            <p>Earned a Gold Medal Award in the Climate Science Olympiad after contributing to solving global climate challenges through research and presentation.</p>
+          </div>
+
+          <!-- 1000 Girls, 1000 Futures: New York Academy of Sciences -->
+          <div class="experience-item">
+            <h4>Participant: <span class="project-title">1000 Girls, 1000 Futures</span></h4>
+            <p>Engaged in the 1000 Girls, 1000 Futures initiative by the New York Academy of Sciences. Developed mentorship skills and participated in global discussions surrounding science, technology, and gender equality.</p>
+          </div>
+
+          <!-- NASA Space Apps Bootcamp -->
+          <div class="experience-item">
+            <h4>Attendee: <span class="project-title">NASA Space Apps Cairo Bootcamp</span></h4>
+            <p>Participated in the NASA Space Apps Bootcamp, collaborating with a team to develop a solution to an Earth-related challenge, and gained valuable insight into space exploration and environmental science.</p>
+          </div>
+
+          <!-- Stanford University Code in Place: Online Course -->
+          <div class="experience-item">
+            <h4>Participant: <span class="project-title">Stanford University Code in Place</span></h4>
+            <p>Completed Stanford University's "Code in Place" introductory programming course, focusing on developing foundational programming skills in Python and computer science principles.</p>
+          </div>
+
+          <!-- Social Media Manager: TEDxEtTagammo -->
+          <div class="experience-item">
+            <h4>Event Organizer: <span class="project-title">TEDxEtTagammo</span></h4>
+            <p>Organized and facilitated TEDx events, contributing to the strategic planning and execution of various talks and workshops aimed at inspiring youth and promoting innovative thinking.</p>
+          </div>
+
+          <!-- Facilitator: Soliya's Global Circles Program -->
+          <div class="experience-item">
+            <h4>Facilitator: <span class="project-title">Soliya's Global Circles Program</span></h4>
+            <p>Led discussions as a facilitator in the Soliya Global Circles Program, where participants engaged in cross-cultural dialogues, fostering mutual understanding and leadership skills.</p>
+          </div>
+
+          <!-- Social Media Manager: MAS MUN -->
+          <div class="experience-item">
+            <h4>Head of Social Media: <span class="project-title">MAS MUN</span></h4>
+            <p>Headed the social media efforts for MAS MUN, creating content, engaging delegates, and promoting the Model United Nations conference, increasing awareness and participation in the event.</p>
+          </div>
+
+          <!-- Future Plans for 'Dear Future Luminary' -->
+          <div class="experience-item">
+            <h4>Founder: <span class="project-title">Dear Future Luminary</span></h4>
+            <p>Founded 'Dear Future Luminary', an initiative aimed at guiding high school students toward scholarship opportunities, self-development, and personal growth through curated resources and mentorship.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Section -->
+      <section class="contact-me-section">
+        <h2 class="section-title">Contact Me</h2>
+        <div class="contact-me-icons">
+          <a href="https://t.me/loka_luminaryy" title="Telegram"><i class="fab fa-telegram"></i></a>
+          <a href="https://www.linkedin.com/in/malak-savvyt-t/" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.instagram.com/loka_luminary/" title="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="contact-details">
+          <p>If you want to connect with me, feel free to reach out through any of the channels above. You can also email me directly at <a href="mailto:malakemad7777777@example.com">malakemad7777777@example.com</a>.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 Dear Future Luminary | Developed by Malak Emad</p>
+  </footer>
+
+  <script>
+    // Custom Cursor
+    const customCursor = document.getElementById('customCursor');
+    document.addEventListener('mousemove', (e) => {
+      customCursor.style.left = `${e.clientX}px`;
+      customCursor.style.top = `${e.clientY}px`;
+    });
+
+    document.querySelectorAll('a, button, .experience-item, .contact-me-icons a').forEach(el => {
+      el.addEventListener('mouseenter', () => customCursor.classList.add('active'));
+      el.addEventListener('mouseleave', () => customCursor.classList.remove('active'));
+    });
+
+    // Preloader
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }, 800);
+    });
+
+    // Theme Selector
+    document.querySelectorAll('.theme-option').forEach(option => {
+      option.addEventListener('click', () => {
+        const theme = option.getAttribute('data-theme');
+        document.body.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+      });
+    });
+
+    // Load Saved Theme
+    const savedTheme = localStorage.getItem('theme') || 'luminary';
+    document.body.setAttribute('data-theme', savedTheme);
+
+    // Back to Top Button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+      } else {
+        document.getElementById("myBtn").style.display = "none";
+      }
+    }
+
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+
+    // Scroll Animations
+    window.addEventListener('scroll', () => {
+      document.querySelectorAll('.profile-section, .experience-item, .contact-me-section, .section-title').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.9) {
+          el.classList.add('visible');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
