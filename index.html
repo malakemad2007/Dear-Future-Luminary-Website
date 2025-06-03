@@ -7,8 +7,6 @@
   <meta name="description" content="A platform to help you start your journey towards an inspiring future">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <!-- Supabase -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     :root {
       --primary-bg: #ffffff;
@@ -209,30 +207,6 @@
     .dropdown-menu .theme-option:hover {
       background: var(--accent-light);
       color: #ffffff;
-    }
-
-    .auth-button {
-      padding: 0.5rem 1rem;
-      background: var(--accent-color);
-      color: #ffffff;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .auth-button:hover {
-      background: var(--accent-light);
-      transform: scale(1.05);
-    }
-
-    .welcome-message {
-      font-size: 1rem;
-      color: #ffffff;
-      margin-top: 1rem;
-      opacity: 0.9;
     }
 
     .intro-section {
@@ -631,7 +605,7 @@
         font-size: 1.5rem;
       }
 
-      .dropdown-toggle, .auth-button {
+      .dropdown-toggle {
         font-size: 0.9rem;
         padding: 0.4rem 0.8rem;
       }
@@ -666,7 +640,6 @@
         <button class="dropdown-toggle"><i class="fas fa-bars"></i> Menu</button>
         <div class="dropdown-menu">
           <a href="index.html"><i class="fas fa-home"></i> Home</a>
-          <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
           <a href="teams.html"><i class="fas fa-users"></i> Teams</a>
           <a href="programs.html"><i class="fas fa-cogs"></i> Programs</a>
           <a href="radar.html"><i class="fas fa-bullseye"></i> Opportunity Radar</a>
@@ -685,9 +658,6 @@
           <div class="theme-option" data-theme="vibrant"><i class="fas fa-bolt"></i> Vibrant</div>
         </div>
       </div>
-      <button class="auth-button" id="authButton"><i class="fas fa-user"></i> Sign In</button>
-      <button class="auth-button" id="dashboardButton" style="display: none;"><i class="fas fa-tachometer-alt"></i> Dashboard</button>
-      <button class="auth-button" id="logoutButton" style="display: none;"><i class="fas fa-sign-out-alt"></i> Log Out</button>
     </div>
   </nav>
 
@@ -695,9 +665,7 @@
   <section class="intro-section" id="introSection">
     <div class="intro-content">
       <h1>Dear Future Luminary</h1>
-      <p>Find your path to an inspiring future! Take our quiz to discover opportunities tailored to your passions and skills.</p>
-      <p class="welcome-message" id="welcomeMessage" style="display: none;"></p>
-      <a href="quiz.html" class="cta-button">Discover Your Path</a>
+      <p>Find your path to an inspiring future!</p>
     </div>
   </section>
 
@@ -806,18 +774,6 @@
   </div>
 
   <script>
-    // Supabase Configuration (Temporary placeholders)
-    const supabaseUrl = 'YOUR_SUPABASE_URL';
-    const supabaseKey = 'YOUR_SUPABASE_ANON_KEY';
-    let supabase;
-
-    // Initialize Supabase with error handling
-    try {
-      supabase = Supabase.createClient(supabaseUrl, supabaseKey);
-    } catch (error) {
-      console.error('Error initializing Supabase:', error);
-    }
-
     // Preloader with faster timeout and error handling
     function hideLoader() {
       const loader = document.getElementById('loader');
@@ -854,52 +810,6 @@
     const savedTheme = localStorage.getItem('theme') || 'luminary';
     document.body.setAttribute('data-theme', savedTheme);
 
-    // Authentication Logic
-    const authButton = document.getElementById('authButton');
-    const dashboardButton = document.getElementById('dashboardButton');
-    const logoutButton = document.getElementById('logoutButton');
-    const welcomeMessage = document.getElementById('welcomeMessage');
-
-    async function checkAuth() {
-      try {
-        const user = JSON.parse(localStorage.getItem('user'));
-        if (user) {
-          authButton.style.display = 'none';
-          dashboardButton.style.display = 'inline-block';
-          logoutButton.style.display = 'inline-block';
-          welcomeMessage.style.display = 'block';
-          welcomeMessage.textContent = `Welcome back, ${user.email}!`;
-        } else {
-          authButton.style.display = 'inline-block';
-          dashboardButton.style.display = 'none';
-          logoutButton.style.display = 'none';
-          welcomeMessage.style.display = 'none';
-        }
-      } catch (error) {
-        console.error('Error checking auth:', error);
-      }
-    }
-
-    authButton.addEventListener('click', () => {
-      window.location.href = 'auth.html';
-    });
-
-    dashboardButton.addEventListener('click', () => {
-      window.location.href = 'dashboard.html';
-    });
-
-    logoutButton.addEventListener('click', async () => {
-      try {
-        if (supabase) {
-          await supabase.auth.signOut();
-        }
-        localStorage.removeItem('user');
-        window.location.href = 'index.html';
-      } catch (error) {
-        console.error('Error during logout:', error);
-      }
-    });
-
     // Contact Form
     const contactForm = document.getElementById('contactForm');
     const thankYouCard = document.getElementById('thankYouCard');
@@ -930,9 +840,6 @@
         }
       });
     });
-
-    // Initialize Auth Check
-    checkAuth();
   </script>
 </body>
 </html>
