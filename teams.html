@@ -424,6 +424,26 @@
       transform: scale(1.1);
     }
 
+    /* Custom Cursor */
+    .custom-cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, var(--accent-color) 30%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 8px var(--accent-light);
+      animation: pulse-cursor 2s infinite;
+    }
+
+    .custom-cursor.active {
+      transform: translate(-50%, -50%) scale(1.5);
+      background: radial-gradient(circle, var(--accent-light) 30%, transparent 70%);
+    }
+
+
     /* Animations */
     @keyframes slideIn {
       from {
@@ -483,6 +503,13 @@
   </style>
 </head>
 <body>
+
+   <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor"></div>
+
+  <!-- Preloader -->
+  <div class="loader" id="loader"></div>
+
   <!-- Theme Toggle Button -->
   <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
     <i class="fas fa-palette"></i>
@@ -558,7 +585,7 @@
         <div class="team-card">
           <h3>STEM October Biology Club</h3>
           <p><strong>Facebook Page:</strong> <a href="https://www.facebook.com/OctBiologyClub" target="_blank" rel="noopener">Click Here <i class="fas fa-external-link-alt"></i></a></p>
-          <p>< велика>Details:</strong> We aim to immerse young students in an environment filled with biology enthusiasts, and a wealth of materials that enable them to push their creativity and curiosity to discover the biological environment around them.</p>
+          <p><strong>Details:</strong> We aim to immerse young students in an environment filled with biology enthusiasts, and a wealth of materials that enable them to push their creativity and curiosity to discover the biological environment around them.</p>
         </div>
       </div>
     </section>
@@ -689,6 +716,26 @@
   </footer>
 
   <script>
+    // Custom Cursor
+    const customCursor = document.getElementById('customCursor');
+    document.addEventListener('mousemove', (e) => {
+      customCursor.style.left = `${e.clientX}px`;
+      customCursor.style.top = `${e.clientY}px`;
+    });
+
+    document.querySelectorAll('a, button, input, textarea, .program-card, .social-icons a').forEach(el => {
+      el.addEventListener('mouseenter', () => customCursor.classList.add('active'));
+      el.addEventListener('mouseleave', () => customCursor.classList.remove('active'));
+    });
+
+    // Preloader
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }, 800);
+    });
+
     // Back to Top Button
     window.onscroll = function() {scrollFunction()};
 
