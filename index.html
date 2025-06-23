@@ -520,6 +520,25 @@
       animation: popIn 0.5s ease;
     }
 
+    /* Custom Cursor */
+    .custom-cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, var(--accent-color) 30%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 8px var(--accent-light);
+      animation: pulse-cursor 2s infinite;
+    }
+
+    .custom-cursor.active {
+      transform: translate(-50%, -50%) scale(1.5);
+      background: radial-gradient(circle, var(--accent-light) 30%, transparent 70%);
+    }
+
     @keyframes popIn {
       0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
       100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
@@ -629,6 +648,10 @@
   </style>
 </head>
 <body>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor"></div>
+
   <!-- Preloader -->
   <div class="loader" id="loader"></div>
 
@@ -645,7 +668,7 @@
           <a href="radar.html"><i class="fas fa-bullseye"></i> Opportunity Radar</a>
           <a href="upgrade.html"><i class="fas fa-arrow-up"></i> Resources</a>
           <a href="my-story.html"><i class="fas fa-star"></i> My Story</a>
-          <a href="about开门.html"><i class="fas fa-info-circle"></i> About Us</a>
+          <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
         </div>
       </div>
       <div class="dropdown">
@@ -774,28 +797,27 @@
   </div>
 
   <script>
-    // Preloader with faster timeout and error handling
-    function hideLoader() {
-      const loader = document.getElementById('loader');
-      if (loader) {
-        loader.classList.add('hidden');
-        document.body.style.overflow = 'auto';
-      }
-    }
 
-    window.onload = () => {
-      try {
-        document.fonts.ready.then(hideLoader).catch(() => {
-          console.warn('Font loading failed, hiding loader.');
-          hideLoader();
-        });
-      } catch (error) {
-        console.warn('Error in font loading:', error);
-        hideLoader();
-      }
-      // Faster timeout (1 second)
-      setTimeout(hideLoader, 1000);
-    };
+     // Custom Cursor
+    const customCursor = document.getElementById('customCursor');
+    document.addEventListener('mousemove', (e) => {
+      customCursor.style.left = `${e.clientX}px`;
+      customCursor.style.top = `${e.clientY}px`;
+    });
+
+    document.querySelectorAll('a, button, input, textarea, .program-card, .social-icons a').forEach(el => {
+      el.addEventListener('mouseenter', () => customCursor.classList.add('active'));
+      el.addEventListener('mouseleave', () => customCursor.classList.remove('active'));
+    });
+
+    // Preloader
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }, 800);
+    });
+   
 
     // Theme Selector
     document.querySelectorAll('.theme-option').forEach(option => {
