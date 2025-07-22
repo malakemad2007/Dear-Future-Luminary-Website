@@ -444,6 +444,7 @@
     #about .about-image {
       flex: 1;
       max-width: 300px;
+      text-align: center;
     }
 
     #about img {
@@ -459,6 +460,37 @@
     #about img:hover {
       transform: scale(1.05);
       box-shadow: 0 5px 15px var(--card-shadow), 0 0 10px var(--accent-light);
+    }
+
+    .founder-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+      transition: color var(--transition-speed);
+    }
+
+    .founder-name:hover {
+      color: var(--highlight);
+    }
+
+    .portfolio-link a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background-color: var(--accent-color);
+      color: var(--card-bg);
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background-color var(--transition-speed), color var(--transition-speed), transform var(--transition-speed);
+    }
+
+    .portfolio-link a:hover {
+      background-color: var(--accent-light);
+      color: var(--highlight);
+      transform: translateY(-3px);
     }
 
     /* Footer Section */
@@ -628,6 +660,15 @@
         font-size: 1.8rem;
       }
 
+      .founder-name {
+        font-size: 1rem;
+      }
+
+      .portfolio-link a {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+      }
+
       .footer-column h3 {
         font-size: 1.3rem;
       }
@@ -707,7 +748,7 @@
             <p>Skilled in event organization, team leadership, and audience engagement. Passionate about education, sustainability, and innovation, with a track record of driving impactful initiatives.</p>
           </div>
           <div class="about-skills">
-            <h3 class="skills-title">My Skills</h3>
+            <h2 class="skills-title">Skills</h2>
             <div class="skills-grid">
               <div class="skill-item">
                 <div class="skill-icon"><i class="fas fa-users"></i></div>
@@ -738,7 +779,11 @@
           <p class="luminary-tag">Luminary: Inspiring & Leading the Way</p>
         </div>
         <div class="about-image">
+          <div class="founder-name">Malak Emad | Founder</div>
           <img src="photo_2025-02-10_19-17-06.jpg" alt="Malak Emad" loading="lazy">
+          <div class="portfolio-link">
+            <a href="https://malakemad2007.github.io/Malak-s-Portfolio/index.html" target="_blank">View Portfolio</a>
+          </div>
         </div>
       </div>
     </div>
