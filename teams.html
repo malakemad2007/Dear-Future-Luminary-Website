@@ -95,7 +95,75 @@
       background-color: var(--primary-bg);
       color: var(--text-color);
       line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      scroll-behavior: smooth;
       overflow-x: hidden;
+    }
+
+    h1, h2, h3, .logo {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Custom Cursor */
+    .custom-cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, var(--accent-color) 30%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 8px var(--accent-light);
+      animation: pulse-cursor 2s infinite;
+    }
+
+    .custom-cursor.active {
+      transform: translate(-50%, -50%) scale(1.5);
+      background: radial-gradient(circle, var(--accent-light) 30%, transparent 70%);
+    }
+
+    @keyframes pulse-cursor {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 1; }
+    }
+
+    /* Preloader */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--primary-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      opacity: 1;
+      transition: opacity 0.6s ease;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .loader::before {
+      content: '';
+      width: 40px;
+      height: 40px;
+      border: 3px solid transparent;
+      border-top: 3px solid var(--accent-color);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     /* Navigation */
@@ -113,7 +181,6 @@
     }
 
     .logo {
-      font-family: 'Playfair Display', serif;
       font-size: 1.8rem;
       color: var(--accent-color);
       cursor: pointer;
@@ -192,7 +259,58 @@
       color: #ffffff;
     }
 
-    /* Intro Section (Replaces Hero) */
+    /* Theme Toggle */
+    .theme-toggle {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 99;
+      background-color: var(--accent-color);
+      color: #ffffff;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      box-shadow: 0 4px 10px var(--card-shadow);
+      transition: all 0.3s;
+    }
+
+    .theme-toggle:hover {
+      background-color: var(--accent-light);
+      transform: scale(1.1);
+    }
+
+    /* Back to Top Button */
+    #myBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 99;
+      border: none;
+      background-color: var(--accent-color);
+      color: #ffffff;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+      box-shadow: 0 4px 10px var(--card-shadow);
+      transition: all 0.3s;
+    }
+
+    #myBtn:hover {
+      background-color: var(--accent-light);
+      transform: scale(1.1);
+    }
+
+    /* Intro Section */
     .intro-section {
       margin-top: 80px;
       padding: 4rem 5%;
@@ -223,7 +341,6 @@
     }
 
     .intro-content h1 {
-      font-family: 'Playfair Display', serif;
       font-size: 2.5rem;
       margin-bottom: 1rem;
     }
@@ -340,109 +457,81 @@
       color: var(--accent-light);
     }
 
-    /* Footer */
-    .footer {
-      background-color: var(--footer-bg);
-      color: var(--text-color);
+    /* Footer Section */
+    .footer-section {
+      padding: 2rem 5%;
+      background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+      margin-top: auto;
+    }
+
+    .footer-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    .footer-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      padding: 1rem 0;
+    }
+
+    .footer-column h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-column p,
+    .footer-column a {
+      font-size: 1rem;
+      color: #ffffff;
+      text-decoration: none;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .footer-column a:hover {
+      color: var(--highlight);
+      transform: translateX(5px);
+    }
+
+    .footer-column a i {
+      font-size: 1.2rem;
+    }
+
+    .footer-column.socials a i {
+      font-size: 1.2rem;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 0.8rem;
       text-align: center;
-      padding: 2rem 0;
-      font-size: 0.9rem;
-    }
-
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin: 1rem 0;
-    }
-
-    .social-icons a {
-      color: #ffffff;
-      background-color: var(--accent-color);
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s;
-    }
-
-    .social-icons a:hover {
-      background-color: var(--accent-light);
-      transform: scale(1.1);
-    }
-
-    /* Back to Top Button */
-    #myBtn {
-      display: none;
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 99;
-      border: none;
-      background-color: var(--accent-color);
-      color: #ffffff;
-      cursor: pointer;
-      padding: 10px;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
       font-size: 1rem;
-      box-shadow: 0 4px 10px var(--card-shadow);
-      transition: all 0.3s;
+      margin-top: 1rem;
     }
 
-    #myBtn:hover {
-      background-color: var(--accent-light);
-      transform: scale(1.1);
+    .footer-bottom p {
+      margin: 0;
+      opacity: 0.9;
     }
-
-    /* Theme Toggle */
-    .theme-toggle {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      z-index: 99;
-      background-color: var(--accent-color);
-      color: #ffffff;
-      border: none;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      box-shadow: 0 4px 10px var(--card-shadow);
-      transition: all 0.3s;
-    }
-
-    .theme-toggle:hover {
-      background-color: var(--accent-light);
-      transform: scale(1.1);
-    }
-
-    /* Custom Cursor */
-    .custom-cursor {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      background: radial-gradient(circle, var(--accent-color) 30%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 8px var(--accent-light);
-      animation: pulse-cursor 2s infinite;
-    }
-
-    .custom-cursor.active {
-      transform: translate(-50%, -50%) scale(1.5);
-      background: radial-gradient(circle, var(--accent-light) 30%, transparent 70%);
-    }
-
 
     /* Animations */
     @keyframes slideIn {
@@ -480,6 +569,33 @@
       .team-grid {
         grid-template-columns: 1fr;
       }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .footer-column a {
+        justify-content: center;
+      }
+
+      .footer-column h3 {
+        font-size: 1.3rem;
+      }
+
+      .footer-column p,
+      .footer-column a {
+        font-size: 0.9rem;
+      }
+
+      .footer-column a i,
+      .footer-column.socials a i {
+        font-size: 1.1rem;
+      }
+
+      .footer-bottom {
+        font-size: 0.9rem;
+      }
     }
 
     @media (max-width: 480px) {
@@ -499,22 +615,35 @@
       .team-section h2 {
         font-size: 1.8rem;
       }
+
+      .footer-column h3 {
+        font-size: 1.3rem;
+      }
+
+      .footer-column p,
+      .footer-column a {
+        font-size: 0.9rem;
+      }
+
+      .footer-column a i,
+      .footer-column.socials a i {
+        font-size: 1.1rem;
+      }
+
+      .footer-bottom {
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
 <body>
-
-   <!-- Custom Cursor -->
+  <!-- Custom Cursor -->
   <div class="custom-cursor" id="customCursor"></div>
 
   <!-- Preloader -->
   <div class="loader" id="loader"></div>
 
-  <!-- Theme Toggle Button -->
-  <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
-    <i class="fas fa-palette"></i>
-  </button>
-
+  
   <!-- Back to Top Button -->
   <button onclick="topFunction()" id="myBtn" title="Go to top">
     <i class="fas fa-arrow-up"></i>
@@ -531,9 +660,7 @@
           <a href="teams.html"><i class="fas fa-users"></i> Teams</a>
           <a href="programs.html"><i class="fas fa-cogs"></i> Programs</a>
           <a href="radar.html"><i class="fas fa-bullseye"></i> Opportunity Radar</a>
-          <a href="upgrade.html"><i class="fas fa-arrow-up"></i>Resources</a>
-          <a href="my-story.html"><i class="fas fa-star"></i> My Story</a>
-          <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+          <a href="upgrade.html"><i class="fas fa-arrow-up"></i> Extra</a>
         </div>
       </div>
       <div class="dropdown">
@@ -705,16 +832,33 @@
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>Connect With Us:</p>
-    <div class="social-icons">
-      <a href="https://www.facebook.com/profile.php?id=100088385822088" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://www.instagram.com/loka_luminary/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.linkedin.com/in/malak-savvyt-t/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+  <!-- Footer Section -->
+  <section class="footer-section" id="footer">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>Dear Future Luminary</h3>
+        <p>Guiding you to an inspiring future.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="scholarships-Kit.html"><i class="fas fa-graduation-cap"></i> Scholarships</a>
+        <a href="roadmaps.html"><i class="fas fa-map-signs"></i> Roadmaps</a>
+        <a href="profile-building.html"><i class="fas fa-user-tie"></i> Profile Building</a>
+        <a href="my-story.html"><i class="fas fa-star"></i> My Story</a>
+        <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+      </div>
+      <div class="footer-column socials">
+        <h3>Connect With Us</h3>
+        <a href="mailto:dear.future.luminary@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://www.instagram.com/dear.future.luminary/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://www.linkedin.com/company/dear-future-luminary" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+      </div>
     </div>
-    <p>© 2025 Dear Future Luminary | Powered by Malak Emad</p>
-  </footer>
+    <div class="footer-bottom">
+      <p>Developed by Malak Emad © 2025 Dear Future Luminary. All rights reserved.</p>
+    </div>
+  </section>
 
   <script>
     // Custom Cursor
@@ -724,7 +868,7 @@
       customCursor.style.top = `${e.clientY}px`;
     });
 
-    document.querySelectorAll('a, button, input, textarea, .program-card, .social-icons a').forEach(el => {
+    document.querySelectorAll('a, button, input, textarea, .team-card').forEach(el => {
       el.addEventListener('mouseenter', () => customCursor.classList.add('active'));
       el.addEventListener('mouseleave', () => customCursor.classList.remove('active'));
     });
