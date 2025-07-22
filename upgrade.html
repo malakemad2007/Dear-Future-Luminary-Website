@@ -4,12 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Upgrade Your Journey | Dear Future Luminary</title>
-  <meta name="description" content="Explore top YouTube channels and resources to elevate your journey with Dear Future Luminary">
+  <meta name="description" content="Elevate your personal growth with curated podcasts, YouTube channels, books, and websites from Dear Future Luminary">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Default Theme (Luminary) */
       --primary-bg: #ffffff;
       --secondary-bg: #f8f9fa;
       --text-color: #2c3e50;
@@ -24,7 +23,6 @@
       --transition-speed: 0.3s;
     }
 
-    /* Elegant Theme */
     [data-theme="elegant"] {
       --primary-bg: #ffffff;
       --secondary-bg: #f5f5f5;
@@ -39,7 +37,6 @@
       --section-bg: #ffffff;
     }
 
-    /* Cosmic Theme */
     [data-theme="cosmic"] {
       --primary-bg: #ffffff;
       --secondary-bg: #f0f4f8;
@@ -54,7 +51,6 @@
       --section-bg: #ffffff;
     }
 
-    /* Bright Theme */
     [data-theme="bright"] {
       --primary-bg: #ffffff;
       --secondary-bg: #fef3e7;
@@ -69,7 +65,6 @@
       --section-bg: #ffffff;
     }
 
-    /* Vibrant Theme */
     [data-theme="vibrant"] {
       --primary-bg: #ffffff;
       --secondary-bg: #f4eaff;
@@ -89,11 +84,11 @@
       padding: 0;
       box-sizing: border-box;
       transition: background-color var(--transition-speed), color var(--transition-speed);
+      font-family: 'Inter', sans-serif;
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--primary-bg);
+      background: var(--primary-bg);
       color: var(--text-color);
       line-height: 1.6;
       min-height: 100vh;
@@ -101,10 +96,6 @@
       flex-direction: column;
       scroll-behavior: smooth;
       overflow-x: hidden;
-    }
-
-    h1, h2, h3, h4, .logo {
-      font-family: 'Playfair Display', serif;
     }
 
     /* Custom Cursor */
@@ -115,7 +106,7 @@
       background: radial-gradient(circle, var(--accent-color) 30%, transparent 70%);
       border-radius: 50%;
       pointer-events: none;
-      z-index: 9999;
+      z-index: 9998;
       transform: translate(-50%, -50%);
       box-shadow: 0 0 8px var(--accent-light);
       animation: pulse-cursor 2s infinite;
@@ -167,13 +158,16 @@
       100% { transform: rotate(360deg); }
     }
 
+    h1, h2, h3, .logo {
+      font-family: 'Playfair Display', serif;
+    }
+
     /* Navbar */
     .navbar {
       position: fixed;
       top: 0;
       width: 100%;
       background-color: var(--nav-bg);
-      backdrop-filter: blur(10px);
       box-shadow: 0 2px 5px var(--card-shadow);
       z-index: 1000;
       padding: 1rem 5%;
@@ -261,6 +255,16 @@
       color: #ffffff;
     }
 
+    .dropdown-menu i {
+      color: #000000;
+      transition: color 0.3s ease;
+    }
+
+    .dropdown-menu a:hover i,
+    .dropdown-menu .theme-option:hover i {
+      color: #ffffff;
+    }
+
     /* Back to Top Button */
     #myBtn {
       display: none;
@@ -288,8 +292,8 @@
       box-shadow: 0 6px 20px var(--card-shadow);
     }
 
-    /* Intro Section */
-    .intro-section {
+    /* Hero Section */
+    .hero-section {
       margin-top: 80px;
       padding: 4rem 5%;
       background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
@@ -299,185 +303,502 @@
       overflow: hidden;
     }
 
-    .intro-content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
+    .hero-content {
+      max-width: 900px;
       margin: 0 auto;
     }
 
-    .intro-content h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
-    .intro-content p {
-      font-size: 1.1rem;
-      opacity: 0.9;
+    .hero-content p {
+      font-size: 1.2rem;
+      opacity: 0.95;
+      max-width: 700px;
+      margin: 0 auto;
     }
 
-    /* Resources Section */
-    .resources-section {
+    /* General Section Styles */
+    .section {
       padding: 3rem 5%;
-      background-color: var(--secondary-bg);
+      background: var(--section-bg);
     }
 
     .section-title {
-      text-align: center;
-      font-size: 2rem;
+      font-size: 2.5rem;
       color: var(--accent-color);
+      text-align: center;
       margin-bottom: 2rem;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.5s ease;
+      position: relative;
     }
 
-    .section-title.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background: var(--highlight);
     }
 
-    .cards-grid {
+    /* YouTube Channels - Elegant Slide-In Panels */
+    .youtube-section {
+      background: var(--secondary-bg);
+    }
+
+    .youtube-panels {
+      max-width: 1200px;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
     }
 
-    .resource-card {
-      position: relative;
+    .youtube-panel {
       background: var(--card-bg);
       border-radius: 10px;
-      box-shadow: 0 5px 15px var(--card-shadow);
       overflow: hidden;
-      height: 220px; /* Fixed height for consistency */
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      opacity: 0;
-      transform: translateY(20px);
+      box-shadow: 0 4px 8px var(--card-shadow);
+      position: relative;
+      transition: transform 0.3s ease;
+      z-index: 1;
     }
 
-    .resource-card.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .youtube-panel:hover {
+      transform: translateY(-8px);
     }
 
-    .resource-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 25px var(--card-shadow);
+    .youtube-panel-content {
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
     }
 
-    .resource-content {
-      padding: 1.5rem;
-      text-align: center;
+    .youtube-panel::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
       height: 100%;
+      background: linear-gradient(180deg, var(--accent-color) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+    }
+
+    .youtube-panel:hover::before {
+      opacity: 0.2;
+    }
+
+    .youtube-panel i {
+      font-size: 2rem;
+      color: #000000;
+      margin-bottom: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .youtube-panel:hover i {
+      color: #ffffff;
+    }
+
+    .youtube-panel h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .youtube-panel:hover h3 {
+      color: var(--accent-light);
+    }
+
+    .youtube-panel p {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    .youtube-panel a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: var(--highlight);
+      color: var(--text-color);
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .youtube-panel:hover a {
+      background: var(--accent-light);
+      color: #ffffff;
+    }
+
+    /* Podcasts - Modern Grid with 3D Flip Effect */
+    .podcasts-section {
+      background: var(--section-bg);
+      perspective: 1000px;
+    }
+
+    .podcasts-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 1rem;
+    }
+
+    .podcast-card {
+      position: relative;
+      width: 100%;
+      height: 350px;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .podcast-card:hover {
+      transform: rotateY(180deg);
+    }
+
+    .podcast-front,
+    .podcast-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 6px 12px var(--card-shadow);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      padding: 2rem;
+      text-align: center;
     }
 
-    .resource-content i {
+    .podcast-back {
+      transform: rotateY(180deg);
+      background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+      color: #ffffff;
+    }
+
+    .podcast-card i {
       font-size: 2.5rem;
       color: var(--accent-color);
       margin-bottom: 1rem;
+      transition: color 0.3s ease;
     }
 
-    .resource-content h3 {
-      font-size: 1.5rem;
+    .podcast-front h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
       color: var(--text-color);
+    }
+
+    .podcast-front p {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    .podcast-back h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      color: #ffffff;
+    }
+
+    .podcast-back p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .podcast-back a {
+      display: inline-block;
+      padding: 0.6rem 1.2rem;
+      background: var(--highlight);
+      color: var(--text-color);
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .podcast-back a:hover {
+      background: #ffffff;
+      color: var(--accent-color);
+      transform: scale(1.05);
+    }
+
+    /* Books - Sliding Book Covers */
+    .books-section {
+      background: var(--secondary-bg);
+    }
+
+    .books-slider {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      overflow-x: auto;
+      gap: 1.5rem;
+      padding: 1rem;
+      scroll-behavior: smooth;
+    }
+
+    .book-cover {
+      flex: 0 0 200px;
+      background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px var(--card-shadow);
+      padding: 1.5rem;
+      position: relative;
+      transition: transform 0.3s ease;
+      overflow: hidden;
+    }
+
+    .book-cover:hover {
+      transform: translateY(-8px);
+    }
+
+    .book-cover::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .book-cover:hover::before {
+      left: 100%;
+    }
+
+    .book-cover i {
+      font-size: 2rem;
+      color: #000000;
+      margin-bottom: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .book-cover:hover i {
+      color: #ffffff;
+    }
+
+    .book-cover h3 {
+      font-size: 1.4rem;
       margin-bottom: 0.5rem;
     }
 
-    .resource-details {
+    .book-cover:hover h3 {
+      color: var(--accent-light);
+    }
+
+    .book-cover p {
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    .book-cover:hover {
+      background: var(--accent-color);
+    }
+
+    /* Websites - Floating Cards with Reveal Effect */
+    .websites-section {
+      background: var(--section-bg);
+    }
+
+    .websites-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .website-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px var(--card-shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .website-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .website-card-content {
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .website-card::after {
+      content: '';
       position: absolute;
-      bottom: 0;
+      top: 0;
       left: 0;
       width: 100%;
-      background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
-      color: #ffffff;
-      padding: 1rem;
+      height: 100%;
+      background: var(--accent-color);
       transform: translateY(100%);
       transition: transform 0.3s ease;
-      opacity: 0;
-      max-height: 80%;
-      overflow-y: auto;
+      z-index: 1;
     }
 
-    .resource-card:hover .resource-details {
+    .website-card:hover::after {
       transform: translateY(0);
-      opacity: 1;
     }
 
-    .resource-details p {
-      font-size: 0.9rem;
+    .website-card i {
+      font-size: 2rem;
+      color: #000000;
+      margin-bottom: 1rem;
+      transition: color 0.3s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    .website-card:hover i {
+      color: #ffffff;
+    }
+
+    .website-card h3 {
+      font-size: 1.5rem;
       margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 2;
     }
 
-    .resource-details a {
+    .website-card:hover h3 {
+      color: var(--accent-light);
+    }
+
+    .website-card p {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .website-card:hover p {
+      color: #ffffff;
+    }
+
+    .website-card a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: var(--highlight);
+      color: var(--text-color);
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 2;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .website-card:hover a {
+      background: var(--accent-light);
+      color: #ffffff;
+    }
+
+    /* Footer Section */
+    .footer-section {
+      padding: 2rem 5%;
+      background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+      margin-top: auto;
+    }
+
+    .footer-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    .footer-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      padding: 1rem 0;
+    }
+
+    .footer-column h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-column p,
+    .footer-column a {
+      font-size: 1rem;
       color: #ffffff;
       text-decoration: none;
-      font-weight: 600;
-      padding: 0.5rem 1rem;
-      border: 1px solid #ffffff;
-      border-radius: 5px;
-      transition: background 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-
-    .resource-details a:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    /* Footer */
-    .footer {
-      background-color: var(--footer-bg);
-      color: var(--text-color);
-      text-align: center;
-      padding: 2rem 0;
-      font-size: 0.9rem;
-    }
-
-    .footer p {
-      margin: 0;
-    }
-
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin: 1rem 0;
-    }
-
-    .social-icons a {
-      width: 40px;
-      height: 40px;
+      margin-bottom: 0.4rem;
       display: flex;
       align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: var(--accent-color);
-      color: #ffffff;
+      gap: 6px;
       transition: all 0.3s ease;
     }
 
-    .social-icons a:hover {
-      background: var(--accent-light);
-      transform: scale(1.1);
+    .footer-column a:hover {
+      color: var(--highlight);
+      transform: translateX(5px);
+    }
+
+    .footer-column a i {
+      font-size: 1.2rem;
+    }
+
+    .footer-column.socials a i {
+      font-size: 1.2rem;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 0.8rem;
+      text-align: center;
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
+
+    .footer-bottom p {
+      margin: 0;
+      opacity: 0.9;
     }
 
     /* Animations */
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .animate {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .animate.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* Responsive Design */
@@ -493,24 +814,51 @@
         justify-content: center;
       }
 
-      .intro-content h1 {
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-content p {
+        font-size: 1.1rem;
+      }
+
+      .section-title {
         font-size: 2rem;
       }
 
-      .intro-content p {
-        font-size: 1rem;
-      }
-
-      .cards-grid {
+      .youtube-panels, .websites-grid, .podcasts-grid {
         grid-template-columns: 1fr;
       }
 
-      .resource-card {
-        height: 240px; /* Slightly taller for mobile */
+      .podcast-card {
+        height: 300px;
       }
 
-      .resource-details {
-        font-size: 0.85rem;
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .footer-column a {
+        justify-content: center;
+      }
+
+      .footer-column h3 {
+        font-size: 1.3rem;
+      }
+
+      .footer-column p,
+      .footer-column a {
+        font-size: 0.9rem;
+      }
+
+      .footer-column a i,
+      .footer-column.socials a i {
+        font-size: 1.1rem;
+      }
+
+      .footer-bottom {
+        font-size: 0.9rem;
       }
     }
 
@@ -524,7 +872,7 @@
         padding: 0.4rem 0.8rem;
       }
 
-      .intro-content h1 {
+      .hero-content h1 {
         font-size: 1.8rem;
       }
 
@@ -532,21 +880,22 @@
         font-size: 1.8rem;
       }
 
-      .resource-content h3 {
+      .footer-column h3 {
         font-size: 1.3rem;
       }
 
-      .resource-content i {
-        font-size: 2rem;
+      .footer-column p,
+      .footer-column a {
+        font-size: 0.9rem;
       }
 
-      .resource-details p {
-        font-size: 0.8rem;
+      .footer-column a i,
+      .footer-column.socials a i {
+        font-size: 1.1rem;
       }
 
-      .resource-details a {
-        font-size: 0.8rem;
-        padding: 0.4rem 0.8rem;
+      .footer-bottom {
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -574,173 +923,234 @@
           <a href="teams.html"><i class="fas fa-users"></i> Teams</a>
           <a href="programs.html"><i class="fas fa-cogs"></i> Programs</a>
           <a href="radar.html"><i class="fas fa-bullseye"></i> Opportunity Radar</a>
-          <a href="upgrade.html" aria-current="page"><i class="fas fa-arrow-up"></i> Extra</a>
-          <a href="my-story.html"><i class="fas fa-star"></i> My Story</a>
-          <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+          <a href="upgrade.html"><i class="fas fa-arrow-up"></i> Extra</a>
         </div>
       </div>
       <div class="dropdown">
         <button class="dropdown-toggle"><i class="fas fa-palette"></i> Themes</button>
         <div class="dropdown-menu">
-          <div class="theme-option" data-theme="luminary"><i class="fas fa-sun"></i> Luminary</div>
+          <div class="theme-option" data-theme="luminary"><i class="fas fa-star"></i> Luminary</div>
           <div class="theme-option" data-theme="elegant"><i class="fas fa-gem"></i> Elegant</div>
-          <div class="theme-option" data-theme="cosmic"><i class="fas fa-star"></i> Cosmic</div>
-          <div class="theme-option" data-theme="bright"><i class="fas fa-lightbulb"></i> Bright</div>
-          <div class="theme-option" data-theme="vibrant"><i class="fas fa-bolt"></i> Vibrant</div>
+          <div class="theme-option" data-theme="cosmic"><i class="fas fa-rocket"></i> Cosmic</div>
+          <div class="theme-option" data-theme="bright"><i class="fas fa-sun"></i> Bright</div>
+          <div class="theme-option" data-theme="vibrant"><i class="fas fa-paint-brush"></i> Vibrant</div>
         </div>
       </div>
     </div>
   </nav>
 
-  <!-- Intro Section -->
-  <section class="intro-section">
-    <div class="intro-content">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
       <h1>Upgrade Your Journey</h1>
-      <p>Elevate your skills with top YouTube channels and curated resources from our personal drive.</p>
+      <p>Curated resources to inspire and elevate your personal growth.</p>
     </div>
   </section>
 
   <!-- YouTube Channels Section -->
-  <section class="resources-section">
-    <h2 class="section-title">Ultimate YouTube Channels</h2>
-    <div class="cards-grid">
-      <!-- College Essay Guy -->
-      <div class="resource-card">
-        <div class="resource-content">
+  <section class="youtube-section section">
+    <h2 class="section-title">Inspiring YouTube Channels</h2>
+    <div class="youtube-panels">
+      <div class="youtube-panel animate">
+        <div class="youtube-panel-content">
           <i class="fab fa-youtube"></i>
-          <h3>College Essay Guy</h3>
-        </div>
-        <div class="resource-details">
-          <p>Description: Empty</p>
-          <a href="https://www.youtube.com/@CollegeEssayGuy" target="_blank" rel="noopener">Watch <i class="fas fa-external-link-alt"></i></a>
+          <h3>Thomas Frank</h3>
+          <p>Practical tips on productivity and habit-building.</p>
+          <a href="https://www.youtube.com/c/Thomasfrank" target="_blank" rel="noopener">Watch</a>
         </div>
       </div>
-
-      <!-- Smile With Sola -->
-      <div class="resource-card">
-        <div class="resource-content">
+      <div class="youtube-panel animate">
+        <div class="youtube-panel-content">
           <i class="fab fa-youtube"></i>
-          <h3>Smile With Sola</h3>
-        </div>
-        <div class="resource-details">
-          <p>Description: I'm Sola & I'm a final-year student studying in London! This channel is for all things productivity, lifestyle, and technology! I will hopefully be providing you with motivation as well as tips and tricks to improve your day-to-day life! Follow me on this journey school! 🩷</p>
-          <a href="https://www.youtube.com/@SmileWithSola" target="_blank" rel="noopener">Watch <i class="fas fa-external-link-alt"></i></a>
+          <h3>Ali Abdaal</h3>
+          <p>Insights on time management and meaningful living.</p>
+          <a href="https://www.youtube.com/c/aliabdaal" target="_blank" rel="noopener">Watch</a>
         </div>
       </div>
-
-      <!-- The Scholarship System -->
-      <div class="resource-card">
-        <div class="resource-content">
+      <div class="youtube-panel animate">
+        <div class="youtube-panel-content">
           <i class="fab fa-youtube"></i>
-          <h3>The Scholarship System</h3>
-        </div>
-        <div class="resource-details">
-          <p>Description: The Scholarship System educates students on how to graduate from college debt-free. Using Jocelyn Pearson's personal experience of securing over $126K in scholarships and getting paid to go to school, she now teaches the same process she used to students & families all over the country. Covering the foundation of paying for college including loans, FAFSA, grants, and more to teaching strategies for applying for scholarships, The System has already saved families over $13.15 million (as of Aug 2024) and growing.</p>
-          <a href="https://www.youtube.com/@TheScholarshipSystem" target="_blank" rel="noopener">Watch <i class="fas fa-external-link-alt"></i></a>
+          <h3>TEDx Talks</h3>
+          <p>Powerful talks on personal growth and ideas.</p>
+          <a href="https://www.youtube.com/c/TEDxTalks" target="_blank" rel="noopener">Watch</a>
         </div>
       </div>
-
-      <!-- Preaching P -->
-      <div class="resource-card">
-        <div class="resource-content">
+      <div class="youtube-panel animate">
+        <div class="youtube-panel-content">
           <i class="fab fa-youtube"></i>
-          <h3>Preaching P</h3>
-        </div>
-        <div class="resource-details">
-          <p>Description: Empty</p>
-          <a href="https://www.youtube.com/@preachingp" target="_blank" rel="noopener">Watch <i class="fas fa-external-link-alt"></i></a>
-        </div>
-      </div>
-
-      <!-- Conquer College Admissions -->
-      <div class="resource-card">
-        <div class="resource-content">
-          <i class="fab fa-youtube"></i>
-          <h3>Conquer College Admissions</h3>
-        </div>
-        <div class="resource-details">
-          <p>Description: Welcome to finding your passion and using that passion to conquer college admissions (and of course, OPEN that acceptance letter from your dream Ivy League/Top-Tier college)! "Conquer College Admissions" channel is a mix of inspiration and practical college admissions that will get you closer to getting accepted into your dream college. The host of this channel is Julie Kim, a graduate of USC and Harvard. Since 2009, Julie has helped over 600 students get accepted into their dream Ivy League/Top-Tier School.</p>
-          <a href="https://www.youtube.com/@ConquerCollegeAdmissions" target="_blank" rel="noopener">Watch <i class="fas fa-external-link-alt"></i></a>
-        </div>
-      </div>
-
-      <!-- Elise Pham -->
-      <div class="resource-card">
-        <div class="resource-content">
-          <i class="fab fa-youtube"></i>
-          <h3>Elise Pham</h3>
-        </div>
-        <div class="resource-details">
-          <p>Description: Harvard Pre-Med & 5-Star College Admissions Counselor. Founder of Ultimate Ivy League Guide.</p>
-          <a href="https://www.youtube.com/@ultimateivyleagueguide" target="_blank" rel="noopener">Watch <i class="fas fa-external-link-alt"></i></a>
-        </div>
-      </div>
-
-      <!-- Bold.org -->
-      <div class="resource-card">
-        <div class="resource-content">
-          <i class="fab fa-youtube"></i>
-          <h3>Bold.org</h3>
-        </div>
-        <div class="resource-details">
-          <p>Description: Fighting Student Debt! The average student today will graduate more than $30,000 in debt and is far less likely to start small businesses, seek the highest impact careers, buy homes, or start families. At Bold.org, we believe that's a problem worth solving.</p>
-          <a href="https://www.youtube.com/@bolddotorg" target="_blank" rel="noopener">Watch <i class="fas fa-external-link-alt"></i></a>
-        </div>
-      </div>
-
-      <!-- ElevatEd School -->
-      <div class="resource-card">
-        <div class="resource-content">
-          <i class="fab fa-youtube"></i>
-          <h3>ElevatEd School</h3>
-        </div>
-        <div class="resource-details">
-          <p>Description: Jeffery and Kevin, two Yalies who want to help you express yourself more clearly and get into your dream school! Kevin Zhen: Exeter '16, Yale '20 (East Asian Studies). Since 2016, Kevin has personally helped more than 115+ students gain acceptances into every Ivy League University, as well as top schools such as Stanford and MIT. He also loves teaching creative nonfiction, flash fiction, and poetry. In total, his students have won more than 175+ Scholastic Writing Awards. Jeffery Yu: Yale '23 (Computer Science and East Asian Studies). Jeff has worked as a software engineering intern at Playstation, worked at Ernst & Young as a tech consultant and served as a Student Ambassador to the Yale Admissions Office. He's also written extensively about college admissions on Quora and taught courses on motivation and leadership while sponsored by the US Embassy in Tokyo.</p>
-          <a href="https://www.youtube.com/@elevatEDschool" target="_blank" rel="noopener">Watch <i class="fas fa-external-link-alt"></i></a>
+          <h3>Improvement Pill</h3>
+          <p>Animated lessons on self-improvement.</p>
+          <a href="https://www.youtube.com/c/ImprovementPill" target="_blank" rel="noopener">Watch</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Personal Drive Section -->
-  <section class="resources-section">
-    <h2 class="section-title">Personal Drive (Essays & Books)</h2>
-    <div class="cards-grid">
-      <div class="resource-card">
-        <div class="resource-content">
-          <i class="fas fa-folder"></i>
-          <h3>Personal Drive: Books for Essays</h3>
+  <!-- Podcasts Section -->
+  <section class="podcasts-section section">
+    <h2 class="section-title">Ultimate Podcasts</h2>
+    <div class="podcasts-grid">
+      <div class="podcast-card animate">
+        <div class="podcast-front">
+          <i class="fas fa-podcast"></i>
+          <h3>The Tim Ferriss Show</h3>
+          <p>Interviews with top performers on success strategies.</p>
         </div>
-        <div class="resource-details">
-          <p>Description: Access our curated collection of books and essays to inspire your writing.</p>
-          <a href="https://drive.google.com/drive/folders/1QUJet5twHBsK96-sK_AmuxhXAVq_-rkR?usp=sharing" target="_blank" rel="noopener">Explore the Collection <i class="fas fa-external-link-alt"></i></a>
+        <div class="podcast-back">
+          <h3>The Tim Ferriss Show</h3>
+          <p>Interviews with top performers on success strategies.</p>
+          <a href="https://tim.blog/podcast/" target="_blank" rel="noopener">Listen</a>
+        </div>
+      </div>
+      <div class="podcast-card animate">
+        <div class="podcast-front">
+          <i class="fas fa-podcast"></i>
+          <h3>On Purpose with Jay Shetty</h3>
+          <p>Wisdom on mindfulness and purpose.</p>
+        </div>
+        <div class="podcast-back">
+          <h3>On Purpose with Jay Shetty</h3>
+          <p>Wisdom on mindfulness and purpose.</p>
+          <a href="https://jayshetty.me/podcast/" target="_blank" rel="noopener">Listen</a>
+        </div>
+      </div>
+      <div class="podcast-card animate">
+        <div class="podcast-front">
+          <i class="fas fa-podcast"></i>
+          <h3>The Happiness Lab</h3>
+          <p>Dr. Laurie Santos on the science of well-being.</p>
+        </div>
+        <div class="podcast-back">
+          <h3>The Happiness Lab</h3>
+          <p>Dr. Laurie Santos on the science of well-being.</p>
+          <a href="https://www.happinesslab.fm/" target="_blank" rel="noopener">Listen</a>
+        </div>
+      </div>
+      <div class="podcast-card animate">
+        <div class="podcast-front">
+          <i class="fas fa-podcast"></i>
+          <h3>How I Built This</h3>
+          <p>Guy Raz on innovative companies.</p>
+        </div>
+        <div class="podcast-back">
+          <h3>How I Built This</h3>
+          <p>Guy Raz on innovative companies.</p>
+          <a href="https://www.npr.org/podcasts/510313/how-i-built-this" target="_blank" rel="noopener">Listen</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>Connect With Us:</p>
-    <div class="social-icons">
-      <a href="https://www.facebook.com/profile.php?id=100088385822088" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://www.instagram.com/loka_luminary/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.linkedin.com/in/malak-savvyt-t/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+  <!-- Books Section -->
+  <section class="books-section section">
+    <h2 class="section-title">Must-Read Books</h2>
+    <div class="books-slider">
+      <div class="book-cover animate">
+        <i class="fas fa-book"></i>
+        <h3>Atomic Habits</h3>
+        <p>James Clear’s guide to building lasting habits.</p>
+      </div>
+      <div class="book-cover animate">
+        <i class="fas fa-book"></i>
+        <h3>Mindset</h3>
+        <p>Carol Dweck on the power of a growth mindset.</p>
+      </div>
+      <div class="book-cover animate">
+        <i class="fas fa-book"></i>
+        <h3>Deep Work</h3>
+        <p>Cal Newport’s strategies for focused productivity.</p>
+      </div>
+      <div class="book-cover animate">
+        <i class="fas fa-book"></i>
+        <h3>The 7 Habits</h3>
+        <p>Stephen Covey’s principles for effectiveness.</p>
+      </div>
+      <div class="book-cover animate">
+        <i class="fas fa-book"></i>
+        <h3>Man’s Search for Meaning</h3>
+        <p>Viktor Frankl on finding purpose in adversity.</p>
+      </div>
     </div>
-    <p>© 2025 Dear Future Luminary | Designed by Malak Emad</p>
-  </footer>
+  </section>
+
+  <!-- Websites Section -->
+  <section class="websites-section section">
+    <h2 class="section-title">Valuable Websites</h2>
+    <div class="websites-grid">
+      <div class="website-card animate">
+        <div class="website-card-content">
+          <i class="fas fa-globe"></i>
+          <h3>Coursera</h3>
+          <p>Free courses on leadership and personal growth.</p>
+          <a href="https://www.coursera.org/" target="_blank" rel="noopener">Visit</a>
+        </div>
+      </div>
+      <div class="website-card animate">
+        <div class="website-card-content">
+          <i class="fas fa-globe"></i>
+          <h3>Medium</h3>
+          <p>Articles on self-improvement and creativity.</p>
+          <a href="https://medium.com/" target="_blank" rel="noopener">Visit</a>
+        </div>
+      </div>
+      <div class="website-card animate">
+        <div class="website-card-content">
+          <i class="fas fa-globe"></i>
+          <h3>TED</h3>
+          <p>Inspiring talks on ideas worth spreading.</p>
+          <a href="https://www.ted.com/" target="_blank" rel="noopener">Visit</a>
+        </div>
+      </div>
+      <div class="website-card animate">
+        <div class="website-card-content">
+          <i class="fas fa-globe"></i>
+          <h3>Khan Academy</h3>
+          <p>Free resources for critical thinking.</p>
+          <a href="https://www.khanacademy.org/" target="_blank" rel="noopener">Visit</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <section class="footer-section" id="footer">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>Dear Future Luminary</h3>
+        <p>Guiding you to an inspiring future.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="scholarships-Kit.html"><i class="fas fa-graduation-cap"></i> Scholarships</a>
+        <a href="roadmaps.html"><i class="fas fa-map-signs"></i> Roadmaps</a>
+        <a href="profile-building.html"><i class="fas fa-user-tie"></i> Profile Building</a>
+        <a href="my-story.html"><i class="fas fa-star"></i> My Story</a>
+        <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+      </div>
+      <div class="footer-column socials">
+        <h3>Connect With Us</h3>
+        <a href="https://www.facebook.com/profile.php?id=100088385822088" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
+        <a href="https://www.instagram.com/loka_luminary/" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://www.linkedin.com/in/malak-savvyt-t/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Developed by Malak Emad © 2025 Dear Future Luminary. All rights reserved.</p>
+    </div>
+  </section>
 
   <script>
     // Custom Cursor
-    const customCursor = document.getElementById('customCursor');
+    const cursor = document.getElementById('customCursor');
     document.addEventListener('mousemove', (e) => {
-      customCursor.style.left = `${e.clientX}px`;
-      customCursor.style.top = `${e.clientY}px`;
+      cursor.style.left = `${e.clientX}px`;
+      cursor.style.top = `${e.clientY}px`;
     });
 
-    document.querySelectorAll('a, button, .resource-card, .social-icons a').forEach(el => {
-      el.addEventListener('mouseenter', () => customCursor.classList.add('active'));
-      el.addEventListener('mouseleave', () => customCursor.classList.remove('active'));
+    document.querySelectorAll('a, button, .youtube-panel, .podcast-card, .book-cover, .website-card, .footer-column a').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
     });
 
     // Preloader
@@ -764,31 +1174,32 @@
     const savedTheme = localStorage.getItem('theme') || 'luminary';
     document.body.setAttribute('data-theme', savedTheme);
 
-    // Back to Top Button
-    window.onscroll = function() {scrollFunction()};
-
-    function scrollFunction() {
+    // Scroll to Top
+    const mybutton = document.getElementById("myBtn");
+    window.onscroll = function () {
       if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        document.getElementById("myBtn").style.display = "block";
+        mybutton.style.display = "block";
       } else {
-        document.getElementById("myBtn").style.display = "none";
+        mybutton.style.display = "none";
       }
-    }
+    };
 
     function topFunction() {
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     }
 
-    // Scroll Animations
-    window.addEventListener('scroll', () => {
-      document.querySelectorAll('.resource-card, .section-title').forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.9) {
-          el.classList.add('visible');
+    // Animations
+    const animateElements = document.querySelectorAll('.animate');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
         }
       });
-    });
+    }, { threshold: 0.1 });
+
+    animateElements.forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
