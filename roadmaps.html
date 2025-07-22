@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roadmaps - Dear Future Luminary</title>
+  <meta name="description" content="Explore interactive roadmaps to kickstart your journey in various fields with free resources.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-bg: #ffffff;
+      --secondary-bg: #f8f9fa;
+      --text-color: #1a202c;
+      --accent-color: #6a3093;
+      --accent-light: #a044ff;
+      --highlight: #f1c40f;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --nav-bg: #ffffff;
+      --footer-bg: #f8f9fa;
+      --section-bg: #ffffff;
+      --transition-speed: 0.3s;
+    }
+
+    [data-theme="elegant"] {
+      --primary-bg: #ffffff;
+      --secondary-bg: #f5f5f5;
+      --text-color: #1a202c;
+      --accent-color: #2e2e2e;
+      --accent-light: #4a4a4a;
+      --highlight: #d4a017;
+    }
+
+    [data-theme="cosmic"] {
+      --primary-bg: #ffffff;
+      --secondary-bg: #f0f4f8;
+      --text-color: #1a202c;
+      --accent-color: #1e3a8a;
+      --accent-light: #3b82f6;
+      --highlight: #10b981;
+    }
+
+    [data-theme="bright"] {
+      --primary-bg: #ffffff;
+      --secondary-bg: #fef3e7;
+      --text-color: #1a202c;
+      --accent-color: #e11d48;
+      --accent-light: #fb7185;
+      --highlight: #f59e0b;
+    }
+
+    [data-theme="vibrant"] {
+      --primary-bg: #ffffff;
+      --secondary-bg: #f4eaff;
+      --text-color: #1a202c;
+      --accent-color: #7c3aed;
+      --accent-light: #a78bfa;
+      --highlight: #ec4899;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color var(--transition-speed), color var(--transition-speed);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--primary-bg);
+      color: var(--text-color);
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .logo {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Loader Styles */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--primary-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      opacity: 1;
+      transition: opacity 0.6s ease;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      display: none;
+    }
+
+    .loader::before {
+      content: '';
+      width: 40px;
+      height: 40px;
+      border: 3px solid transparent;
+      border-top: 3px solid var(--accent-color);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: var(--nav-bg);
+      box-shadow: 0 2px 5px var(--card-shadow);
+      z-index: 1000;
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      color: var(--accent-color);
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .logo:hover {
+      color: var(--accent-light);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-toggle {
+      background: none;
+      border: none;
+      color: var(--text-color);
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-toggle:hover {
+      background: var(--accent-color);
+      color: #ffffff;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--nav-bg);
+      border-radius: 5px;
+      box-shadow: 0 5px 15px var(--card-shadow);
+      display: none;
+      flex-direction: column;
+      padding: 0.5rem;
+      min-width: 180px;
+      z-index: 1001;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: flex;
+    }
+
+    .dropdown-menu a,
+    .dropdown-menu .theme-option {
+      text-decoration: none;
+      color: var(--text-color);
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-menu a:hover,
+    .dropdown-menu .theme-option:hover {
+      background: var(--accent-light);
+      color: #ffffff;
+    }
+
+    .intro-section {
+      margin-top: 80px;
+      padding: 4rem 5%;
+      background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+      color: #ffffff;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    .intro-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .intro-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .intro-content p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .intro-content, .section-title, .follow-us h2 {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    .roadmaps-section {
+      padding: 3rem 5%;
+      background-color: var(--secondary-bg);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.8rem;
+      color: var(--accent-color);
+      margin-bottom: 3rem;
+      font-weight: 900;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+      margin: 1rem auto 0;
+    }
+
+    .roadmap-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .roadmap-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: 0 5px 15px var(--card-shadow);
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, opacity 0.5s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .roadmap-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .roadmap-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .roadmap-card i {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+
+    .roadmap-card h3 {
+      color: var(--accent-color);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .roadmap-card p {
+      color: var(--text-color);
+      font-size: 1.15rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .roadmap-card a {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .roadmap-card a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      overflow-y: auto;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .modal.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      border-radius: 10px;
+      max-width: 1000px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2.5rem 3rem;
+      position: relative;
+      transform: scale(0.8);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-light) rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .modal-content::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+    }
+
+    .modal-content::-webkit-scrollbar-thumb {
+      background: var(--accent-light);
+      border-radius: 4px;
+    }
+
+    .modal-content::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-color);
+    }
+
+    .modal.active .modal-content {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      border: 1px solid var(--accent-light);
+      color: var(--accent-light);
+      border-radius: 6px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .modal-close:hover {
+      background: var(--accent-light);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    .roadmap-content h2 {
+      color: var(--accent-color);
+      font-size: 2.4rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .roadmap-content h2::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+      margin-top: 0.5rem;
+    }
+
+    .roadmap-content h3 {
+      color: var(--accent-color);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 2rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .roadmap-content p {
+      margin-bottom: 1rem;
+      font-size: 1.15rem;
+      line-height: 1.8;
+      max-width: 800px;
+    }
+
+    .roadmap-content ul {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .roadmap-content li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      font-size: 1.05rem;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.02);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .roadmap-content li:hover {
+      background: rgba(0, 0, 0, 0.05);
+      transform: translateX(5px);
+    }
+
+    .roadmap-content li i {
+      color: var(--accent-color);
+      font-size: 1.2rem;
+      margin-top: 0.2rem;
+    }
+
+    .resource-button {
+      display: flex;
+      align-items: center;
+      padding: 0.8rem 1.5rem;
+      background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .resource-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .resource-button i {
+      margin-right: 0.8rem;
+      font-size: 1.2rem;
+    }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .custom-cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, var(--accent-color) 30%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 8px var(--accent-light);
+      animation: pulse-cursor 2s infinite;
+    }
+
+    .custom-cursor.active {
+      transform: translate(-50%, -50%) scale(1.5);
+      background: radial-gradient(circle, var(--accent-light) 30%, transparent 70%);
+    }
+
+    @keyframes popIn {
+      0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+
+    /* Footer Styles */
+    .footer-section {
+      padding: 2rem 5%;
+      background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+      margin-top: auto;
+    }
+
+    .footer-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    .footer-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      padding: 1rem 0;
+    }
+
+    .footer-column h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-column p,
+    .footer-column a {
+      font-size: 1rem;
+      color: #ffffff;
+      text-decoration: none;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .footer-column a:hover {
+      color: var(--highlight);
+      transform: translateX(5px);
+    }
+
+    .footer-column a i {
+      font-size: 1.2rem;
+    }
+
+    .footer-column.socials a i {
+      font-size: 1.2rem;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 0.8rem;
+      text-align: center;
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
+
+    .footer-bottom p {
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .intro-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .intro-content p {
+        font-size: 1rem;
+      }
+
+      .section-title {
+        font-size: 2.2rem;
+      }
+
+      .roadmap-container {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-content {
+        padding: 2rem;
+        max-width: 95%;
+      }
+
+      .roadmap-content h2 {
+        font-size: 2rem;
+      }
+
+      .roadmap-content p {
+        font-size: 1rem;
+      }
+
+      .roadmap-content h3 {
+        font-size: 1.6rem;
+      }
+
+      .roadmap-content li {
+        font-size: 0.95rem;
+      }
+
+      .resource-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .footer-column a {
+        justify-content: center;
+      }
+
+      .footer-column h3 {
+        font-size: 1.3rem;
+      }
+
+      .footer-column p,
+      .footer-column a {
+        font-size: 0.9rem;
+      }
+
+      .footer-column a i,
+      .footer-column.socials a i {
+        font-size: 1.1rem;
+      }
+
+      .footer-bottom {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 1.8rem;
+      }
+
+      .dropdown-toggle {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+      }
+
+      .intro-content h1 {
+        font-size: 2rem;
+      }
+
+      .intro-content p {
+        font-size: 0.9rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .follow-us h2 {
+        font-size: 1.8rem;
+      }
+
+      .modal-content h2 {
+        font-size: 1.6rem;
+      }
+
+      .modal-content h3 {
+        font-size: 1.3rem;
+      }
+
+      .footer-column h3 {
+        font-size: 1.3rem;
+      }
+
+      .footer-column p,
+      .footer-column a {
+        font-size: 0.9rem;
+      }
+
+      .footer-column a i,
+      .footer-column.socials a i {
+        font-size: 1.1rem;
+      }
+
+      .footer-bottom {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor"></div>
+
+  <!-- Preloader -->
+  <div class="loader" id="loader"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo" onclick="window.location.href='index.html'">Dear Future Luminary</div>
+    <div class="nav-menu">
+      <div class="dropdown">
+        <button class="dropdown-toggle" aria-label="Menu"><i class="fas fa-bars"></i> Menu</button>
+        <div class="dropdown-menu">
+          <a href="index.html"><i class="fas fa-home"></i> Home</a>
+          <a href="scholarships-Kit.html"><i class="fas fa-graduation-cap"></i> Scholarships</a>
+          <a href="roadmaps.html"><i class="fas fa-map-signs"></i> Roadmaps</a>
+          <a href="profile-building.html"><i class="fas fa-user-tie"></i> Profile Building</a>
+          <a href="my-story.html"><i class="fas fa-star"></i> My Story</a>
+          <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-toggle" aria-label="Themes"><i class="fas fa-palette"></i> Themes</button>
+        <div class="dropdown-menu">
+          <div class="theme-option" data-theme="luminary"><i class="fas fa-sun"></i> Luminary</div>
+          <div class="theme-option" data-theme="elegant"><i class="fas fa-gem"></i> Elegant</div>
+          <div class="theme-option" data-theme="cosmic"><i class="fas fa-star"></i> Cosmic</div>
+          <div class="theme-option" data-theme="bright"><i class="fas fa-lightbulb"></i> Bright</div>
+          <div class="theme-option" data-theme="vibrant"><i class="fas fa-bolt"></i> Vibrant</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Intro Section -->
+  <section class="intro-section" id="introSection">
+    <div class="intro-content">
+      <h1>Roadmaps to Success</h1>
+      <p>Click on a path below to explore free, beginner-friendly resources and start your journey to becoming a future luminary!</p>
+    </div>
+  </section>
+
+  <!-- Roadmaps Section -->
+  <section class="roadmaps-section" id="roadmapsSection">
+    <h2 class="section-title">Choose Your Path</h2>
+    <div class="roadmap-container">
+      <div class="roadmap-card" data-modal="coding-modal">
+        <i class="fas fa-code"></i>
+        <h3>Coding</h3>
+      
+      </div>
+      <div class="roadmap-card" data-modal="scientific-research-modal">
+        <i class="fas fa-flask"></i>
+        <h3>Research</h3>
+       
+      </div>
+      <div class="roadmap-card" data-modal="content-writing-modal">
+        <i class="fas fa-pen"></i>
+        <h3>Content Writing</h3>
+       
+      </div>
+      <div class="roadmap-card" data-modal="marketing-modal">
+        <i class="fas fa-bullhorn"></i>
+        <h3>Marketing</h3>
+       
+      </div>
+      <div class="roadmap-card" data-modal="medicine-modal">
+        <i class="fas fa-stethoscope"></i>
+        <h3>Medicine</h3>
+       
+      </div>
+      <div class="roadmap-card" data-modal="sustainability-modal">
+        <i class="fas fa-leaf"></i>
+        <h3>Sustainability</h3>
+       
+      </div>
+    </div>
+  </section>
+
+  <!-- Roadmap Modals -->
+  <div class="modal" id="coding-modal">
+    <div class="modal-content">
+      <button class="modal-close"><i class="fas fa-times"></i></button>
+      <div class="roadmap-content">
+        <h2>Coding Roadmap</h2>
+        <h3><i class="fas fa-info-circle"></i> Introduction</h3>
+        <p>Coding is your ticket to creating apps, websites, and more! It’s a fun, high-demand skill that opens doors to tech careers.</p>
+        <h3><i class="fas fa-list"></i> Guidelines</h3>
+        <ul>
+          <li><i class="fas fa-check"></i> <strong>Pick a Language:</strong> Start with Python or JavaScript—super beginner-friendly!</li>
+          <li><i class="fas fa-check"></i> <strong>Learn Basics:</strong> Get comfy with variables, loops, and functions.</li>
+          <li><i class="fas fa-check"></i> <strong>Build Stuff:</strong> Create a calculator or a simple website to practice.</li>
+          <li><i class="fas fa-check"></i> <strong>Join Communities:</strong> Hang out on GitHub or Reddit’s r/learnprogramming.</li>
+        </ul>
+        <h3><i class="fab fa-youtube"></i> YouTube Videos</h3>
+        <div class="resource-grid">
+          <a href="https://www.youtube.com/c/freeCodeCamp" class="resource-button"><i class="fab fa-youtube"></i> freeCodeCamp</a>
+          <a href="https://www.youtube.com/c/TheNetNinja" class="resource-button"><i class="fab fa-youtube"></i> The Net Ninja</a>
+          <a href="https://www.youtube.com/c/CS Dojo" class="resource-button"><i class="fab fa-youtube"></i> CS Dojo</a>
+        </div>
+        <h3><i class="fas fa-book"></i> Free Books</h3>
+        <div class="resource-grid">
+          <a href="https://eloquentjavascript.net/" class="resource-button"><i class="fas fa-book"></i> Eloquent JavaScript</a>
+          <a href="https://automatetheboringstuff.com/" class="resource-button"><i class="fas fa-book"></i> Automate with Python</a>
+          <a href="https://github.com/EbookFoundation/free-programming-books" class="resource-button"><i class="fas fa-book"></i> Free Programming Books</a>
+        </div>
+        <h3><i class="fas fa-globe"></i> Websites</h3>
+        <div class="resource-grid">
+          <a href="https://www.codecademy.com/" class="resource-button"><i class="fas fa-globe"></i> Codecademy</a>
+          <a href="https://www.freecodecamp.org/" class="resource-button"><i class="fas fa-globe"></i> freeCodeCamp</a>
+          <a href="https://www.w3schools.com/" class="resource-button"><i class="fas fa-globe"></i> W3Schools</a>
+        </div>
+        <h3><i class="fas fa-user"></i> Notable Figures</h3>
+        <ul>
+          <li><i class="fas fa-star"></i> <strong>Linus Torvalds:</strong> Creator of Linux.</li>
+          <li><i class="fas fa-star"></i> <strong>Guido van Rossum:</strong> Python’s founder.</li>
+          <li><i class="fas fa-star"></i> <strong>Ada Lovelace:</strong> First computer programmer.</li>
+        </ul>
+        <h3><i class="fas fa-video"></i> TED Talks</h3>
+        <div class="resource-grid">
+          <a href="https://www.ted.com/talks/linda_liukas_code_the_next_universal_language" class="resource-button"><i class="fas fa-video"></i> Code: Universal Language</a>
+          <a href="https://www.ted.com/talks/mitch_resnick_let_s_teach_kids_to_code" class="resource-button"><i class="fas fa-video"></i> Teach Kids to Code</a>
+        </div>
+        <h3><i class="fas fa-sun"></i> Summer Programs</h3>
+        <div class="resource-grid">
+          <a href="https://www.girlswhocode.com/programs/summer-immersion-program" class="resource-button"><i class="fas fa-sun"></i> Girls Who Code</a>
+          <a href="https://kodewithklossy.com/" class="resource-button"><i class="fas fa-sun"></i> Kode With Klossy</a>
+        </div>
+        <h3><i class="fas fa-graduation-cap"></i> Free Courses</h3>
+        <div class="resource-grid">
+          <a href="https://www.edx.org/course/cs50s-introduction-to-computer-science" class="resource-button"><i class="fas fa-graduation-cap"></i> CS50: Computer Science</a>
+          <a href="https://www.coursera.org/learn/python" class="resource-button"><i class="fas fa-graduation-cap"></i> Python for Everybody</a>
+          <a href="https://www.khanacademy.org/computing/computer-programming" class="resource-button"><i class="fas fa-graduation-cap"></i> Intro to JS</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="scientific-research-modal">
+    <div class="modal-content">
+      <button class="modal-close"><i class="fas fa-times"></i></button>
+      <div class="roadmap-content">
+        <h2>Scientific Research Roadmap</h2>
+        <h3><i class="fas fa-info-circle"></i> Introduction</h3>
+        <p>Unleash your curiosity! Scientific research explores biology, physics, and more to solve real-world problems.</p>
+        <h3><i class="fas fa-list"></i> Guidelines</h3>
+        <ul>
+          <li><i class="fas fa-check"></i> <strong>Scientific Method:</strong> Learn to form hypotheses and analyze data.</li>
+          <li><i class="fas fa-check"></i> <strong>Read Papers:</strong> Check out Google Scholar for free research papers.</li>
+          <li><i class="fas fa-check"></i> <strong>Skill Up:</strong> Use Excel or Python for data analysis.</li>
+          <li><i class="fas fa-check"></i> <strong>Find Mentors:</strong> Connect with researchers on LinkedIn.</li>
+        </ul>
+        <h3><i class="fab fa-youtube"></i> YouTube Videos</h3>
+        <div class="resource-grid">
+          <a href="https://www.youtube.com/c/CrashCourse" class="resource-button"><i class="fab fa-youtube"></i> CrashCourse</a>
+          <a href="https://www.youtube.com/c/SciShow" class="resource-button"><i class="fab fa-youtube"></i> SciShow</a>
+          <a href="https://www.youtube.com/c/MinutePhysics" class="resource-button"><i class="fab fa-youtube"></i> MinutePhysics</a>
+        </div>
+        <h3><i class="fas fa-book"></i> Free Books</h3>
+        <div class="resource-grid">
+          <a href="https://openstax.org/subjects/science" class="resource-button"><i class="fas fa-book"></i> OpenStax Science</a>
+          <a href="https://www.ncbi.nlm.nih.gov/books/NBK21122/" class="resource-button"><i class="fas fa-book"></i> Molecular Biology</a>
+          <a href="https://www.gutenberg.org/ebooks/1259" class="resource-button"><i class="fas fa-book"></i> Origin of Species</a>
+        </div>
+        <h3><i class="fas fa-globe"></i> Websites</h3>
+        <div class="resource-grid">
+          <a href="https://www.google.com/scholar" class="resource-button"><i class="fas fa-globe"></i> Google Scholar</a>
+          <a href="https://www.khanacademy.org/science" class="resource-button"><i class="fas fa-globe"></i> Khan Academy</a>
+          <a href="https://www.zotero.org/" class="resource-button"><i class="fas fa-globe"></i> Zotero</a>
+        </div>
+        <h3><i class="fas fa-user"></i> Notable Figures</h3>
+        <ul>
+          <li><i class="fas fa-star"></i> <strong>Marie Curie:</strong> Radioactivity pioneer.</li>
+          <li><i class="fas fa-star"></i> <strong>Ahmed Zewail:</strong> Egyptian Nobel Prize winner.</li>
+          <li><i class="fas fa-star"></i> <strong>Jane Goodall:</strong> Conservationist and primatologist.</li>
+        </ul>
+        <h3><i class="fas fa-video"></i> TED Talks</h3>
+        <div class="resource-grid">
+          <a href="https://www.ted.com/talks/suzanne_simard_how_trees_talk_to_each_other" class="resource-button"><i class="fas fa-video"></i> Trees Talk</a>
+          <a href="https://www.ted.com/talks/naomi_oreskes_why_we_should_trust_scientists" class="resource-button"><i class="fas fa-video"></i> Trust Scientists</a>
+        </div>
+        <h3><i class="fas fa-sun"></i> Summer Programs</h3>
+        <div class="resource-grid">
+          <a href="https://www.rsiusa.org/" class="resource-button"><i class="fas fa-sun"></i> Research Science Institute</a>
+          <a href="https://www.stemfellowship.org/big-data-challenge" class="resource-button"><i class="fas fa-sun"></i> Big Data Challenge</a>
+        </div>
+        <h3><i class="fas fa-graduation-cap"></i> Free Courses</h3>
+        <div class="resource-grid">
+          <a href="https://www.coursera.org/learn/scientific-methods" class="resource-button"><i class="fas fa-graduation-cap"></i> Scientific Method</a>
+          <a href="https://www.edx.org/course/introduction-to-biology-the-secret-of-life" class="resource-button"><i class="fas fa-graduation-cap"></i> Intro to Biology</a>
+          <a href="https://www.khanacademy.org/science/biology" class="resource-button"><i class="fas fa-graduation-cap"></i> Biology</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="content-writing-modal">
+    <div class="modal-content">
+      <button class="modal-close"><i class="fas fa-times"></i></button>
+      <div class="roadmap-content">
+        <h2>Content Writing Roadmap</h2>
+        <h3><i class="fas fa-info-circle"></i> Introduction</h3>
+        <p>Love telling stories? Content writing lets you create blogs, social posts, and more to inspire and engage audiences.</p>
+        <h3><i class="fas fa-list"></i> Guidelines</h3>
+        <ul>
+          <li><i class="fas fa-check"></i> <strong>Grammar & Style:</strong> Master grammar with tools like Grammarly.</li>
+          <li><i class="fas fa-check"></i> <strong>Write Daily:</strong> Start a blog or journal to practice.</li>
+          <li><i class="fas fa-check"></i> <strong>Learn SEO:</strong> Understand basics to make your content pop online.</li>
+          <li><i class="fas fa-check"></i> <strong>Build a Portfolio:</strong> Share your work on Medium or a personal blog.</li>
+        </ul>
+        <h3><i class="fab fa-youtube"></i> YouTube Videos</h3>
+        <div class="resource-grid">
+          <a href="https://www.youtube.com/c/AhrefsCom" class="resource-button"><i class="fab fa-youtube"></i> Ahrefs</a>
+          <a href="https://www.youtube.com/c/NeilPatelNP" class="resource-button"><i class="fab fa-youtube"></i> Neil Patel</a>
+          <a href="https://www.youtube.com/c/TheFutur" class="resource-button"><i class="fab fa-youtube"></i> The Futur</a>
+        </div>
+        <h3><i class="fas fa-book"></i> Free Books</h3>
+        <div class="resource-grid">
+          <a href="https://www.gutenberg.org/ebooks/141" class="resource-button"><i class="fas fa-book"></i> Elements of Style</a>
+          <a href="https://www.copyblogger.com/copywriting-101/" class="resource-button"><i class="fas fa-book"></i> Copywriting 101</a>
+          <a href="https://www.gutenberg.org/ebooks/37134" class="resource-button"><i class="fas fa-book"></i> On Writing Well</a>
+        </div>
+        <h3><i class="fas fa-globe"></i> Websites</h3>
+        <div class="resource-grid">
+          <a href="https://www.grammarly.com/" class="resource-button"><i class="fas fa-globe"></i> Grammarly</a>
+          <a href="https://medium.com/" class="resource-button"><i class="fas fa-globe"></i> Medium</a>
+          <a href="https://prowritingaid.com/" class="resource-button"><i class="fas fa-globe"></i> ProWritingAid</a>
+        </div>
+        <h3><i class="fas fa-user"></i> Notable Figures</h3>
+        <ul>
+          <li><i class="fas fa-star"></i> <strong>Ann Handley:</strong> Content marketing expert.</li>
+          <li><i class="fas fa-star"></i> <strong>Seth Godin:</strong> Marketing and writing guru.</li>
+          <li><i class="fas fa-star"></i> <strong>Chimamanda Ngozi Adichie:</strong> Acclaimed storyteller.</li>
+        </ul>
+        <h3><i class="fas fa-video"></i> TED Talks</h3>
+        <div class="resource-grid">
+          <a href="https://www.ted.com/talks/chimamanda_ngozi_adichie_the_danger_of_a_single_story" class="resource-button"><i class="fas fa-video"></i> Single Story</a>
+          <a href="https://www.ted.com/talks/andrew_stanton_the_clues_to_a_great_story" class="resource-button"><i class="fas fa-video"></i> Great Story</a>
+        </div>
+        <h3><i class="fas fa-sun"></i> Summer Programs</h3>
+        <div class="resource-grid">
+          <a href="https://www.nwp.org/young-writers" class="resource-button"><i class="fas fa-sun"></i> Young Writers</a>
+          <a href="https://www.826national.org/" class="resource-button"><i class="fas fa-sun"></i> 826 National</a>
+        </div>
+        <h3><i class="fas fa-graduation-cap"></i> Free Courses</h3>
+        <div class="resource-grid">
+          <a href="https://www.coursera.org/learn/content-marketing" class="resource-button"><i class="fas fa-graduation-cap"></i> Content Marketing</a>
+          <a href="https://www.udemy.com/course/free-seo-and-content-marketing-course/" class="resource-button"><i class="fas fa-graduation-cap"></i> SEO Writing</a>
+          <a href="https://www.hubspot.com/resources/courses/content-marketing" class="resource-button"><i class="fas fa-graduation-cap"></i> HubSpot Content</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="marketing-modal">
+    <div class="modal-content">
+      <button class="modal-close"><i class="fas fa-times"></i></button>
+      <div class="roadmap-content">
+        <h2>Marketing Roadmap</h2>
+        <h3><i class="fas fa-info-circle"></i> Introduction</h3>
+        <p>Marketing blends creativity and strategy to promote ideas, products, or services. Perfect for those who love connecting with people!</p>
+        <h3><i class="fas fa-list"></i> Guidelines</h3>
+        <ul>
+          <li><i class="fas fa-check"></i> <strong>Core Concepts:</strong> Learn branding and digital marketing basics.</li>
+          <li><i class="fas fa-check"></i> <strong>Use Tools:</strong> Try Canva or Google Analytics for campaigns.</li>
+          <li><i class="fas fa-check"></i> <strong>Create Campaigns:</strong> Design mock social media ads.</li>
+          <li><i class="fas fa-check"></i> <strong>Stay Updated:</strong> Follow blogs like HubSpot for trends.</li>
+        </ul>
+        <h3><i class="fab fa-youtube"></i> YouTube Videos</h3>
+        <div class="resource-grid">
+          <a href="https://www.youtube.com/c/NeilPatelNP" class="resource-button"><i class="fab fa-youtube"></i> Neil Patel</a>
+          <a href="https://www.youtube.com/c/HubSpot" class="resource-button"><i class="fab fa-youtube"></i> HubSpot</a>
+          <a href="https://www.youtube.com/c/AnkurWarikoo" class="resource-button"><i class="fab fa-youtube"></i> Ankur Warikoo</a>
+        </div>
+        <h3><i class="fas fa-book"></i> Free Books</h3>
+        <div class="resource-grid">
+          <a href="https://www.hubspot.com/resources/ebook" class="resource-button"><i class="fas fa-book"></i> HubSpot eBooks</a>
+          <a href="https://www.gutenberg.org/ebooks/36107" class="resource-button"><i class="fas fa-book"></i> Art of Advertising</a>
+          <a href="https://www.copyblogger.com/content-marketing-ebook/" class="resource-button"><i class="fas fa-book"></i> Content Marketing</a>
+        </div>
+        <h3><i class="fas fa-globe"></i> Websites</h3>
+        <div class="resource-grid">
+          <a href="https://www.hubspot.com/" class="resource-button"><i class="fas fa-globe"></i> HubSpot</a>
+          <a href="https://www.canva.com/" class="resource-button"><i class="fas fa-globe"></i> Canva</a>
+          <a href="https://analytics.google.com/" class="resource-button"><i class="fas fa-globe"></i> Google Analytics</a>
+        </div>
+        <h3><i class="fas fa-user"></i> Notable Figures</h3>
+        <ul>
+          <li><i class="fas fa-star"></i> <strong>Seth Godin:</strong> Marketing thought leader.</li>
+          <li><i class="fas fa-star"></i> <strong>Neil Patel:</strong> Digital marketing expert.</li>
+          <li><i class="fas fa-star"></i> <strong>Rand Fishkin:</strong> SEO specialist.</li>
+        </ul>
+        <h3><i class="fas fa-video"></i> TED Talks</h3>
+        <div class="resource-grid">
+          <a href="https://www.ted.com/talks/seth_godin_how_to_get_your_ideas_to_spread" class="resource-button"><i class="fas fa-video"></i> Spread Ideas</a>
+          <a href="https://www.ted.com/talks/rory_sutherland_life_lessons_from_an_ad_man" class="resource-button"><i class="fas fa-video"></i> Ad Man Lessons</a>
+        </div>
+        <h3><i class="fas fa-sun"></i> Summer Programs</h3>
+        <div class="resource-grid">
+          <a href="https://www.girlsinmarketing.com/academy" class="resource-button"><i class="fas fa-sun"></i> Girls in Marketing</a>
+          <a href="https://www.ama.org/marketing-competitions/" class="resource-button"><i class="fas fa-sun"></i> AMA Competitions</a>
+        </div>
+        <h3><i class="fas fa-graduation-cap"></i> Free Courses</h3>
+        <div class="resource-grid">
+          <a href="https://www.coursera.org/learn/digital-marketing" class="resource-button"><i class="fas fa-graduation-cap"></i> Digital Marketing</a>
+          <a href="https://www.hubspot.com/resources/courses/inbound-marketing" class="resource-button"><i class="fas fa-graduation-cap"></i> Inbound Marketing</a>
+          <a href="https://www.google.com/intl/en_eg/ads/certifications/" class="resource-button"><i class="fas fa-graduation-cap"></i> Google Digital Garage</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="medicine-modal">
+    <div class="modal-content">
+      <button class="modal-close"><i class="fas fa-times"></i></button>
+      <div class="roadmap-content">
+        <h2>Medicine Roadmap</h2>
+        <h3><i class="fas fa-info-circle"></i> Introduction</h3>
+        <p>Medicine is about healing and saving lives. Dive into this rewarding field to make a difference in healthcare.</p>
+        <h3><i class="fas fa-list"></i> Guidelines</h3>
+        <ul>
+          <li><i class="fas fa-check"></i> <strong>Science Foundation:</strong> Study biology, chemistry, and physics.</li>
+          <li><i class="fas fa-check"></i> <strong>Volunteer:</strong> Help out at hospitals or clinics.</li>
+          <li><i class="fas fa-check"></i> <strong>Explore Careers:</strong> Research roles like doctor or nurse.</li>
+          <li><i class="fas fa-check"></i> <strong>Prep for Exams:</strong> Study for tests like the MCAT.</li>
+        </ul>
+        <h3><i class="fab fa-youtube"></i> YouTube Videos</h3>
+        <div class="resource-grid">
+          <a href="https://www.youtube.com/c/MedSchoolInsiders" class="resource-button"><i class="fab fa-youtube"></i> Med School Insiders</a>
+          <a href="https://www.youtube.com/c/KhanAcademyMedicine" class="resource-button"><i class="fab fa-youtube"></i> Khan Academy Medicine</a>
+          <a href="https://www.youtube.com/c/ArmandoHasudungan" class="resource-button"><i class="fab fa-youtube"></i> Armando Hasudungan</a>
+        </div>
+        <h3><i class="fas fa-book"></i> Free Books</h3>
+        <div class="resource-grid">
+          <a href="https://openstax.org/details/books/anatomy-and-physiology" class="resource-button"><i class="fas fa-book"></i> Anatomy & Physiology</a>
+          <a href="https://www.ncbi.nlm.nih.gov/books/NBK21122/" class="resource-button"><i class="fas fa-book"></i> Medical Microbiology</a>
+          <a href="https://www.gutenberg.org/ebooks/1566" class="resource-button"><i class="fas fa-book"></i> Medical Psychology</a>
+        </div>
+        <h3><i class="fas fa-globe"></i> Websites</h3>
+        <div class="resource-grid">
+          <a href="https://www.khanacademy.org/science/health-and-medicine" class="resource-button"><i class="fas fa-globe"></i> Khan Academy</a>
+          <a href="https://www.medscape.com/" class="resource-button"><i class="fas fa-globe"></i> Medscape</a>
+          <a href="https://www.osmosis.org/" class="resource-button"><i class="fas fa-globe"></i> Osmosis</a>
+        </div>
+        <h3><i class="fas fa-user"></i> Notable Figures</h3>
+        <ul>
+          <li><i class="fas fa-star"></i> <strong>Paul Farmer:</strong> Partners In Health co-founder.</li>
+          <li><i class="fas fa-star"></i> <strong>Mona Hanna-Attisha:</strong> Flint water crisis advocate.</li>
+          <li><i class="fas fa-star"></i> <strong>Hippocrates:</strong> Father of modern medicine.</li>
+        </ul>
+        <h3><i class="fas fa-video"></i> TED Talks</h3>
+        <div class="resource-grid">
+          <a href="https://www.ted.com/talks/abraham_verghese_a_doctor_s_touch" class="resource-button"><i class="fas fa-video"></i> Doctor’s Touch</a>
+          <a href="https://www.ted.com/talks/nadine_burke_harris_how_childhood_trauma_affects_health_across_a_lifetime" class="resource-button"><i class="fas fa-video"></i> Childhood Trauma</a>
+        </div>
+        <h3><i class="fas fa-sun"></i> Summer Programs</h3>
+        <div class="resource-grid">
+          <a href="https://www.nslcleaders.org/youth-leadership-programs/medicine-intensive/" class="resource-button"><i class="fas fa-sun"></i> NSLC Medicine</a>
+          <a href="https://www.summerdiscovery.com/pre-college-programs/medicine" class="resource-button"><i class="fas fa-sun"></i> Summer Discovery</a>
+        </div>
+        <h3><i class="fas fa-graduation-cap"></i> Free Courses</h3>
+        <div class="resource-grid">
+          <a href="https://www.coursera.org/learn/vital-signs" class="resource-button"><i class="fas fa-graduation-cap"></i> Vital Signs</a>
+          <a href="https://www.edx.org/course/introduction-to-biology-the-secret-of-life" class="resource-button"><i class="fas fa-graduation-cap"></i> Intro to Biology</a>
+          <a href="https://www.futurelearn.com/courses/introduction-to-nursing" class="resource-button"><i class="fas fa-graduation-cap"></i> Intro to Nursing</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="sustainability-modal">
+    <div class="modal-content">
+      <button class="modal-close"><i class="fas fa-times"></i></button>
+      <div class="roadmap-content">
+        <h2>Sustainability Roadmap</h2>
+        <h3><i class="fas fa-info-circle"></i> Introduction</h3>
+        <p>Passionate about the planet? Sustainability is about creating a healthier world through eco-friendly practices.</p>
+        <h3><i class="fas fa-list"></i> Guidelines</h3>
+        <ul>
+          <li><i class="fas fa-check"></i> <strong>Learn Concepts:</strong> Study climate change and renewable energy.</li>
+          <li><i class="fas fa-check"></i> <strong>Get Involved:</strong> Join local clean-up or environmental projects.</li>
+          <li><i class="fas fa-check"></i> <strong>Use Data:</strong> Analyze environmental stats with Excel.</li>
+          <li><i class="fas fa-check"></i> <strong>Advocate:</strong> Share ideas on social media or blogs.</li>
+        </ul>
+        <h3><i class="fab fa-youtube"></i> YouTube Videos</h3>
+        <div class="resource-grid">
+          <a href="https://www.youtube.com/c/TEDx" class="resource-button"><i class="fab fa-youtube"></i> TEDx Talks</a>
+          <a href="https://www.youtube.com/c/OurChangingClimate" class="resource-button"><i class="fab fa-youtube"></i> Our Changing Climate</a>
+          <a href="https://www.youtube.com/c/NationalGeographic" class="resource-button"><i class="fab fa-youtube"></i> National Geographic</a>
+        </div>
+        <h3><i class="fas fa-book"></i> Free Books</h3>
+        <div class="resource-grid">
+          <a href="https://www.gutenberg.org/ebooks/1946" class="resource-button"><i class="fas fa-book"></i> Silent Spring</a>
+          <a href="https://openstax.org/details/books/environmental-science" class="resource-button"><i class="fas fa-book"></i> Environmental Science</a>
+          <a href="https://www.un.org/en/climatechange/science/key-findings" class="resource-button"><i class="fas fa-book"></i> UN Climate Reports</a>
+        </div>
+        <h3><i class="fas fa-globe"></i> Websites</h3>
+        <div class="resource-grid">
+          <a href="https://www.un.org/sustainabledevelopment/" class="resource-button"><i class="fas fa-globe"></i> UN SDG</a>
+          <a href="https://www.earthday.org/" class="resource-button"><i class="fas fa-globe"></i> Earth Day</a>
+          <a href="https://www.greenpeace.org/international/" class="resource-button"><i class="fas fa-globe"></i> Greenpeace</a>
+        </div>
+        <h3><i class="fas fa-user"></i> Notable Figures</h3>
+        <ul>
+          <li><i class="fas fa-star"></i> <strong>Greta Thunberg:</strong> Youth climate activist.</li>
+          <li><i class="fas fa-star"></i> <strong>Wangari Maathai:</strong> Green Belt Movement founder.</li>
+          <li><i class="fas fa-star"></i> <strong>David Attenborough:</strong> Environmental broadcaster.</li>
+        </ul>
+        <h3><i class="fas fa-video"></i> TED Talks</h3>
+        <div class="resource-grid">
+          <a href="https://www.ted.com/talks/greta_thunberg_the_disarming_case_to_act_right_now_on_climate_change" class="resource-button"><i class="fas fa-video"></i> Act on Climate</a>
+          <a href="https://www.ted.com/talks/johan_rockstrom_let_the_environment_guide_our_development" class="resource-button"><i class="fas fa-video"></i> Guide Development</a>
+        </div>
+        <h3><i class="fas fa-sun"></i> Summer Programs</h3>
+        <div class="resource-grid">
+          <a href="https://www.youth4climate.org/" class="resource-button"><i class="fas fa-sun"></i> Youth4Climate</a>
+          <a href="https://www.globalyouthsummit.org/" class="resource-button"><i class="fas fa-sun"></i> Global Youth Summit</a>
+        </div>
+        <h3><i class="fas fa-graduation-cap"></i> Free Courses</h3>
+        <div class="resource-grid">
+          <a href="https://www.coursera.org/learn/sustainability" class="resource-button"><i class="fas fa-graduation-cap"></i> Intro to Sustainability</a>
+          <a href="https://www.edx.org/course/climate-change-the-science-and-global-impact" class="resource-button"><i class="fas fa-graduation-cap"></i> Climate Change</a>
+          <a href="https://www.futurelearn.com/courses/sustainability-society-and-you" class="resource-button"><i class="fas fa-graduation-cap"></i> Sustainability & You</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer Section -->
+  <section class="footer-section" id="footer">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>Dear Future Luminary</h3>
+        <p>Guiding you to an inspiring future.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="scholarships-Kit.html"><i class="fas fa-graduation-cap"></i> Scholarships</a>
+        <a href="roadmaps.html"><i class="fas fa-map-signs"></i> Roadmaps</a>
+        <a href="profile-building.html"><i class="fas fa-user-tie"></i> Profile Building</a>
+        <a href="my-story.html"><i class="fas fa-star"></i> My Story</a>
+        <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+      </div>
+      <div class="footer-column socials">
+        <h3>Connect With Us</h3>
+        <a href="mailto:dear.future.luminary@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://www.instagram.com/dear.future.luminary/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://www.linkedin.com/company/dear-future-luminary" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Developed by Malak Emad © 2025 Dear Future Luminary. All rights reserved.</p>
+    </div>
+  </section>
+
+  <script>
+    // Custom Cursor
+    const customCursor = document.getElementById('customCursor');
+    let isThrottled = false;
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isThrottled) {
+        requestAnimationFrame(() => {
+          customCursor.style.left = `${e.clientX}px`;
+          customCursor.style.top = `${e.clientY}px`;
+          isThrottled = false;
+        });
+        isThrottled = true;
+      }
+    });
+
+    document.querySelectorAll('a, button, .roadmap-card').forEach(el => {
+      el.addEventListener('mouseenter', () => customCursor.classList.add('active'));
+      el.addEventListener('mouseleave', () => customCursor.classList.remove('active'));
+    });
+
+    // Preloader
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('loader');
+      setTimeout(() => {
+        loader.classList.add('hidden');
+        loader.addEventListener('transitionend', () => {
+          loader.remove();
+        });
+        document.body.style.overflow = 'auto';
+        document.querySelectorAll('.intro-content, .roadmap-card, .section-title, .follow-us h2').forEach(el => {
+          el.classList.add('visible');
+        });
+      }, 800);
+    });
+
+    // Theme Selector
+    document.querySelectorAll('.theme-option').forEach(option => {
+      option.addEventListener('click', () => {
+        const theme = option.getAttribute('data-theme');
+        document.body.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+      });
+    });
+
+    // Load Saved Theme
+    const savedTheme = localStorage.getItem('theme') || 'luminary';
+    document.body.setAttribute('data-theme', savedTheme);
+
+    // Modal Functionality
+    document.querySelectorAll('.roadmap-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const modalId = card.getAttribute('data-modal');
+        const modal = document.getElementById(modalId);
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        modal.querySelector('.modal-close').focus();
+      });
+    });
+
+    document.querySelectorAll('.modal-close').forEach(button => {
+      button.addEventListener('click', () => {
+        button.closest('.modal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('modal')) {
+        e.target.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Modal Keyboard Accessibility
+    document.querySelectorAll('.modal').forEach(modal => {
+      const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      const firstFocusable = focusableElements[0];
+      const lastFocusable = focusableElements[focusableElements.length - 1];
+
+      modal.addEventListener('keydown', e => {
+        if (e.key === 'Tab') {
+          if (e.shiftKey && document.activeElement === firstFocusable) {
+            e.preventDefault();
+            lastFocusable.focus();
+          } else if (!e.shiftKey && document.activeElement === lastFocusable) {
+            e.preventDefault();
+            firstFocusable.focus();
+          }
+        } else if (e.key === 'Escape') {
+          modal.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+      });
+    });
+
+    // Scroll Animations
+    window.addEventListener('scroll', () => {
+      document.querySelectorAll('.intro-content, .roadmap-card, .section-title, .follow-us h2').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.9) {
+          el.classList.add('visible');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
