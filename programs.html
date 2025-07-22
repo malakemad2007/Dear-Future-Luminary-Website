@@ -8,8 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      /* Default Theme (Luminary) */
+:root {
       --primary-bg: #ffffff;
       --secondary-bg: #f8f9fa;
       --text-color: #2c3e50;
@@ -24,7 +23,6 @@
       --transition-speed: 0.3s;
     }
 
-    /* Elegant Theme */
     [data-theme="elegant"] {
       --primary-bg: #ffffff;
       --secondary-bg: #f5f5f5;
@@ -32,14 +30,8 @@
       --accent-color: #2e2e2e;
       --accent-light: #4a4a4a;
       --highlight: #d4a017;
-      --card-bg: #ffffff;
-      --card-shadow: rgba(0, 0, 0, 0.1);
-      --nav-bg: #ffffff;
-      --footer-bg: #f5f5f5;
-      --section-bg: #ffffff;
     }
 
-    /* Cosmic Theme */
     [data-theme="cosmic"] {
       --primary-bg: #ffffff;
       --secondary-bg: #f0f4f8;
@@ -47,14 +39,8 @@
       --accent-color: #1e3a8a;
       --accent-light: #3b82f6;
       --highlight: #10b981;
-      --card-bg: #ffffff;
-      --card-shadow: rgba(0, 0, 0, 0.1);
-      --nav-bg: #ffffff;
-      --footer-bg: #f0f4f8;
-      --section-bg: #ffffff;
     }
 
-    /* Bright Theme */
     [data-theme="bright"] {
       --primary-bg: #ffffff;
       --secondary-bg: #fef3e7;
@@ -62,14 +48,8 @@
       --accent-color: #e11d48;
       --accent-light: #fb7185;
       --highlight: #f59e0b;
-      --card-bg: #ffffff;
-      --card-shadow: rgba(0, 0, 0, 0.1);
-      --nav-bg: #ffffff;
-      --footer-bg: #fef3e7;
-      --section-bg: #ffffff;
     }
 
-    /* Vibrant Theme */
     [data-theme="vibrant"] {
       --primary-bg: #ffffff;
       --secondary-bg: #f4eaff;
@@ -77,11 +57,6 @@
       --accent-color: #7c3aed;
       --accent-light: #a78bfa;
       --highlight: #ec4899;
-      --card-bg: #ffffff;
-      --card-shadow: rgba(0, 0, 0, 0.1);
-      --nav-bg: #ffffff;
-      --footer-bg: #f4eaff;
-      --section-bg: #ffffff;
     }
 
     * {
@@ -89,6 +64,22 @@
       padding: 0;
       box-sizing: border-box;
       transition: background-color var(--transition-speed), color var(--transition-speed);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--primary-bg);
+      color: var(--text-color);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .logo {
+      font-family: 'Playfair Display', serif;
     }
 
     body {
@@ -160,15 +151,15 @@
       border-top: 3px solid var(--accent-color);
       border-radius: 50%;
       animation: spin 1s linear infinite;
-}
+    }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 
     /* Navbar */
-    .navbar {
+ .navbar {
       position: fixed;
       top: 0;
       width: 100%;
@@ -448,41 +439,80 @@
       background: rgba(255, 255, 255, 0.2);
     }
 
-    /* Footer */
-    .footer {
-      background-color: var(--footer-bg);
-      color: var(--text-color);
-      text-align: center;
-      padding: 2rem 0;
-      font-size: 0.9rem;
+    /* Footer Section */
+    .footer-section {
+      padding: 2rem 5%;
+      background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+      margin-top: auto;
     }
 
-    .footer p {
-      margin: 0;
+    .footer-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.2;
+      z-index: 0;
     }
 
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin: 1rem 0;
+    .footer-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      padding: 1rem 0;
     }
 
-    .social-icons a {
-      width: 40px;
-      height: 40px;
+    .footer-column h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-column p,
+    .footer-column a {
+      font-size: 1rem;
+      color: #ffffff;
+      text-decoration: none;
+      margin-bottom: 0.4rem;
       display: flex;
       align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: var(--accent-color);
-      color: #ffffff;
+      gap: 6px;
       transition: all 0.3s ease;
     }
 
-    .social-icons a:hover {
-      background: var(--accent-light);
-      transform: scale(1.1);
+    .footer-column a:hover {
+      color: var(--highlight);
+      transform: translateX(5px);
+    }
+
+    .footer-column a i {
+      font-size: 1.2rem;
+    }
+
+    .footer-column.socials a i {
+      font-size: 1.2rem;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 0.8rem;
+      text-align: center;
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
+
+    .footer-bottom p {
+      margin: 0;
+      opacity: 0.9;
     }
 
     /* Animations */
@@ -525,6 +555,33 @@
       .program-card {
         height: 300px; /* Slightly taller for mobile */
       }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .footer-column a {
+        justify-content: center;
+      }
+
+      .footer-column h3 {
+        font-size: 1.3rem;
+      }
+
+      .footer-column p,
+      .footer-column a {
+        font-size: 0.9rem;
+      }
+
+      .footer-column a i,
+      .footer-column.socials a i {
+        font-size: 1.1rem;
+      }
+
+      .footer-bottom {
+        font-size: 0.9rem;
+      }
     }
 
     @media (max-width: 480px) {
@@ -556,6 +613,24 @@
       .program-back p {
         font-size: 0.8rem;
       }
+
+      .footer-column h3 {
+        font-size: 1.3rem;
+      }
+
+      .footer-column p,
+      .footer-column a {
+        font-size: 0.9rem;
+      }
+
+      .footer-column a i,
+      .footer-column.socials a i {
+        font-size: 1.1rem;
+      }
+
+      .footer-bottom {
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
@@ -579,10 +654,9 @@
         <button class="dropdown-toggle"><i class="fas fa-bars"></i> Menu</button>
         <div class="dropdown-menu">
           <a href="index.html"><i class="fas fa-home"></i> Home</a>
-          <a href="teams.html"><i class="fas fa-users"></i> Teams</a>
-          <a href="programs.html"><i class="fas fa-cogs"></i> Programs</a>
-          <a href="radar.html"><i class="fas fa-bullseye"></i> Opportunity Radar</a>
-          <a href="upgrade.html"><i class="fas fa-arrow-up"></i> Resources</a>
+          <a href="scholarships-Kit.html"><i class="fas fa-graduation-cap"></i> Scholarships</a>
+          <a href="roadmaps.html"><i class="fas fa-map-signs"></i> Roadmaps</a>
+          <a href="profile-building.html"><i class="fas fa-user-tie"></i> Profile Building</a>
           <a href="my-story.html"><i class="fas fa-star"></i> My Story</a>
           <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
         </div>
@@ -788,7 +862,7 @@
           </div>
         </div>
       </div>
-<div class="program-card">
+      <div class="program-card">
   <div class="program-inner">
     <div class="program-front">
       <h3>Youth Ambassadors Program</h3>
@@ -1005,16 +1079,34 @@
 </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>Connect With Us:</p>
-    <div class="social-icons">
-      <a href="https://www.facebook.com/profile.php?id=100088385822088" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://www.instagram.com/loka_luminary/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.linkedin.com/in/malak-savvyt-t/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+
+  <!-- Footer Section -->
+  <section class="footer-section" id="footer">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>Dear Future Luminary</h3>
+        <p>Guiding you to an inspiring future.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="teams.html"><i class="fas fa-users"></i> Teams</a>
+        <a href="programs.html"><i class="fas fa-cogs"></i> Programs</a>
+        <a href="radar.html"><i class="fas fa-bullseye"></i> Opportunity Radar</a>
+        <a href="upgrade.html"><i class="fas fa-arrow-up"></i> Extra</a>
+        <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+      </div>
+      <div class="footer-column socials">
+        <h3>Connect With Us</h3>
+        <a href="mailto:dear.future.luminary@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://www.instagram.com/dear.future.luminary/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://www.linkedin.com/company/dear-future-luminary" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+      </div>
     </div>
-    <p>© 2025 Dear Future Luminary | Designed by Malak Emad</p>
-  </footer>
+    <div class="footer-bottom">
+      <p>Developed by Malak Emad © 2025 Dear Future Luminary. All rights reserved.</p>
+    </div>
+  </section>
 
   <script>
     // Custom Cursor
@@ -1024,7 +1116,7 @@
       customCursor.style.top = `${e.clientY}px`;
     });
 
-    document.querySelectorAll('a, button, input, textarea, .program-card, .social-icons a').forEach(el => {
+    document.querySelectorAll('a, button, input, textarea, .program-card').forEach(el => {
       el.addEventListener('mouseenter', () => customCursor.classList.add('active'));
       el.addEventListener('mouseleave', () => customCursor.classList.remove('active'));
     });
@@ -1036,8 +1128,7 @@
         document.body.style.overflow = 'auto';
       }, 800);
     });
-
-    // Theme Selector
+// Theme Selector
     document.querySelectorAll('.theme-option').forEach(option => {
       option.addEventListener('click', () => {
         const theme = option.getAttribute('data-theme');
