@@ -15,6 +15,8 @@
   </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <!-- Mailchimp Fonts -->
+  <link href="https://assets.mlcdn.com/fonts.css?version=1753253" rel="stylesheet">
   <style>
     :root {
       --primary-bg: #ffffff;
@@ -701,7 +703,8 @@
       }
     }
 
-    .thank-you {
+    /* Thank You Pop-up */
+    .newsletter-thank-you {
       position: fixed;
       top: 50%;
       left: 50%;
@@ -715,11 +718,54 @@
       display: none;
       max-width: 90%;
       width: 400px;
+      animation: popIn 0.5s ease;
     }
 
-    .thank-you.active {
+    .newsletter-thank-you.active {
       display: block;
-      animation: popIn 0.5s ease;
+    }
+
+    .newsletter-thank-you i.fa-heart {
+      font-size: 3rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+
+    .newsletter-thank-you h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+
+    .newsletter-thank-you p {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      color: var(--text-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .newsletter-thank-you-close {
+      padding: 0.8rem 2rem;
+      background: var(--accent-color);
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .newsletter-thank-you-close:hover {
+      background: var(--accent-light);
+      transform: scale(1.05);
+    }
+
+    @keyframes popIn {
+      0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
     }
 
     .custom-cursor {
@@ -740,9 +786,31 @@
       background: radial-gradient(circle, var(--accent-light) 30%, transparent 70%);
     }
 
-    @keyframes popIn {
-      0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
-      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    @keyframes pulse-cursor {
+      0% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.2); }
+      100% { transform: translate(-50%, -50%) scale(1); }
+    }
+
+    .thank-you {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px var(--card-shadow);
+      text-align: center;
+      z-index: 2000;
+      display: none;
+      max-width: 90%;
+      width: 400px;
+    }
+
+    .thank-you.active {
+      display: block;
+      animation: popIn 0.5s ease;
     }
 
     .thank-you i {
@@ -1153,6 +1221,22 @@
     </div>
   </section>
 
+  <!-- Thank You Pop-up for Contact Form -->
+  <div class="thank-you" id="thankYouCard">
+    <i class="fas fa-check-circle"></i>
+    <h1>Thank You!</h1>
+    <p>Your message has been sent successfully. Malak will get back to you soon!</p>
+    <button class="thank-you-close" id="thankYouClose">Close</button>
+  </div>
+
+  <!-- Thank You Pop-up for Newsletter Form -->
+  <div class="newsletter-thank-you" id="newsletterThankYouCard">
+    <i class="fas fa-heart"></i>
+    <h1>Thank You!</h1>
+    <p>You've successfully joined the Dear Future Luminary newsletter!</p>
+    <button class="newsletter-thank-you-close" id="newsletterThankYouClose">Close</button>
+  </div>
+
   <!-- Footer Section -->
   <section class="footer-section" id="footer">
     <div class="footer-content">
@@ -1180,14 +1264,6 @@
       <p>Developed by Malak Emad © 2025 Dear Future Luminary. All rights reserved.</p>
     </div>
   </section>
-
-  <!-- Thank You Card for Contact Form -->
-  <div class="thank-you" id="thankYouCard">
-    <i class="fas fa-check-circle"></i>
-    <h1>Thank You!</h1>
-    <p>Your message has been sent successfully. Malak will get back to you soon!</p>
-    <button class="thank-you-close" id="thankYouClose">Close</button>
-  </div>
 
   <script>
     // Custom Cursor
@@ -1254,9 +1330,17 @@
       document.getElementById('thankYouCard').classList.remove('active');
     });
 
+    // Newsletter Thank You Pop-up
+    document.getElementById('newsletterThankYouClose').addEventListener('click', () => {
+      document.getElementById('newsletterThankYouCard').classList.remove('active');
+    });
+
     document.addEventListener('click', (e) => {
       if (!document.getElementById('thankYouCard').contains(e.target) && e.target !== document.getElementById('thankYouClose')) {
         document.getElementById('thankYouCard').classList.remove('active');
+      }
+      if (!document.getElementById('newsletterThankYouCard').contains(e.target) && e.target !== document.getElementById('newsletterThankYouClose')) {
+        document.getElementById('newsletterThankYouCard').classList.remove('active');
       }
     });
 
@@ -1266,6 +1350,7 @@
       $('.ml-subscribe-form-28881058 .row-success').show();
       $('.ml-subscribe-form-28881058 .row-form').hide();
       document.getElementById('newsletterForm').classList.add('active');
+      document.getElementById('newsletterThankYouCard').classList.add('active');
     }
 
     // Scroll Animations
