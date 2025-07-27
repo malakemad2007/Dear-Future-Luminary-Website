@@ -554,6 +554,153 @@
       transform: scale(1.05);
     }
 
+    /* Enhanced Mailchimp Form Styles */
+    #mlb2-28881058.ml-form-embedContainer {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper {
+      background-color: var(--card-bg);
+      border: 1px solid var(--accent-light);
+      border-radius: 12px;
+      box-shadow: 0 8px 20px var(--card-shadow);
+      padding: 2rem;
+      transition: all var(--transition-speed);
+    }
+
+    #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+      text-align: center;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent p {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      color: var(--text-color);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      opacity: 0.8;
+    }
+
+    #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow {
+      margin-bottom: 1rem;
+    }
+
+    #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input {
+      background-color: var(--primary-bg);
+      color: var(--text-color);
+      border: 1px solid var(--accent-light);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      padding: 0.9rem 1.2rem;
+      width: 100%;
+      transition: all var(--transition-speed);
+    }
+
+    #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 8px var(--accent-light);
+      transform: translateY(-2px);
+    }
+
+    #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button {
+      background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+      border: none;
+      border-radius: 8px;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.9rem;
+      width: 100%;
+      cursor: pointer;
+      transition: all var(--transition-speed);
+      box-shadow: 0 4px 10px var(--card-shadow);
+    }
+
+    #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button:hover {
+      background: linear-gradient(135deg, var(--accent-light), var(--accent-color));
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px var(--card-shadow);
+    }
+
+    #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent p {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      color: var(--text-color);
+      text-align: center;
+      opacity: 0.8;
+    }
+
+    /* Hide reCAPTCHA */
+    .ml-form-recaptcha {
+      display: none;
+    }
+
+    /* Loading Animation */
+    .ml-form-embedSubmitLoad:after {
+      content: " ";
+      display: block;
+      width: 12px;
+      height: 12px;
+      margin: 1px auto;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      border-color: #ffffff #ffffff #ffffff transparent;
+      animation: ml-form-embedSubmitLoad 1.2s linear infinite;
+    }
+
+    @keyframes ml-form-embedSubmitLoad {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Dark Theme Support */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary-bg: #2c3e50;
+        --secondary-bg: #34495e;
+        --text-color: #ffffff;
+        --card-bg: #34495e;
+        --nav-bg: #2c3e50;
+        --footer-bg: #34495e;
+      }
+      #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper {
+        background-color: var(--card-bg);
+        border: 1px solid var(--accent-light);
+        box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+      }
+      #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input {
+        background-color: var(--secondary-bg);
+        color: var(--text-color);
+      }
+      #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button {
+        background: linear-gradient(135deg, var(--accent-light), var(--accent-color));
+      }
+      #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button:hover {
+        background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+      }
+    }
+
     .thank-you {
       position: fixed;
       top: 50%;
@@ -774,6 +921,11 @@
       .footer-bottom {
         font-size: 0.9rem;
       }
+
+      #mlb2-28881058.ml-form-embedContainer {
+        max-width: 100%;
+        padding: 0 10px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -955,13 +1107,49 @@
         <textarea name="message" placeholder="Your Message" rows="4" required aria-label="Your Message"></textarea>
         <button type="submit">Send Message</button>
       </form>
-      <form class="newsletter-form" id="newsletterForm" action="https://script.google.com/macros/s/AKfycbwviv0f6NQgSJQzpZ6wTk5iICzTHXYl6wB-kugkYsTbubBdiimKn2N6BC_k6anu3ecODg/exec" method="POST">
-        <h3>Join Our Newsletter</h3>
-        <p>Stay updated with the latest opportunities and tips!</p>
-        <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name">
-        <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email">
-        <button type="submit">Subscribe</button>
-      </form>
+      <div class="newsletter-form" id="newsletterForm">
+        <div id="mlb2-28881058" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-28881058">
+          <div class="ml-form-align-center">
+            <div class="ml-form-embedWrapper embedForm">
+              <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+                <div class="ml-form-embedContent">
+                  <h4>Dear Future Luminary - Newsletter</h4>
+                  <p>Signup for news and special offers!</p>
+                </div>
+                <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/1694598/forms/161080119656449706/subscribe" data-code="" method="post" target="_blank">
+                  <div class="ml-form-formContent">
+                    <div class="ml-form-fieldRow">
+                      <div class="ml-field-group ml-field-name">
+                        <input aria-label="name" type="text" class="form-control" data-inputmask="" name="fields[name]" placeholder="Your Name" autocomplete="given-name">
+                      </div>
+                    </div>
+                    <div class="ml-form-fieldRow ml-last-item">
+                      <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                        <input aria-label="email" aria-required="true" type="email" class="form-control" data-inputmask="" name="fields[email]" placeholder="Your Email" autocomplete="email">
+                      </div>
+                    </div>
+                  </div>
+                  <input type="hidden" name="ml-submit" value="1">
+                  <div class="ml-form-embedSubmit">
+                    <button type="submit" class="primary">Subscribe</button>
+                    <button disabled="disabled" style="display: none;" type="button" class="loading">
+                      <div class="ml-form-embedSubmitLoad"></div>
+                      <span class="sr-only">Loading...</span>
+                    </button>
+                  </div>
+                  <input type="hidden" name="anticsrf" value="true">
+                </form>
+              </div>
+              <div class="ml-form-successBody row-success" style="display: none">
+                <div class="ml-form-successContent">
+                  <h4>Thank you!</h4>
+                  <p>You have successfully joined our subscriber list.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -999,14 +1187,6 @@
     <h1>Thank You!</h1>
     <p>Your message has been sent successfully. Malak will get back to you soon!</p>
     <button class="thank-you-close" id="thankYouClose">Close</button>
-  </div>
-
-  <!-- Thank You Card for Newsletter Form -->
-  <div class="thank-you" id="newsletterThankYouCard">
-    <i class="fas fa-check-circle"></i>
-    <h1>Subscribed!</h1>
-    <p>Thank you for joining our newsletter! You'll receive updates soon.</p>
-    <button class="thank-you-close" id="newsletterThankYouClose">Close</button>
   </div>
 
   <script>
@@ -1080,35 +1260,13 @@
       }
     });
 
-    // Newsletter Form Submission
-    newsletterForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(newsletterForm);
-      try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbwviv0f6NQgSJQzpZ6wTk5iICzTHXYl6wB-kugkYsTbubBdiimKn2N6BC_k6anu3ecODg/exec', {
-          method: 'POST',
-          body: formData
-        });
-        if (response.ok) {
-          document.getElementById('newsletterThankYouCard').classList.add('active');
-          newsletterForm.reset();
-        } else {
-          alert('Error submitting form. Please try again.');
-        }
-      } catch (error) {
-        alert('Error submitting form. Please try again.');
-      }
-    });
-
-    document.getElementById('newsletterThankYouClose').addEventListener('click', () => {
-      document.getElementById('newsletterThankYouCard').classList.remove('active');
-    });
-
-    document.addEventListener('click', (e) => {
-      if (!document.getElementById('newsletterThankYouCard').contains(e.target) && e.target !== document.getElementById('newsletterThankYouClose')) {
-        document.getElementById('newsletterThankYouCard').classList.remove('active');
-      }
-    });
+    // Mailchimp Form Success Handler
+    function ml_webform_success_28881058() {
+      var $ = ml_jQuery || jQuery;
+      $('.ml-subscribe-form-28881058 .row-success').show();
+      $('.ml-subscribe-form-28881058 .row-form').hide();
+      document.getElementById('newsletterForm').classList.add('active');
+    }
 
     // Scroll Animations
     window.addEventListener('scroll', () => {
@@ -1119,6 +1277,10 @@
         }
       });
     });
+  </script>
+  <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
+  <script>
+    fetch("https://assets.mailerlite.com/jsonp/1694598/forms/161080119656449706/takel")
   </script>
 </body>
 </html>
