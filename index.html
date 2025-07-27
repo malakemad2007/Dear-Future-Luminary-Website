@@ -5,29 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dear Future Luminary</title>
   <meta name="description" content="A platform to help you start your journey towards an inspiring future">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-S2RPVR4HQB"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-S2RPVR4HQB');
-  </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <!-- MailerLite Fonts -->
-  <link href="https://assets.mlcdn.com/fonts.css?version=1753253" rel="stylesheet">
-  <!-- MailerLite Universal Script -->
-  <script>
-    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-    ml('account', '1694598');
-  </script>
-  <!-- End MailerLite Universal -->
-  <!-- reCAPTCHA Script -->
-  <script src="https://www.google.com/recaptcha/api.js"></script>
   <style>
     :root {
       --primary-bg: #ffffff;
@@ -458,79 +437,20 @@
       transform: scale(1.1);
     }
 
-    .contact-buttons-container {
-      max-width: 600px;
-      margin: 0 auto 2rem;
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .contact-button {
-      padding: 0.8rem 2rem;
-      background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
-      color: #ffffff;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px var(--card-shadow);
-      opacity: 0;
-      transform: translateY(20px);
-    }
-
-    .contact-button.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .contact-button:hover {
-      background: linear-gradient(135deg, var(--accent-light), var(--accent-color));
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px var(--card-shadow);
-    }
-
-    .contact-button.active {
-      background: var(--accent-light);
-      transform: scale(1.05);
-    }
-
-    .contact-forms-wrapper {
+    .contact-form {
       max-width: 600px;
       margin: 0 auto;
-    }
-
-    .contact-form, .newsletter-form {
-      display: none;
+      display: flex;
       flex-direction: column;
       gap: 1rem;
       padding: 2rem;
       background: var(--card-bg);
       border-radius: 10px;
       box-shadow: 0 5px 15px var(--card-shadow);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-
-    .contact-form.active, .newsletter-form.active {
-      display: flex;
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .contact-form h3, .newsletter-form h3 {
-      font-size: 1.5rem;
-      color: var(--accent-color);
-      margin-bottom: 1rem;
     }
 
     .contact-form input,
-    .contact-form textarea,
-    .newsletter-form input {
+    .contact-form textarea {
       padding: 0.8rem;
       border: 1px solid var(--accent-light);
       border-radius: 5px;
@@ -538,18 +458,24 @@
       background: var(--primary-bg);
       color: var(--text-color);
       transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .contact-form input.visible,
+    .contact-form textarea.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .contact-form input:focus,
-    .contact-form textarea:focus,
-    .newsletter-form input:focus {
+    .contact-form textarea:focus {
       outline: none;
       border-color: var(--accent-color);
       box-shadow: 0 0 5px var(--accent-light);
     }
 
-    .contact-form button,
-    .newsletter-form button {
+    .contact-form button {
       padding: 0.8rem;
       background: var(--accent-color);
       color: #ffffff;
@@ -559,264 +485,18 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
     }
 
-    .contact-form button:hover,
-    .newsletter-form button:hover {
+    .contact-form button.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .contact-form button:hover {
       background: var(--accent-light);
       transform: scale(1.05);
-    }
-
-    /* Enhanced MailerLite Form Styles */
-    #mlb2-28881058.ml-form-embedContainer {
-      max-width: 500px;
-      margin: 0 auto;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-    }
-
-    #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper {
-      background-color: var(--card-bg);
-      border: 1px solid var(--accent-light);
-      border-radius: 12px;
-      box-shadow: 0 8px 20px var(--card-shadow);
-      padding: 2rem;
-      transition: all var(--transition-speed);
-    }
-
-    #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      color: var(--accent-color);
-      margin-bottom: 0.5rem;
-      text-align: center;
-      font-weight: bold; /* Changed to bold for logo */
-      letter-spacing: 0.5px;
-    }
-
-    #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedContent p {
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      color: var(--text-color);
-      margin-bottom: 1.5rem;
-      text-align: center;
-      opacity: 0.8;
-    }
-
-    #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow {
-      margin-bottom: 1rem;
-    }
-
-    #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input {
-      background-color: var(--primary-bg);
-      color: var(--text-color);
-      border: 1px solid var(--accent-light);
-      border-radius: 8px;
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      padding: 0.9rem 1.2rem;
-      width: 100%;
-      transition: all var(--transition-speed);
-    }
-
-    #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input:focus {
-      outline: none;
-      border-color: var(--accent-color);
-      box-shadow: 0 0 8px var(--accent-light);
-      transform: translateY(-2px);
-    }
-
-    #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button {
-      background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
-      border: none;
-      border-radius: 8px;
-      color: #ffffff;
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
-      padding: 0.9rem;
-      width: 100%;
-      cursor: pointer;
-      transition: all var(--transition-speed);
-      box-shadow: 0 4px 10px var(--card-shadow);
-    }
-
-    #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button:hover {
-      background: linear-gradient(135deg, var(--accent-light), var(--accent-color));
-      transform: translateY(-3px);
-      box-shadow: 0 6px 15px var(--card-shadow);
-    }
-
-    #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      color: var(--accent-color);
-      margin-bottom: 0.5rem;
-      text-align: center;
-      font-weight: bold; /* Changed to bold for consistency */
-    }
-
-    #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-successBody .ml-form-successContent p {
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      color: var(--text-color);
-      text-align: center;
-      opacity: 0.8;
-    }
-
-    /* reCAPTCHA Styles */
-    .ml-form-recaptcha {
-      margin-bottom: 20px;
-    }
-
-    .ml-form-recaptcha.ml-error iframe {
-      border: solid 1px #ff0000;
-    }
-
-    @media screen and (max-width: 480px) {
-      .ml-form-recaptcha {
-        width: 220px !important;
-      }
-      .g-recaptcha {
-        transform: scale(0.78);
-        -webkit-transform: scale(0.78);
-        transform-origin: 0 0;
-        -webkit-transform-origin: 0 0;
-      }
-    }
-
-    /* Loading Animation */
-    .ml-form-embedSubmitLoad:after {
-      content: " ";
-      display: block;
-      width: 12px;
-      height: 12px;
-      margin: 1px auto;
-      border-radius: 50%;
-      border: 3px solid #fff;
-      border-color: #ffffff #ffffff #ffffff transparent;
-      animation: ml-form-embedSubmitLoad 1.2s linear infinite;
-    }
-
-    @keyframes ml-form-embedSubmitLoad {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Dark Theme Support */
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --primary-bg: #2c3e50;
-        --secondary-bg: #34495e;
-        --text-color: #ffffff;
-        --card-bg: #34495e;
-        --nav-bg: #2c3e50;
-        --footer-bg: #34495e;
-      }
-      #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper {
-        background-color: var(--card-bg);
-        border: 1px solid var(--accent-light);
-        box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
-      }
-      #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-fieldRow input {
-        background-color: var(--secondary-bg);
-        color: var(--text-color);
-      }
-      #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button {
-        background: linear-gradient(135deg, var(--accent-light), var(--accent-color));
-      }
-      #mlb2-28881058.ml-form-embedContainer .ml-form-embedWrapper .ml-form-embedBody .ml-form-embedSubmit button:hover {
-        background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
-      }
-    }
-
-    /* Thank You Pop-up */
-    .newsletter-thank-you {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: var(--card-bg);
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 10px 20px var(--card-shadow);
-      text-align: center;
-      z-index: 2000;
-      display: none;
-      max-width: 90%;
-      width: 400px;
-      animation: popIn 0.5s ease;
-    }
-
-    .newsletter-thank-you.active {
-      display: block;
-    }
-
-    .newsletter-thank-you i.fa-heart {
-      font-size: 3rem;
-      color: var(--accent-color);
-      margin-bottom: 1rem;
-    }
-
-    .newsletter-thank-you h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      color: var(--accent-color);
-      margin-bottom: 1rem;
-    }
-
-    .newsletter-thank-you p {
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      color: var(--text-color);
-      margin-bottom: 1.5rem;
-    }
-
-    .newsletter-thank-you-close {
-      padding: 0.8rem 2rem;
-      background: var(--accent-color);
-      color: #ffffff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-
-    .newsletter-thank-you-close:hover {
-      background: var(--accent-light);
-      transform: scale(1.05);
-    }
-
-    @keyframes popIn {
-      0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
-      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-    }
-
-    .custom-cursor {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      background: radial-gradient(circle, var(--accent-color) 30%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 8px var(--accent-light);
-      animation: pulse-cursor 2s infinite;
-    }
-
-    .custom-cursor.active {
-      transform: translate(-50%, -50%) scale(1.5);
-      background: radial-gradient(circle, var(--accent-light) 30%, transparent 70%);
-    }
-
-    @keyframes pulse-cursor {
-      0% { transform: translate(-50%, -50%) scale(1); }
-      50% { transform: translate(-50%, -50%) scale(1.2); }
-      100% { transform: translate(-50%, -50%) scale(1); }
     }
 
     .thank-you {
@@ -838,6 +518,29 @@
     .thank-you.active {
       display: block;
       animation: popIn 0.5s ease;
+    }
+
+    .custom-cursor {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, var(--accent-color) 30%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 8px var(--accent-light);
+      animation: pulse-cursor 2s infinite;
+    }
+
+    .custom-cursor.active {
+      transform: translate(-50%, -50%) scale(1.5);
+      background: radial-gradient(circle, var(--accent-light) 30%, transparent 70%);
+    }
+
+    @keyframes popIn {
+      0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
     }
 
     .thank-you i {
@@ -873,6 +576,7 @@
       transform: scale(1.05);
     }
 
+    /* Updated Footer Styles */
     .footer-section {
       padding: 2rem 5%;
       background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
@@ -976,20 +680,6 @@
         flex-wrap: wrap;
       }
 
-      .contact-buttons-container {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .contact-button {
-        width: 100%;
-        max-width: 300px;
-      }
-
-      .contact-form, .newsletter-form {
-        padding: 1.5rem;
-      }
-
       .footer-content {
         grid-template-columns: 1fr;
         text-align: center;
@@ -1015,11 +705,6 @@
 
       .footer-bottom {
         font-size: 0.9rem;
-      }
-
-      #mlb2-28881058.ml-form-embedContainer {
-        max-width: 100%;
-        padding: 0 10px;
       }
     }
 
@@ -1047,14 +732,6 @@
 
       .tile {
         height: 250px;
-      }
-
-      .contact-form, .newsletter-form {
-        padding: 1rem;
-      }
-
-      .contact-form h3, .newsletter-form h3 {
-        font-size: 1.3rem;
       }
 
       .footer-column h3 {
@@ -1181,91 +858,23 @@
 
   <!-- Contact Section -->
   <section id="contact">
-    <h2 class="section-title">Get in Touch</h2>
+    <h2>Contact Me</h2>
     <div class="contact-container">
       <a href="mailto:malakemad7777777@gmail.com" class="contact-item" aria-label="Email"><i class="fas fa-envelope"></i></a>
       <a href="https://wa.me/201090879843" target="_blank" class="contact-item" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       <a href="https://www.facebook.com/profile.php?id=100088385822088" target="_blank" class="contact-item" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
       <a href="https://www.instagram.com/loka_luminary/" target="_blank" class="contact-item" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.linkedin.com/in/malak-savvyt/" target="_blank" class="contact-item" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://www.linkedin.com/in/malak-savvyt-t/" target="_blank" class="contact-item" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
       <a href="https://t.me/loka_luminaryy" target="_blank" class="contact-item" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
     </div>
-    <div class="contact-buttons-container">
-      <button class="contact-button active" data-form="contactForm" aria-label="Show Contact Form">Contact Me</button>
-      <button class="contact-button" data-form="newsletterForm" aria-label="Show Newsletter Form">Join Our Newsletter</button>
-    </div>
-    <div class="contact-forms-wrapper">
-      <form class="contact-form active" id="contactForm">
-        <h3>Contact Me</h3>
-        <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name">
-        <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email">
-        <textarea name="message" placeholder="Your Message" rows="4" required aria-label="Your Message"></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-      <div class="newsletter-form" id="newsletterForm">
-        <div id="mlb2-28881058" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-28881058">
-          <div class="ml-form-align-center">
-            <div class="ml-form-embedWrapper embedForm">
-              <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
-                <div class="ml-form-embedContent">
-                  <h4>Dear Future Luminary - Newsletter</h4>
-                  <p><em>Signup for news and special offers!</em></p>
-                </div>
-                <form class="ml-block-form" action="https://assets.mailerlite.com/jsonp/1694598/forms/161080119656449706/subscribe" data-code="MhJCMc" method="post">
-                  <div class="ml-form-formContent">
-                    <div class="ml-form-fieldRow">
-                      <div class="ml-field-group ml-field-name">
-                        <input aria-label="name" type="text" class="form-control" name="fields[name]" placeholder="Name" autocomplete="given-name">
-                      </div>
-                    </div>
-                    <div class="ml-form-fieldRow ml-last-item">
-                      <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
-                        <input aria-label="email" aria-required="true" type="email" class="form-control" name="fields[email]" placeholder="Email" autocomplete="email">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="ml-form-recaptcha ml-validate-required">
-                    <div class="g-recaptcha" data-sitekey="6Lf1KHQUAAAAAFNKEX1hdSWCS3mRMv4FlFaNslaD"></div>
-                  </div>
-                  <input type="hidden" name="ml-submit" value="1">
-                  <div class="ml-form-embedSubmit">
-                    <button type="submit" class="primary">Subscribe</button>
-                    <button disabled="disabled" style="display: none;" type="button" class="loading">
-                      <div class="ml-form-embedSubmitLoad"></div>
-                      <span class="sr-only">Loading...</span>
-                    </button>
-                  </div>
-                  <input type="hidden" name="anticsrf" value="true">
-                </form>
-              </div>
-              <div class="ml-form-successBody row-success" style="display: none">
-                <div class="ml-form-successContent">
-                  <h4>Thank you!</h4>
-                  <p>You have successfully joined our subscriber list.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <form class="contact-form" id="contactForm">
+    <form action="https://formspree.io/f/xqaqankn"method="POST">
+      <input type="text" name="name" placeholder="Your Name" required aria-label="Your Name">
+      <input type="email" name="email" placeholder="Your Email" required aria-label="Your Email">
+      <textarea name="message" placeholder="Your Message" rows="4" required aria-label="Your Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
   </section>
-
-  <!-- Thank You Pop-up for Contact Form -->
-  <div class="thank-you" id="thankYouCard">
-    <i class="fas fa-check-circle"></i>
-    <h1>Thank You!</h1>
-    <p>Your message has been sent successfully. Malak will get back to you soon!</p>
-    <button class="thank-you-close" id="thankYouClose">Close</button>
-  </div>
-
-  <!-- Thank You Pop-up for Newsletter Form -->
-  <div class="newsletter-thank-you" id="newsletterThankYouCard">
-    <i class="fas fa-heart"></i>
-    <h1>Thank You!</h1>
-    <p>You've successfully joined the Dear Future Luminary newsletter!</p>
-    <button class="newsletter-thank-you-close" id="newsletterThankYouClose">Close</button>
-  </div>
 
   <!-- Footer Section -->
   <section class="footer-section" id="footer">
@@ -1294,6 +903,14 @@
       <p>Developed by Malak Emad © 2025 Dear Future Luminary. All rights reserved.</p>
     </div>
   </section>
+
+  <!-- Thank You Card -->
+  <div class="thank-you" id="thankYouCard">
+    <i class="fas fa-check-circle"></i>
+    <h1>Thank You!</h1>
+    <p>Your message has been sent successfully. Malak will get back to you soon!</p>
+    <button class="thank-you-close" id="thankYouClose">Close</button>
+  </div>
 
   <script>
     // Custom Cursor
@@ -1329,62 +946,30 @@
     const savedTheme = localStorage.getItem('theme') || 'luminary';
     document.body.setAttribute('data-theme', savedTheme);
 
-    // Form Toggle
-    const contactButton = document.querySelector('button[data-form="contactForm"]');
-    const newsletterButton = document.querySelector('button[data-form="newsletterForm"]');
+    // Contact Form
     const contactForm = document.getElementById('contactForm');
-    const newsletterForm = document.getElementById('newsletterForm');
+    const thankYouCard = document.getElementById('thankYouCard');
+    const thankYouClose = document.getElementById('thankYouClose');
 
-    contactButton.addEventListener('click', () => {
-      contactButton.classList.add('active');
-      newsletterButton.classList.remove('active');
-      contactForm.classList.add('active');
-      newsletterForm.classList.remove('active');
-    });
-
-    newsletterButton.addEventListener('click', () => {
-      newsletterButton.classList.add('active');
-      contactButton.classList.remove('active');
-      newsletterForm.classList.add('active');
-      contactForm.classList.remove('active');
-    });
-
-    // Contact Form Submission
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      document.getElementById('thankYouCard').classList.add('active');
+      thankYouCard.classList.add('active');
       contactForm.reset();
     });
 
-    document.getElementById('thankYouClose').addEventListener('click', () => {
-      document.getElementById('thankYouCard').classList.remove('active');
-    });
-
-    // Newsletter Thank You Pop-up
-    document.getElementById('newsletterThankYouClose').addEventListener('click', () => {
-      document.getElementById('newsletterThankYouCard').classList.remove('active');
+    thankYouClose.addEventListener('click', () => {
+      thankYouCard.classList.remove('active');
     });
 
     document.addEventListener('click', (e) => {
-      if (!document.getElementById('thankYouCard').contains(e.target) && e.target !== document.getElementById('thankYouClose')) {
-        document.getElementById('thankYouCard').classList.remove('active');
-      }
-      if (!document.getElementById('newsletterThankYouCard').contains(e.target) && e.target !== document.getElementById('newsletterThankYouClose')) {
-        document.getElementById('newsletterThankYouCard').classList.remove('active');
+      if (!thankYouCard.contains(e.target) && e.target !== thankYouClose) {
+        thankYouCard.classList.remove('active');
       }
     });
 
-    // MailerLite Form Success Handler
-    function ml_webform_success_28881058() {
-      var $ = ml_jQuery || jQuery;
-      $('.ml-subscribe-form-28881058 .row-success').show();
-      $('.ml-subscribe-form-28881058 .row-form').hide();
-      document.getElementById('newsletterThankYouCard').classList.add('active');
-    }
-
     // Scroll Animations
     window.addEventListener('scroll', () => {
-      document.querySelectorAll('.tile, .section-title, #contact h2, .contact-button, .contact-form.active input, .contact-form.active textarea, .contact-form.active button, .newsletter-form.active input, .newsletter-form.active button').forEach(el => {
+      document.querySelectorAll('.tile, .section-title, #contact h2, .contact-form input, .contact-form textarea, .contact-form button').forEach(el => {
         const rect = el.getBoundingClientRect();
         if (rect.top < window.innerHeight * 0.9) {
           el.classList.add('visible');
