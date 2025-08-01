@@ -503,12 +503,24 @@
     }
 
 
-.container {
-  margin-bottom: 50px; /* Adds 50px space below each container */
+.divider {
+  height: 50px; /* Controls the spacing between sections */
+  background: transparent; /* No background to avoid white color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.container:last-child {
-  margin-bottom: 0; /* Removes margin from the last container to avoid extra space */
+.divider::before {
+  content: '';
+  width: 50%; /* Width of the gradient line */
+  height: 2px; /* Thickness of the line */
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-color), /* Uses theme's accent color (e.g., #6a3093 for Luminary) */
+    transparent
+  );
 }
 
     /* Footer Section */
