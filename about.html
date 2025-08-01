@@ -502,6 +502,26 @@
       transform: translateY(-3px);
     }
 
+.divider {
+  height: 50px; /* Controls the spacing */
+  background: var(--section-bg); /* Matches section background (e.g., #ffffff for all themes) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.divider::before {
+  content: '';
+  width: 50%; /* Width of the gradient line */
+  height: 2px; /* Thickness of the line */
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-color), /* Theme-specific accent (e.g., #6a3093 for Luminary) */
+    transparent
+  );
+}
+
     /* Footer Section */
     .footer-section {
       padding: 2rem 5%;
