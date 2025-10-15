@@ -4,9 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Top Summer Programs | Dear Future Luminary</title>
-<link rel="icon" href="dear.future.luminary.logo.svg" type="image/png">
-  <meta name="description" content="Discover top summer programs to accelerate your growth with Dear Future Luminary">
-<!-- Google tag (gtag.js) -->
+  <link rel="icon" href="dear.future.luminary.logo.svg" type="image/png">
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S2RPVR4HQB"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -14,65 +13,93 @@
     gtag('js', new Date());
     gtag('config', 'G-S2RPVR4HQB');
   </script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <meta name="description" content="Discover top summer programs to accelerate your growth with Dear Future Luminary">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-:root {
+    :root {
       --primary-bg: #ffffff;
-      --secondary-bg: #f8f9fa;
-      --text-color: #2c3e50;
-      --accent-color: #6a3093;
-      --accent-light: #a044ff;
-      --highlight: #f1c40f;
+      --secondary-bg: #f8fafc;
+      --text-color: #1e293b;
+      --text-light: #475569;
+      --accent-color: #1e3a8a;
+      --accent-light: #3b82f6;
+      --highlight: #facc15;
       --card-bg: #ffffff;
-      --card-shadow: rgba(0, 0, 0, 0.1);
-      --nav-bg: #ffffff;
-      --footer-bg: #f8f9fa;
+      --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      --nav-bg: rgba(255, 255, 255, 0.95);
+      --footer-bg: #0f172a;
       --section-bg: #ffffff;
+      --section-alt-bg: #f8fafc;
       --transition-speed: 0.3s;
+      --border-radius: 12px;
+      --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     }
 
-    [data-theme="elegant"] {
-      --primary-bg: #ffffff;
-      --secondary-bg: #f5f5f5;
-      --text-color: #2c3e50;
-      --accent-color: #2e2e2e;
-      --accent-light: #4a4a4a;
-      --highlight: #d4a017;
+    [data-theme="luminary"] {
+      --primary-bg: #f2f3f5;
+      --text-color: #1e293b;
+      --text-light: #475569;
+      --accent-color: #1e3a8a;
+      --accent-light: #a78bfa;
+      --highlight: #facc15;
+      --card-bg: #ffffff;
+      --nav-bg: rgba(242, 243, 245, 0.95);
+      --footer-bg: linear-gradient(135deg, #1e3a8a 0%, #a78bfa 50%);
+      --section-bg: #f2f3f5;
+      --section-alt-bg: #ffffff;
     }
 
     [data-theme="cosmic"] {
-      --primary-bg: #ffffff;
-      --secondary-bg: #f0f4f8;
-      --text-color: #2c3e50;
-      --accent-color: #1e3a8a;
-      --accent-light: #3b82f6;
-      --highlight: #10b981;
+      --primary-bg: #f8f4f6;
+      --text-color: #2c1810;
+      --text-light: #4a3628;
+      --accent-color: #800020;
+      --accent-light: #a52a2a;
+      --highlight: #d4af37;
+      --card-bg: #ffffff;
+      --nav-bg: rgba(248, 244, 246, 0.95);
+      --footer-bg: linear-gradient(135deg, #800020 0%, #a52a2a 50%);
+      --section-bg: #f8f4f6;
+      --section-alt-bg: #e8d5d5;
     }
 
-    [data-theme="bright"] {
-      --primary-bg: #ffffff;
-      --secondary-bg: #fef3e7;
-      --text-color: #2c3e50;
-      --accent-color: #e11d48;
-      --accent-light: #fb7185;
-      --highlight: #f59e0b;
+    [data-theme="ocean"] {
+      --primary-bg: #f0f8ff;
+      --text-color: #0f4c75;
+      --text-light: #4a7a95;
+      --accent-color: #0077be;
+      --accent-light: #0096c7;
+      --highlight: #00bfff;
+      --card-bg: #ffffff;
+      --nav-bg: rgba(240, 248, 255, 0.95);
+      --footer-bg: linear-gradient(135deg, #0077be 0%, #0096c7 50%);
+      --section-bg: #f0f8ff;
+      --section-alt-bg: #e6f3ff;
     }
 
-    [data-theme="vibrant"] {
-      --primary-bg: #ffffff;
-      --secondary-bg: #f4eaff;
-      --text-color: #2c3e50;
-      --accent-color: #7c3aed;
-      --accent-light: #a78bfa;
-      --highlight: #ec4899;
+    [data-theme="blush"] {
+      --primary-bg: #fdf2f8;
+      --text-color: #881337;
+      --text-light: #9a144b;
+      --accent-color: #ec4899;
+      --accent-light: #f472b6;
+      --highlight: #f9a8d4;
+      --card-bg: #ffffff;
+      --nav-bg: rgba(253, 242, 248, 0.95);
+      --footer-bg: linear-gradient(135deg, #ec4899 0%, #f472b6 50%);
+      --section-bg: #fdf2f8;
+      --section-alt-bg: #fce7f3;
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      transition: background-color var(--transition-speed), color var(--transition-speed);
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -83,52 +110,45 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      scroll-behavior: smooth;
       overflow-x: hidden;
-    }
-
-    h1, h2, h3, .logo {
-      font-family: 'Playfair Display', serif;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--primary-bg);
-      color: var(--text-color);
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     h1, h2, h3, h4, .logo {
       font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      line-height: 1.2;
     }
 
-    /* Custom Cursor */
-    .custom-cursor {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      background: radial-gradient(circle, var(--accent-color) 30%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 8px var(--accent-light);
-      animation: pulse-cursor 2s infinite;
+    h1 {
+      font-size: 3.5rem;
     }
 
-    .custom-cursor.active {
-      transform: translate(-50%, -50%) scale(1.5);
-      background: radial-gradient(circle, var(--accent-light) 30%, transparent 70%);
+    h2 {
+      font-size: 2.5rem;
     }
 
-    @keyframes pulse-cursor {
-      0%, 100% { opacity: 0.8; }
-      50% { opacity: 1; }
+    h3 {
+      font-size: 1.75rem;
+    }
+
+    h4 {
+      font-size: 1.4rem;
+    }
+
+    p {
+      margin-bottom: 1.25rem;
+    }
+
+    /* Section Divider */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+      margin: 3rem auto;
+      width: 80px;
+      opacity: 0.6;
     }
 
     /* Preloader */
@@ -140,6 +160,7 @@
       height: 100%;
       background: var(--primary-bg);
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       z-index: 2000;
@@ -152,14 +173,21 @@
       pointer-events: none;
     }
 
-    .loader::before {
-      content: '';
-      width: 40px;
-      height: 40px;
+    .loader-spinner {
+      width: 50px;
+      height: 50px;
       border: 3px solid transparent;
       border-top: 3px solid var(--accent-color);
+      border-right: 3px solid var(--accent-light);
       border-radius: 50%;
       animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+
+    .loader-text {
+      font-size: 1rem;
+      color: var(--accent-color);
+      font-weight: 500;
     }
 
     @keyframes spin {
@@ -168,172 +196,317 @@
     }
 
     /* Navbar */
- .navbar {
+    .navbar {
       position: fixed;
       top: 0;
       width: 100%;
       background-color: var(--nav-bg);
-      box-shadow: 0 2px 5px var(--card-shadow);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--card-shadow);
       z-index: 1000;
       padding: 1rem 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      padding: 0.8rem 5%;
+    }
+
+    .navbar-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
 
     .logo {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       color: var(--accent-color);
       cursor: pointer;
       transition: color 0.3s ease;
+      font-weight: 700;
+      text-decoration: none;
     }
 
     .logo:hover {
       color: var(--accent-light);
     }
 
-    .nav-menu {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
+    .tagline {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      font-style: italic;
+      white-space: nowrap;
+      max-width: 250px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .dropdown {
-      position: relative;
-    }
-
-    .dropdown-toggle {
+    .sidebar-toggle {
       background: none;
       border: none;
       color: var(--text-color);
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
-      padding: 0.5rem 1rem;
+      font-size: 1.25rem;
       cursor: pointer;
-      border-radius: 5px;
+      transition: color 0.3s ease;
+      padding: 0.5rem;
+      border-radius: 4px;
+    }
+
+    .sidebar-toggle:hover,
+    .sidebar-toggle:focus {
+      color: var(--accent-color);
+      background-color: rgba(0, 0, 0, 0.03);
+      outline: none;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 300px;
+      height: 100%;
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      box-shadow: 5px 0 25px rgba(0, 0, 0, 0.1);
+      z-index: 1001;
+      padding: 2rem;
+      transition: left 0.4s ease;
+      overflow-y: auto;
       display: flex;
-      align-items: center;
-      gap: 8px;
+      flex-direction: column;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
       transition: all 0.3s ease;
     }
 
-    .dropdown-toggle:hover {
-      background: var(--accent-color);
-      color: #ffffff;
+    .sidebar-overlay.active {
+      opacity: 1;
+      visibility: visible;
     }
 
-    .dropdown-menu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: var(--nav-bg);
-      border-radius: 5px;
-      box-shadow: 0 5px 15px var(--card-shadow);
-      display: none;
-      flex-direction: column;
-      padding: 0.5rem;
-      min-width: 180px;
-      z-index: 1001;
-    }
-
-    .dropdown:hover .dropdown-menu {
+    .sidebar-header {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
 
-    .dropdown-menu a,
-    .dropdown-menu .theme-option {
+    .sidebar-close {
+      background: none;
+      border: none;
+      color: var(--text-color);
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      padding: 0.5rem;
+      border-radius: 4px;
+    }
+
+    .sidebar-close:hover,
+    .sidebar-close:focus {
+      color: var(--accent-color);
+      background-color: rgba(0, 0, 0, 0.03);
+      outline: none;
+    }
+
+    .sidebar-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex-grow: 1;
+    }
+
+    .sidebar-menu h3 {
+      font-size: 1rem;
+      color: var(--accent-color);
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-family: 'Playfair Display', serif;
+      padding-left: 0.5rem;
+      font-weight: 600;
+    }
+
+    .sidebar-menu a {
       text-decoration: none;
       color: var(--text-color);
       font-size: 0.9rem;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
+      padding: 0.75rem 1rem;
+      border-radius: var(--border-radius);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 0.75rem;
       transition: all 0.3s ease;
     }
 
-    .dropdown-menu a:hover,
-    .dropdown-menu .theme-option:hover {
-      background: var(--accent-light);
-      color: #ffffff;
-    }
-
-    /* Back to Top Button */
-    #myBtn {
-      display: none;
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      z-index: 99;
-      border: none;
+    .sidebar-menu a:hover,
+    .sidebar-menu a:focus {
+      background: rgba(0, 0, 0, 0.03);
+      color: var(--accent-color);
       outline: none;
-      background-color: var(--accent-color);
-      color: white;
-      cursor: pointer;
-      padding: 15px;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 1.2rem;
-      box-shadow: 0 4px 15px var(--card-shadow);
-      transition: all 0.3s;
     }
 
-    #myBtn:hover {
-      background-color: var(--accent-light);
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px var(--card-shadow);
-    }
-
-    /* Intro Section */
-    .intro-section {
-      margin-top: 80px;
-      padding: 4rem 5%;
-      background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+    /* Hero Section */
+    .hero-section {
+      padding: 8rem 5% 4rem;
+      background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 50%);
       color: #ffffff;
-      text-align: center;
       position: relative;
       overflow: hidden;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
     }
 
-    .intro-content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
+    .hero-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+      max-width: 1200px;
       margin: 0 auto;
+      width: 100%;
     }
 
-    .intro-content h1 {
-      font-size: 2.5rem;
+    .hero-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .hero-text h1 {
+      font-size: 4rem;
       margin-bottom: 1rem;
     }
 
-    .intro-content p {
-      font-size: 1.1rem;
+    .hero-text .subheadline {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--highlight);
+      position: relative;
+      display: inline-block;
+      font-weight: 500;
+    }
+
+    .hero-text .subheadline::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100px;
+      height: 3px;
+      background: var(--highlight);
+      border-radius: 2px;
+    }
+
+    .hero-text p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
       opacity: 0.9;
+      max-width: 500px;
+    }
+
+    .hero-text .cta-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .hero-logo-container {
+      flex: 0 0 320px;
+      text-align: center;
+      margin-left: -1.5rem;
+    }
+
+    .hero-logo {
+      display: block;
+      width: 300px;
+      height: auto;
+      margin: 0 auto;
+    }
+
+    .hero-content .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: var(--border-radius);
+      transition: all 0.3s ease;
+      box-shadow: var(--box-shadow);
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .hero-content .cta-button:hover,
+    .hero-content .cta-button:focus {
+      background: var(--highlight);
+      color: var(--text-color);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .hero-content .cta-button i {
+      font-size: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .hero-content .cta-button:hover i,
+    .hero-content .cta-button:focus i {
+      transform: translateX(3px);
     }
 
     /* Programs Section */
     .programs-section {
-      padding: 3rem 5%;
-      background-color: var(--secondary-bg);
+      padding: 3rem 0;
+      background: var(--section-alt-bg);
     }
 
     .section-title {
       text-align: center;
-      font-size: 2rem;
-      color: var(--accent-color);
       margin-bottom: 2rem;
       opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.5s ease;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
     }
 
     .section-title.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    .section-title h2 {
+      font-size: 2.25rem;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title .divider {
+      width: 60px;
+      height: 2px;
+      background: var(--accent-color);
+      margin: 0 auto;
     }
 
     .program-container {
@@ -342,15 +515,17 @@
       gap: 1.5rem;
       max-width: 1200px;
       margin: 0 auto;
+      padding: 0 5%;
     }
 
     .program-card {
       perspective: 1000px;
-      height: 280px; /* Fixed height for consistent flipping */
+      height: 280px;
       text-decoration: none;
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.5s ease, transform 0.5s ease;
+      cursor: pointer;
     }
 
     .program-card.visible {
@@ -365,9 +540,10 @@
       text-align: center;
       transition: transform 0.6s ease;
       transform-style: preserve-3d;
-      box-shadow: 0 5px 15px var(--card-shadow);
-      border-radius: 10px;
-      border: 1px solid var(--accent-light);
+      box-shadow: var(--card-shadow);
+      border-radius: var(--border-radius);
+      border: 1px solid rgba(var(--accent-color), 0.1);
+      background: var(--card-bg);
     }
 
     .program-card:hover .program-inner {
@@ -385,11 +561,10 @@
       justify-content: center;
       align-items: center;
       padding: 1.5rem;
-      border-radius: 10px;
+      border-radius: var(--border-radius);
     }
 
     .program-front {
-      background: var(--card-bg);
       color: var(--text-color);
     }
 
@@ -397,7 +572,7 @@
       background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
       color: #ffffff;
       transform: rotateY(180deg);
-      overflow-y: auto; /* Allow scrolling for longer content */
+      overflow-y: auto;
       padding: 1rem;
     }
 
@@ -407,29 +582,32 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+      height: 3px;
+      background: var(--highlight);
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
     }
 
     .program-front h3 {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       color: var(--accent-color);
       margin-bottom: 0.5rem;
     }
 
     .program-front p {
-      font-size: 1rem;
+      font-size: 0.95rem;
       margin-bottom: 0.5rem;
+      color: var(--text-light);
     }
 
     .program-back p {
       font-size: 0.9rem;
       margin-bottom: 0.5rem;
       text-align: left;
+      line-height: 1.4;
     }
 
     .program-back strong {
-      color: #ffffff;
+      color: var(--highlight);
     }
 
     .program-back a {
@@ -438,261 +616,299 @@
       font-weight: 600;
       padding: 0.5rem 1rem;
       border: 1px solid #ffffff;
-      border-radius: 5px;
-      transition: background 0.3s ease;
+      border-radius: var(--border-radius);
+      transition: all var(--transition-speed) ease;
       margin-top: 0.5rem;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .program-back a:hover {
       background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
     }
 
     /* Footer Section */
     .footer-section {
-      padding: 2rem 5%;
-      background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
+      padding: 3rem 5% 1rem;
+      background: var(--footer-bg);
       color: #ffffff;
       position: relative;
       overflow: hidden;
-      margin-top: auto;
-    }
-
-    .footer-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.2;
-      z-index: 0;
     }
 
     .footer-content {
-      position: relative;
-      z-index: 1;
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: 1fr 2fr 1fr;
+      gap: 2rem;
       padding: 1rem 0;
     }
 
     .footer-column h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      margin-bottom: 0.8rem;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+      font-weight: 600;
     }
 
-    .footer-column p,
-    .footer-column a {
-      font-size: 1rem;
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--highlight);
+    }
+
+    .footer-column p {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      margin-bottom: 0.8rem;
+      opacity: 0.9;
+    }
+
+    .footer-column.socials {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .footer-column.socials .social-icons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-column.socials a {
+      font-size: 1.5rem;
       color: #ffffff;
-      text-decoration: none;
-      margin-bottom: 0.4rem;
+      transition: all 0.3s ease;
       display: flex;
       align-items: center;
-      gap: 6px;
-      transition: all 0.3s ease;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
     }
 
-    .footer-column a:hover {
+    .footer-column.socials a:hover {
       color: var(--highlight);
-      transform: translateX(5px);
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.2);
     }
 
-    .footer-column a i {
-      font-size: 1.2rem;
+    .footer-column.links {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem 1rem;
     }
 
-    .footer-column.socials a i {
-      font-size: 1.2rem;
+    .footer-column.links a {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      padding: 0.25rem 0;
+    }
+
+    .footer-column.links a:hover {
+      color: var(--highlight);
+      transform: translateX(3px);
     }
 
     .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-      padding-top: 0.8rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1rem;
       text-align: center;
-      font-size: 1rem;
-      margin-top: 1rem;
+      font-size: 0.9rem;
+      margin-top: 2rem;
     }
 
     .footer-bottom p {
       margin: 0;
-      opacity: 0.9;
+      opacity: 0.8;
     }
 
-    /* Animations */
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    /* Theme Toggle and Scroll to Top */
+    .theme-toggle, .scroll-to-top {
+      position: fixed;
+      bottom: 7rem;
+      right: 2rem;
+      width: 40px;
+      height: 40px;
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      z-index: 999;
+      box-shadow: var(--box-shadow);
     }
 
-    /* Responsive Design */
+    .scroll-to-top {
+      bottom: 2rem;
+    }
+
+    .theme-toggle.visible, .scroll-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .theme-toggle:hover, .scroll-to-top:hover {
+      background: var(--accent-light);
+      transform: translateY(-3px);
+    }
+
+    .theme-menu {
+      position: fixed;
+      bottom: 8rem;
+      right: 2rem;
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 1rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      z-index: 1000;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: all 0.3s ease;
+    }
+
+    .theme-menu.active {
+      display: flex;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .theme-circle {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .theme-circle:hover {
+      transform: scale(1.1);
+      border-color: var(--accent-color);
+    }
+
+    .theme-circle.luminary { background: #f2f3f5; color: #1e3a8a; }
+    .theme-circle.cosmic { background: #f8f4f6; color: #800020; }
+    .theme-circle.ocean { background: #f0f8ff; color: #0077be; }
+    .theme-circle.blush { background: #fdf2f8; color: #ec4899; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-content { flex-direction: column; gap: 2rem; text-align: center; }
+      .hero-text h1 { font-size: 3.5rem; }
+      .hero-logo { width: 250px; }
+      .program-container { grid-template-columns: 1fr; }
+    }
+
     @media (max-width: 768px) {
-      .navbar {
-        padding: 1rem;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .nav-menu {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .intro-content h1 {
-        font-size: 2rem;
-      }
-
-      .intro-content p {
-        font-size: 1rem;
-      }
-
-      .program-container {
-        grid-template-columns: 1fr;
-      }
-
-      .program-card {
-        height: 300px; /* Slightly taller for mobile */
-      }
-
-      .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .footer-column a {
-        justify-content: center;
-      }
-
-      .footer-column h3 {
-        font-size: 1.3rem;
-      }
-
-      .footer-column p,
-      .footer-column a {
-        font-size: 0.9rem;
-      }
-
-      .footer-column a i,
-      .footer-column.socials a i {
-        font-size: 1.1rem;
-      }
-
-      .footer-bottom {
-        font-size: 0.9rem;
-      }
+      .hero-section { padding: 6rem 4% 3rem; }
+      .hero-text h1 { font-size: 3rem; }
+      .section-title h2 { font-size: 2rem; }
+      .program-container { gap: 1rem; }
+      .program-card { height: 300px; }
     }
 
     @media (max-width: 480px) {
-      .logo {
-        font-size: 1.5rem;
-      }
-
-      .dropdown-toggle {
-        font-size: 0.9rem;
-        padding: 0.4rem 0.8rem;
-      }
-
-      .intro-content h1 {
-        font-size: 1.8rem;
-      }
-
-      .section-title {
-        font-size: 1.8rem;
-      }
-
-      .program-front h3 {
-        font-size: 1.3rem;
-      }
-
-      .program-front p {
-        font-size: 0.9rem;
-      }
-
-      .program-back p {
-        font-size: 0.8rem;
-      }
-
-      .footer-column h3 {
-        font-size: 1.3rem;
-      }
-
-      .footer-column p,
-      .footer-column a {
-        font-size: 0.9rem;
-      }
-
-      .footer-column a i,
-      .footer-column.socials a i {
-        font-size: 1.1rem;
-      }
-
-      .footer-bottom {
-        font-size: 0.9rem;
-      }
+      .hero-text h1 { font-size: 2.5rem; }
+      .section-title h2 { font-size: 1.75rem; }
+      .program-front h3 { font-size: 1.1rem; }
+      .program-front p, .program-back p { font-size: 0.85rem; }
     }
   </style>
 </head>
-<body>
-  <!-- Custom Cursor -->
-  <div class="custom-cursor" id="customCursor"></div>
-
+<body data-theme="luminary">
   <!-- Preloader -->
-  <div class="loader" id="loader"></div>
-
-  <!-- Back to Top Button -->
-  <button onclick="topFunction()" id="myBtn" title="Go to top">
-    <i class="fas fa-arrow-up"></i>
-  </button>
+  <div class="loader" id="loader">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Loading...</div>
+  </div>
 
   <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo" onclick="window.location.href='index.html'">Dear Future Luminary</div>
-    <div class="nav-menu">
-      <div class="dropdown">
-        <button class="dropdown-toggle"><i class="fas fa-bars"></i> Menu</button>
-        <div class="dropdown-menu">
-          <a href="index.html"><i class="fas fa-home"></i> Home</a>
-          <a href="teams.html"><i class="fas fa-users"></i> Teams</a>
-          <a href="programs.html"><i class="fas fa-cogs"></i> Programs</a>
-          <a href="radar.html"><i class="fas fa-bullseye"></i> Opportunity Radar</a>
-          <a href="upgrade.html"><i class="fas fa-arrow-up"></i> Extra</a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropdown-toggle"><i class="fas fa-palette"></i> Themes</button>
-        <div class="dropdown-menu">
-          <div class="theme-option" data-theme="luminary"><i class="fas fa-star"></i> Luminary</div>
-          <div class="theme-option" data-theme="elegant"><i class="fas fa-gem"></i> Elegant</div>
-          <div class="theme-option" data-theme="cosmic"><i class="fas fa-rocket"></i> Cosmic</div>
-          <div class="theme-option" data-theme="bright"><i class="fas fa-sun"></i> Bright</div>
-          <div class="theme-option" data-theme="vibrant"><i class="fas fa-paint-brush"></i> Vibrant</div>
-        </div>
-      </div>
+  <nav class="navbar" id="navbar">
+    <div class="navbar-left">
+      <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+      <div class="tagline" id="tagline"></div>
     </div>
+    <a href="index.html" class="logo">Dear Future Luminary</a>
   </nav>
 
-  <!-- Intro Section -->
-  <section class="intro-section">
-    <div class="intro-content">
-      <h1>Top Summer Programs</h1>
-      <p>Explore transformative summer programs to accelerate your growth and unlock your potential.</p>
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h3>Menu</h3>
+      <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="sidebar-menu">
+      <h3>Pages</h3>
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="scholarships-Kit.html"><i class="fas fa-graduation-cap"></i> Scholarships</a>
+      <a href="roadmaps.html"><i class="fas fa-map-signs"></i> Roadmaps</a>
+      <a href="profile-building.html"><i class="fas fa-user-tie"></i> Profile Building</a>
+      <a href="my-story.html"><i class="fas fa-star"></i> My Story</a>
+      <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="heroSection">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Top Summer Programs</h1>
+        <div class="subheadline">Accelerate Your Growth This Summer</div>
+        <p>Explore transformative summer programs to unlock your potential and gain invaluable experiences in STEM, leadership, and beyond.</p>
+        <div class="cta-buttons">
+          <a href="#programsSection" class="cta-button"><i class="fas fa-rocket"></i> Discover Programs</a>
+        </div>
+      </div>
+      <div class="hero-logo-container">
+        <img src="dear.future.luminary.logo.svg" alt="Dear Future Luminary Logo" class="hero-logo">
+      </div>
     </div>
   </section>
 
+  <div class="section-divider"></div>
+
   <!-- Programs Section -->
-  <section class="programs-section">
-    <h2 class="section-title">Discover Programs</h2>
+  <section class="programs-section" id="programsSection">
+    <div class="section-title">
+      <h2>Discover Programs</h2>
+      <div class="divider"></div>
+    </div>
     <div class="program-container">
       <div class="program-card">
         <div class="program-inner">
@@ -706,7 +922,7 @@
             <p><strong>Funding:</strong> Scholarships for MENA students (Egypt included).</p>
             <p><strong>Location:</strong> Online</p>
             <p><strong>More Info:</strong> Rolling applications; check for 2025 updates.</p>
-            <a href="https://www.experiment.org/digital/" target="_blank" rel="noopener">Visit Website</a>
+            <a href="https://www.experiment.org/digital/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
           </div>
         </div>
       </div>
@@ -722,7 +938,7 @@
             <p><strong>Funding:</strong> Need-based aid covers all costs.</p>
             <p><strong>Location:</strong> New Haven, CT, USA</p>
             <p><strong>More Info:</strong> Deadlines in January/February 2025.</p>
-            <a href="https://globalscholars.yale.edu/" target="_blank" rel="noopener">Visit Website</a>
+            <a href="https://globalscholars.yale.edu/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
           </div>
         </div>
       </div>
@@ -738,7 +954,7 @@
             <p><strong>Funding:</strong> Fully funded (tuition, housing, meals, travel).</p>
             <p><strong>Location:</strong> Cambridge, MA, USA</p>
             <p><strong>More Info:</strong> Apply by early spring (e.g., February 2025).</p>
-            <a href="https://mites.mit.edu/" target="_blank" rel="noopener">Visit Website</a>
+            <a href="https://mites.mit.edu/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
           </div>
         </div>
       </div>
@@ -754,7 +970,7 @@
             <p><strong>Funding:</strong> Free for accepted students.</p>
             <p><strong>Location:</strong> Online</p>
             <p><strong>More Info:</strong> Rolling applications.</p>
-            <a href="https://www.nyas.org/programs/junior-academy/" target="_blank" rel="noopener">Visit Website</a>
+            <a href="https://www.nyas.org/programs/junior-academy/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
           </div>
         </div>
       </div>
@@ -770,7 +986,7 @@
             <p><strong>Funding:</strong> Full scholarships (tuition, travel, housing).</p>
             <p><strong>Location:</strong> Varies (e.g., USA, Brazil)</p>
             <p><strong>More Info:</strong> Apply via AFS Egypt by early spring.</p>
-            <a href="https://afs.org/global-stem/" target="_blank" rel="noopener">Visit Website</a>
+            <a href="https://afs.org/global-stem/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
           </div>
         </div>
       </div>
@@ -786,7 +1002,7 @@
             <p><strong>Funding:</strong> Need-based full scholarships.</p>
             <p><strong>Location:</strong> USA (varies)</p>
             <p><strong>More Info:</strong> Apply by February 2025.</p>
-            <a href="https://summerscience.org/" target="_blank" rel="noopener">Visit Website</a>
+            <a href="https://summerscience.org/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
           </div>
         </div>
       </div>
@@ -802,7 +1018,7 @@
             <p><strong>Funding:</strong> Fully funded (travel, tuition).</p>
             <p><strong>Location:</strong> West Virginia, USA</p>
             <p><strong>More Info:</strong> Apply during senior year.</p>
-            <a href="https://nyscamp.org/" target="_blank" rel="noopener">Visit Website</a>
+            <a href="https://nyscamp.org/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
           </div>
         </div>
       </div>
@@ -818,7 +1034,7 @@
             <p><strong>Funding:</strong> Fully funded (travel, tuition).</p>
             <p><strong>Location:</strong> USA</p>
             <p><strong>More Info:</strong> Apply via U.S. Embassy Egypt.</p>
-            <a href="https://techgirlsglobal.org/" target="_blank" rel="noopener">Visit Website</a>
+            <a href="https://techgirlsglobal.org/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
           </div>
         </div>
       </div>
@@ -834,7 +1050,7 @@
             <p><strong>Funding:</strong> Full scholarships available.</p>
             <p><strong>Location:</strong> Boston, MA, USA</p>
             <p><strong>More Info:</strong> Apply by March 2025.</p>
-            <a href="https://promys.org/" target="_blank" rel="noopener">Visit Website</a>
+            <a href="https://promys.org/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
           </div>
         </div>
       </div>
@@ -850,7 +1066,7 @@
             <p><strong>Funding:</strong> Fully funded (tuition, travel, housing).</p>
             <p><strong>Location:</strong> Cambridge, MA, USA</p>
             <p><strong>More Info:</strong> Apply by December 2024.</p>
-            <a href="https://www.cee.org/programs/research-science-institute" target="_blank" rel="noopener">Visit Website</a>
+            <a href="https://www.cee.org/programs/research-science-institute" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
           </div>
         </div>
       </div>
@@ -866,227 +1082,220 @@
             <p><strong>Funding:</strong> Free (online).</p>
             <p><strong>Location:</strong> Online</p>
             <p><strong>More Info:</strong> Apply by February/March 2025.</p>
-            <a href="https://buildyourfuture.withgoogle.com/programs/computer-science-summer-institute/" target="_blank" rel="noopener">Visit Website</a>
+            <a href="https://buildyourfuture.withgoogle.com/programs/computer-science-summer-institute/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
           </div>
         </div>
       </div>
       <div class="program-card">
-  <div class="program-inner">
-    <div class="program-front">
-      <h3>Youth Ambassadors Program</h3>
-      <p><strong>Type:</strong> In-person</p>
-      <p>Leadership development and cultural exchange in Latin America.</p>
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>Youth Ambassadors Program</h3>
+            <p><strong>Type:</strong> In-person</p>
+            <p>Leadership development and cultural exchange in Latin America.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Age Group:</strong> 15-18</p>
+            <p><strong>Duration:</strong> 2-3 weeks</p>
+            <p><strong>Coverage:</strong> Full scholarship including travel, housing, meals, and program expenses</p>
+            <p><strong>Focus:</strong> Leadership development and cultural exchange in Latin America</p>
+            <a href="https://exchanges.state.gov/youth-programs/youth-ambassadors-program" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>YES Abroad</h3>
+            <p><strong>Type:</strong> In-person</p>
+            <p>Cultural exchange in countries with significant Muslim populations.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Age Group:</strong> 15-18</p>
+            <p><strong>Duration:</strong> Academic year</p>
+            <p><strong>Coverage:</strong> Full scholarship covering travel, housing, insurance, and monthly stipend</p>
+            <p><strong>Focus:</strong> Cultural exchange in countries with significant Muslim populations</p>
+            <a href="https://exchanges.state.gov/youth-programs/kennedy-lugar-youth-exchange-and-study-yes-abroad" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>NSLI-Y</h3>
+            <p><strong>Type:</strong> In-person</p>
+            <p>Language immersion in critical languages like Arabic, Chinese, and more.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Age Group:</strong> 15-18</p>
+            <p><strong>Duration:</strong> Summer or academic year</p>
+            <p><strong>Coverage:</strong> Full scholarship including travel, tuition, housing, and stipend</p>
+            <p><strong>Focus:</strong> Language immersion in critical languages like Arabic, Chinese, Russian, and more</p>
+            <a href="https://exchanges.state.gov/youth-programs/national-security-language-initiative-youth-nsli-y" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>CBYX</h3>
+            <p><strong>Type:</strong> In-person</p>
+            <p>Cultural exchange between the U.S. and Germany.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Age Group:</strong> High school students and young professionals</p>
+            <p><strong>Duration:</strong> Academic year</p>
+            <p><strong>Coverage:</strong> Full scholarship covering travel, housing, insurance, and monthly stipend</p>
+            <p><strong>Focus:</strong> Cultural exchange between the U.S. and Germany</p>
+            <a href="https://culturalvistas.org/programs-for-youth/cbyx/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>Youth For Understanding (YFU)</h3>
+            <p><strong>Type:</strong> In-person</p>
+            <p>High school exchange programs promoting intercultural understanding.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Age Group:</strong> 14-18</p>
+            <p><strong>Duration:</strong> Varies (short-term to academic year)</p>
+            <p><strong>Coverage:</strong> Program tuition covers travel expenses, orientations, host family placement, meals, and support</p>
+            <p><strong>Focus:</strong> High school exchange programs promoting intercultural understanding</p>
+            <a href="https://www.yfu.org/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>ICYE</h3>
+            <p><strong>Type:</strong> In-person</p>
+            <p>Volunteering in social projects across more than 40 countries.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Age Group:</strong> 18-30</p>
+            <p><strong>Duration:</strong> 6-12 months</p>
+            <p><strong>Coverage:</strong> Travel, accommodation, meals, and a small stipend</p>
+            <p><strong>Focus:</strong> Volunteering in social projects across more than 40 countries</p>
+            <a href="https://www.icye.org/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>The Experiment in International Living</h3>
+            <p><strong>Type:</strong> In-person</p>
+            <p>Cultural immersion through homestays, language learning, and projects.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Age Group:</strong> High school students</p>
+            <p><strong>Duration:</strong> 3-5 weeks</p>
+            <p><strong>Coverage:</strong> Travel, homestays, meals, and program activities</p>
+            <p><strong>Focus:</strong> Cultural immersion through homestays, language learning, and community projects</p>
+            <a href="https://www.experiment.org/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>Stanford SHTEM Summer Internship</h3>
+            <p><strong>Type:</strong> Virtual</p>
+            <p>6–8-week interdisciplinary research in STEM, humanities, and social sciences.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Eligibility:</strong> High school students (U.S. and international), research interest.</p>
+            <p><strong>Funding:</strong> Fully funded (no cost, virtual).</p>
+            <p><strong>Location:</strong> Online (worldwide).</p>
+            <p><strong>More Info:</strong> Apply by spring 2025 (typically March/April).</p>
+            <a href="https://www.polygence.org" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>Stanford AI Summer Bootcamp</h3>
+            <p><strong>Type:</strong> Virtual</p>
+            <p>2-week machine learning program in healthcare, all levels.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Eligibility:</strong> High school students (U.S. and international), no AI experience needed.</p>
+            <p><strong>Funding:</strong> Fully funded (no cost, virtual).</p>
+            <p><strong>Location:</strong> Online (worldwide).</p>
+            <p><strong>More Info:</strong> Apply by March 31, 2025 (tentative).</p>
+            <a href="https://aimi.stanford.edu/education/aimi-summer-bootcamp" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>Telluride Association Summer Seminar (TASS)</h3>
+            <p><strong>Type:</strong> In-person</p>
+            <p>6-week seminar on Critical Black Studies or Anti-Oppressive Studies.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Eligibility:</strong> Rising sophomores and juniors (15–18), strong academics.</p>
+            <p><strong>Funding:</strong> Fully funded (tuition, housing, meals).</p>
+            <p><strong>Location:</strong> Cornell (NY), Maryland, or Michigan (USA).</p>
+            <p><strong>More Info:</strong> Apply by December 3, 2024.</p>
+            <a href="https://www.tellurideassociation.org" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>Notre Dame Leadership Seminars</h3>
+            <p><strong>Type:</strong> In-person</p>
+            <p>10-day program on social justice, ethics, and leadership.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Eligibility:</strong> Rising high school seniors, academic interest.</p>
+            <p><strong>Funding:</strong> Fully funded (tuition, housing, meals).</p>
+            <p><strong>Location:</strong> Notre Dame, IN, USA.</p>
+            <p><strong>More Info:</strong> Apply by January 22, 2025.</p>
+            <a href="https://precollege.nd.edu" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>Iowa Young Writers’ Studio</h3>
+            <p><strong>Type:</strong> In-person</p>
+            <p>2-week creative writing workshop for aspiring writers.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Eligibility:</strong> High school students, passion for writing.</p>
+            <p><strong>Funding:</strong> Fully funded for selected students (need-based aid).</p>
+            <p><strong>Location:</strong> Iowa City, IA, USA.</p>
+            <p><strong>More Info:</strong> Apply by spring 2025 (typically April).</p>
+            <a href="https://iowayoungwritersstudio.org" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="program-card">
+        <div class="program-inner">
+          <div class="program-front">
+            <h3>Children’s Education Program at Bass Performance Hall</h3>
+            <p><strong>Type:</strong> In-person</p>
+            <p>1–2-week music camp on vocal techniques and ensemble singing.</p>
+          </div>
+          <div class="program-back">
+            <p><strong>Eligibility:</strong> High school students in Texas.</p>
+            <p><strong>Funding:</strong> Fully funded (no cost).</p>
+            <p><strong>Location:</strong> Fort Worth, TX, USA.</p>
+            <p><strong>More Info:</strong> Apply by spring 2025 (check website).</p>
+            <a href="https://www.basshall.com" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Visit Website</a>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="program-back">
-      <p><strong>Age Group:</strong> 15-18</p>
-      <p><strong>Duration:</strong> 2-3 weeks</p>
-      <p><strong>Coverage:</strong> Full scholarship including travel, housing, meals, and program expenses</p>
-      <p><strong>Focus:</strong> Leadership development and cultural exchange in Latin America</p>
-      <p><a href="https://exchanges.state.gov/youth-programs/youth-ambassadors-program" target="_blank" rel="noopener">Visit Website</a></p>
-    </div>
-  </div>
-</div>
-
-<div class="program-card">
-  <div class="program-inner">
-    <div class="program-front">
-      <h3>YES Abroad</h3>
-      <p><strong>Type:</strong> In-person</p>
-      <p>Cultural exchange in countries with significant Muslim populations.</p>
-    </div>
-    <div class="program-back">
-      <p><strong>Age Group:</strong> 15-18</p>
-      <p><strong>Duration:</strong> Academic year</p>
-      <p><strong>Coverage:</strong> Full scholarship covering travel, housing, insurance, and monthly stipend</p>
-      <p><strong>Focus:</strong> Cultural exchange in countries with significant Muslim populations</p>
-      <p><a href="https://exchanges.state.gov/youth-programs/kennedy-lugar-youth-exchange-and-study-yes-abroad" target="_blank" rel="noopener">Visit Website</a></p>
-    </div>
-  </div>
-</div>
-
-<div class="program-card">
-  <div class="program-inner">
-    <div class="program-front">
-      <h3>NSLI-Y</h3>
-      <p><strong>Type:</strong> In-person</p>
-      <p>Language immersion in critical languages like Arabic, Chinese, and more.</p>
-    </div>
-    <div class="program-back">
-      <p><strong>Age Group:</strong> 15-18</p>
-      <p><strong>Duration:</strong> Summer or academic year</p>
-      <p><strong>Coverage:</strong> Full scholarship including travel, tuition, housing, and stipend</p>
-      <p><strong>Focus:</strong> Language immersion in critical languages like Arabic, Chinese, Russian, and more</p>
-      <p><a href="https://exchanges.state.gov/youth-programs/national-security-language-initiative-youth-nsli-y" target="_blank" rel="noopener">Visit Website</a></p>
-    </div>
-  </div>
-</div>
-
-<div class="program-card">
-  <div class="program-inner">
-    <div class="program-front">
-      <h3>CBYX</h3>
-      <p><strong>Type:</strong> In-person</p>
-      <p>Cultural exchange between the U.S. and Germany.</p>
-    </div>
-    <div class="program-back">
-      <p><strong>Age Group:</strong> High school students and young professionals</p>
-      <p><strong>Duration:</strong> Academic year</p>
-      <p><strong>Coverage:</strong> Full scholarship covering travel, housing, insurance, and monthly stipend</p>
-      <p><strong>Focus:</strong> Cultural exchange between the U.S. and Germany</p>
-      <p><a href="https://culturalvistas.org/programs-for-youth/cbyx/" target="_blank" rel="noopener">Visit Website</a></p>
-    </div>
-  </div>
-</div>
-
-<div class="program-card">
-  <div class="program-inner">
-    <div class="program-front">
-      <h3>Youth For Understanding (YFU)</h3>
-      <p><strong>Type:</strong> In-person</p>
-      <p>High school exchange programs promoting intercultural understanding.</p>
-    </div>
-    <div class="program-back">
-      <p><strong>Age Group:</strong> 14-18</p>
-      <p><strong>Duration:</strong> Varies (short-term to academic year)</p>
-      <p><strong>Coverage:</strong> Program tuition covers travel expenses, orientations, host family placement, meals, and support</p>
-      <p><strong>Focus:</strong> High school exchange programs promoting intercultural understanding</p>
-      <p><a href="https://www.yfu.org/" target="_blank" rel="noopener">Visit Website</a></p>
-    </div>
-  </div>
-</div>
-
-<div class="program-card">
-  <div class="program-inner">
-    <div class="program-front">
-      <h3>ICYE</h3>
-      <p><strong>Type:</strong> In-person</p>
-      <p>Volunteering in social projects across more than 40 countries.</p>
-    </div>
-    <div class="program-back">
-      <p><strong>Age Group:</strong> 18-30</p>
-      <p><strong>Duration:</strong> 6-12 months</p>
-      <p><strong>Coverage:</strong> Travel, accommodation, meals, and a small stipend</p>
-      <p><strong>Focus:</strong> Volunteering in social projects across more than 40 countries</p>
-      <p><a href="https://www.icye.org/" target="_blank" rel="noopener">Visit Website</a></p>
-    </div>
-  </div>
-</div>
-
-<div class="program-card">
-  <div class="program-inner">
-    <div class="program-front">
-      <h3>The Experiment in International Living</h3>
-      <p><strong>Type:</strong> In-person</p>
-      <p>Cultural immersion through homestays, language learning, and projects.</p>
-    </div>
-    <div class="program-back">
-      <p><strong>Age Group:</strong> High school students</p>
-      <p><strong>Duration:</strong> 3-5 weeks</p>
-      <p><strong>Coverage:</strong> Travel, homestays, meals, and program activities</p>
-      <p><strong>Focus:</strong> Cultural immersion through homestays, language learning, and community projects</p>
-      <p><a href="https://www.experiment.org/" target="_blank" rel="noopener">Visit Website</a></p>
-    </div>
-  </div>
-</div>
-<div class="program-card">
-  <div class="program-inner">
-    <div class="program-front">
-      <h3>Stanford SHTEM Summer Internship</h3>
-      <p><strong>Type:</strong> Virtual</p>
-      <p>6–8-week interdisciplinary research in STEM, humanities, and social sciences.</p>
-    </div>
-    <div class="program-back">
-      <p><strong>Eligibility:</strong> High school students (U.S. and international), research interest.</p>
-      <p><strong>Funding:</strong> Fully funded (no cost, virtual).</p>
-      <p><strong>Location:</strong> Online (worldwide).</p>
-      <p><strong>More Info:</strong> Apply by spring 2025 (typically March/April).</p>
-      <a href="https://www.polygence.org" target="_blank" rel="noopener">Visit Website</a>
-    </div>
-  </div>
-</div>
-<div class="program-card">
-  <div class="program-inner">
-    <div class="program-front">
-      <h3>Stanford AI Summer Bootcamp</h3>
-      <p><strong>Type:</strong> Virtual</p>
-      <p>2-week machine learning program in healthcare, all levels.</p>
-    </div>
-    <div class="program-back">
-      <p><strong>Eligibility:</strong> High school students (U.S. and international), no AI experience needed.</p>
-      <p><strong>Funding:</strong> Fully funded (no cost, virtual).</p>
-      <p><strong>Location:</strong> Online (worldwide).</p>
-      <p><strong>More Info:</strong> Apply by March 31, 2025 (tentative).</p>
-      <a href="https://aimi.stanford.edu/education/aimi-summer-bootcamp" target="_blank" rel="noopener">Visit Website</a>
-    </div>
-  </div>
-</div>
-<div class="program-card">
-  <div class="program-inner">
-    <div class="program-front">
-      <h3>Telluride Association Summer Seminar (TASS)</h3>
-      <p><strong>Type:</strong> In-person</p>
-      <p>6-week seminar on Critical Black Studies or Anti-Oppressive Studies.</p>
-    </div>
-    <div class="program-back">
-      <p><strong>Eligibility:</strong> Rising sophomores and juniors (15–18), strong academics.</p>
-      <p><strong>Funding:</strong> Fully funded (tuition, housing, meals).</p>
-      <p><strong>Location:</strong> Cornell (NY), Maryland, or Michigan (USA).</p>
-      <p><strong>More Info:</strong> Apply by December 3, 2024.</p>
-      <a href="https://www.tellurideassociation.org" target="_blank" rel="noopener">Visit Website</a>
-    </div>
-  </div>
-</div>
-<div class="program-card">
-  <div class="program-inner">
-    <div class="program-front">
-      <h3>Notre Dame Leadership Seminars</h3>
-      <p><strong>Type:</strong> In-person</p>
-      <p>10-day program on social justice, ethics, and leadership.</p>
-    </div>
-    <div class="program-back">
-      <p><strong>Eligibility:</strong> Rising high school seniors, academic interest.</p>
-      <p><strong>Funding:</strong> Fully funded (tuition, housing, meals).</p>
-      <p><strong>Location:</strong> Notre Dame, IN, USA.</p>
-      <p><strong>More Info:</strong> Apply by January 22, 2025.</p>
-      <a href="https://precollege.nd.edu" target="_blank" rel="noopener">Visit Website</a>
-    </div>
-  </div>
-</div>
-<div class="program-card">
-  <div class="program-inner">
-    <div class="program-front">
-      <h3>Iowa Young Writers’ Studio</h3>
-      <p><strong>Type:</strong> In-person</p>
-      <p>2-week creative writing workshop for aspiring writers.</p>
-    </div>
-    <div class="program-back">
-      <p><strong>Eligibility:</strong> High school students, passion for writing.</p>
-      <p><strong>Funding:</strong> Fully funded for selected students (need-based aid).</p>
-      <p><strong>Location:</strong> Iowa City, IA, USA.</p>
-      <p><strong>More Info:</strong> Apply by spring 2025 (typically April).</p>
-      <a href="https://iowayoungwritersstudio.org" target="_blank" rel="noopener">Visit Website</a>
-    </div>
-  </div>
-</div>
-<div class="program-card">
-  <div class="program-inner">
-    <div class="program-front">
-      <h3>Children’s Education Program at Bass Performance Hall</h3>
-      <p><strong>Type:</strong> In-person</p>
-      <p>1–2-week music camp on vocal techniques and ensemble singing.</p>
-    </div>
-    <div class="program-back">
-      <p><strong>Eligibility:</strong> High school students in Texas.</p>
-      <p><strong>Funding:</strong> Fully funded (no cost).</p>
-      <p><strong>Location:</strong> Fort Worth, TX, USA.</p>
-      <p><strong>More Info:</strong> Apply by spring 2025 (check website).</p>
-      <a href="https://www.basshall.com" target="_blank" rel="noopener">Visit Website</a>
-    </div>
-  </div>
-</div>
-</div>
   </section>
-
 
   <!-- Footer Section -->
   <section class="footer-section" id="footer">
@@ -1095,7 +1304,7 @@
         <h3>Dear Future Luminary</h3>
         <p>Guiding you to an inspiring future.</p>
       </div>
-      <div class="footer-column">
+      <div class="footer-column links">
         <h3>Quick Links</h3>
         <a href="index.html"><i class="fas fa-home"></i> Home</a>
         <a href="scholarships-Kit.html"><i class="fas fa-graduation-cap"></i> Scholarships</a>
@@ -1106,10 +1315,12 @@
       </div>
       <div class="footer-column socials">
         <h3>Connect With Us</h3>
-        <a href="mailto:dear.future.luminary@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-        <a href="https://www.facebook.com/profile.php?id=61579085334238" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
-        <a href="https://www.instagram.com/dear.future.luminary/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-        <a href="https://www.linkedin.com/company/dear-future-luminary" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+        <div class="social-icons">
+          <a href="mailto:dear.future.luminary@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61579085334238" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/dear.future.luminary/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/company/dear-future-luminary" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        </div>
       </div>
     </div>
     <div class="footer-bottom">
@@ -1117,63 +1328,187 @@
     </div>
   </section>
 
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle"><i class="fas fa-palette"></i></button>
+
+  <!-- Theme Menu -->
+  <div class="theme-menu" id="themeMenu">
+    <div class="theme-circle luminary" data-theme="luminary" title="Luminary Glow"><i class="fas fa-star"></i></div>
+    <div class="theme-circle cosmic" data-theme="cosmic" title="Cosmic Burgundy"><i class="fas fa-heart"></i></div>
+    <div class="theme-circle ocean" data-theme="ocean" title="Ocean Blue"><i class="fas fa-water"></i></div>
+    <div class="theme-circle blush" data-theme="blush" title="Blush Pink"><i class="fas fa-ribbon"></i></div>
+  </div>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" id="scrollToTop"><i class="fas fa-chevron-up"></i></button>
+
   <script>
-    // Custom Cursor
-    const customCursor = document.getElementById('customCursor');
-    document.addEventListener('mousemove', (e) => {
-      customCursor.style.left = `${e.clientX}px`;
-      customCursor.style.top = `${e.clientY}px`;
-    });
-
-    document.querySelectorAll('a, button, input, textarea, .program-card').forEach(el => {
-      el.addEventListener('mouseenter', () => customCursor.classList.add('active'));
-      el.addEventListener('mouseleave', () => customCursor.classList.remove('active'));
-    });
-
     // Preloader
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('loader').classList.add('hidden');
-        document.body.style.overflow = 'auto';
-      }, 800);
-    });
-// Theme Selector
-    document.querySelectorAll('.theme-option').forEach(option => {
-      option.addEventListener('click', () => {
-        const theme = option.getAttribute('data-theme');
-        document.body.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
+    const loader = document.getElementById('loader');
+    if (loader) {
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          loader.classList.add('hidden');
+          document.body.style.overflow = 'auto';
+        }, 800);
       });
-    });
+    }
 
-    // Load Saved Theme
+    // Navbar Scroll Effect
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      });
+    }
+
+    // Sidebar Functionality
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarClose = document.getElementById('sidebarClose');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    if (sidebarToggle && sidebar && sidebarClose && sidebarOverlay) {
+      sidebarToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar.classList.add('active');
+        sidebarOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+
+      sidebarClose.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+        sidebarOverlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+
+      sidebarOverlay.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+        sidebarOverlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+    }
+
+    // Theme Functionality
+    const themeToggle = document.getElementById('themeToggle');
+    const themeMenu = document.getElementById('themeMenu');
+
+    if (themeToggle && themeMenu) {
+      themeToggle.addEventListener('click', () => {
+        themeMenu.classList.toggle('active');
+      });
+
+      document.querySelectorAll('.theme-circle').forEach(option => {
+        option.addEventListener('click', () => {
+          const theme = option.getAttribute('data-theme');
+          document.body.setAttribute('data-theme', theme);
+          localStorage.setItem('theme', theme);
+          themeMenu.classList.remove('active');
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!themeToggle.contains(e.target) && !themeMenu.contains(e.target)) {
+          themeMenu.classList.remove('active');
+        }
+      });
+    }
+
     const savedTheme = localStorage.getItem('theme') || 'luminary';
     document.body.setAttribute('data-theme', savedTheme);
 
-    // Back to Top Button
-    window.onscroll = function() {scrollFunction()};
+    // Scroll to Top
+    const scrollToTopButton = document.getElementById('scrollToTop');
+    if (scrollToTopButton && themeToggle) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          scrollToTopButton.classList.add('visible');
+          themeToggle.classList.add('visible');
+        } else {
+          scrollToTopButton.classList.remove('visible');
+          themeToggle.classList.remove('visible');
+        }
+      });
 
-    function scrollFunction() {
-      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        document.getElementById("myBtn").style.display = "block";
-      } else {
-        document.getElementById("myBtn").style.display = "none";
-      }
+      scrollToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     }
 
-    function topFunction() {
-      document.body.scrollTop = 0;
-      document.documentElement.scrollTop = 0;
+    // Typewriter Tagline
+    const taglines = [
+      "Student-led, just like you.",
+      "Your spark, our mission.",
+      "Gen Z for Gen Z.",
+      "We light the way.",
+      "You are the future.",
+      "Dreams deserve action.",
+      "Step into extraordinary.",
+      "Just begin today.",
+      "Glow to the world."
+    ];
+
+    const taglineElement = document.getElementById('tagline');
+    if (taglineElement) {
+      let currentTagline = 0;
+      let i = 0;
+      let typing = true;
+      let text = '';
+
+      function typeWriter() {
+        if (typing) {
+          if (i < taglines[currentTagline].length) {
+            text += taglines[currentTagline].charAt(i);
+            taglineElement.textContent = text;
+            i++;
+            setTimeout(typeWriter, 60);
+          } else {
+            typing = false;
+            setTimeout(typeWriter, 2500);
+          }
+        } else {
+          if (i > 0) {
+            text = text.slice(0, -1);
+            taglineElement.textContent = text;
+            i--;
+            setTimeout(typeWriter, 40);
+          } else {
+            typing = true;
+            currentTagline = (currentTagline + 1) % taglines.length;
+            setTimeout(typeWriter, 600);
+          }
+        }
+      }
+
+      typeWriter();
     }
 
     // Scroll Animations
-    window.addEventListener('scroll', () => {
-      document.querySelectorAll('.program-card, .section-title').forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.9) {
-          el.classList.add('visible');
+    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
         }
       });
+    }, observerOptions);
+
+    document.querySelectorAll('.section-title, .program-container').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+
+    document.querySelectorAll('.program-card').forEach((card, index) => {
+      card.style.transitionDelay = `${index * 0.1}s`;
+      observer.observe(card);
     });
   </script>
 </body>
