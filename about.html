@@ -4,9 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us | Dear Future Luminary</title>
-<link rel="icon" href="dear.future.luminary.logo.svg" type="image/png">
-  <meta name="description" content="Meet the passionate team behind Dear Future Luminary, dedicated to empowering students.">
-<!-- Google tag (gtag.js) -->
+  <link rel="icon" href="dear.future.luminary.logo.svg" type="image/png">
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-S2RPVR4HQB"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -14,90 +13,119 @@
     gtag('js', new Date());
     gtag('config', 'G-S2RPVR4HQB');
   </script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+  <meta name="description" content="Meet the passionate team behind Dear Future Luminary, dedicated to empowering students.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Default Theme (Luminary) */
       --primary-bg: #ffffff;
-      --secondary-bg: #f8f9fa;
-      --text-color: #2c3e50;
-      --accent-color: #6a3093;
-      --accent-light: #a044ff;
-      --highlight: #f1c40f;
-      --card-bg: #ffffff;
-      --card-shadow: rgba(0, 0, 0, 0.1);
-      --nav-bg: #ffffff;
-      --footer-bg: #f8f9fa;
-      --section-bg: #ffffff;
-      --transition-speed: 0.3s;
-    }
-
-    /* Elegant Theme */
-    [data-theme="elegant"] {
-      --primary-bg: #ffffff;
-      --secondary-bg: #f5f5f5;
-      --text-color: #2c3e50;
-      --accent-color: #2e2e2e;
-      --accent-light: #4a4a4a;
-      --highlight: #d4a017;
-      --card-bg: #ffffff;
-      --card-shadow: rgba(0, 0, 0, 0.1);
-      --nav-bg: #ffffff;
-      --footer-bg: #f5f5f5;
-      --section-bg: #ffffff;
-    }
-
-    /* Cosmic Theme */
-    [data-theme="cosmic"] {
-      --primary-bg: #ffffff;
-      --secondary-bg: #f0f4f8;
-      --text-color: #2c3e50;
+      --secondary-bg: #f8fafc;
+      --text-color: #1e293b;
+      --text-light: #475569;
       --accent-color: #1e3a8a;
       --accent-light: #3b82f6;
-      --highlight: #10b981;
+      --highlight: #facc15;
       --card-bg: #ffffff;
-      --card-shadow: rgba(0, 0, 0, 0.1);
-      --nav-bg: #ffffff;
-      --footer-bg: #f0f4f8;
+      --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      --nav-bg: rgba(255, 255, 255, 0.95);
+      --footer-bg: #0f172a;
       --section-bg: #ffffff;
+      --section-alt-bg: #f8fafc;
+      --transition-speed: 0.3s;
+      --border-radius: 12px;
+      --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+      /* New variables adapted */
+      --pastel-blue: #e0f7fa; /* Light blue for background */
+      --background-light: var(--card-bg);
+      --radius-lg: var(--border-radius);
+      --space-xl: 4rem;
+      --space-lg: 3rem;
+      --space-md: 2rem;
+      --space-sm: 1.25rem;
+      --space-xs: 0.75rem;
+      --shadow-md: var(--box-shadow);
+      --shadow-sm: var(--card-shadow);
+      --primary-color: var(--accent-color);
+      --primary-light: var(--accent-light);
+      --text-base: 1rem;
+      --text-dark: var(--text-color);
+      --text-sm: 0.9rem;
+      --transition-normal: var(--transition-speed);
+      --transition-fast: 0.2s;
+      --radius-md: 8px;
+      --radius-sm: 4px;
+      --secondary-color: var(--secondary-bg);
     }
 
-    /* Bright Theme */
-    [data-theme="bright"] {
-      --primary-bg: #ffffff;
-      --secondary-bg: #fef3e7;
-      --text-color: #2c3e50;
-      --accent-color: #e11d48;
-      --accent-light: #fb7185;
-      --highlight: #f59e0b;
-      --card-bg: #ffffff;
-      --card-shadow: rgba(0, 0, 0, 0.1);
-      --nav-bg: #ffffff;
-      --footer-bg: #fef3e7;
-      --section-bg: #ffffff;
-    }
-
-    /* Vibrant Theme */
-    [data-theme="vibrant"] {
-      --primary-bg: #ffffff;
-      --secondary-bg: #f4eaff;
-      --text-color: #2c3e50;
-      --accent-color: #7c3aed;
+    [data-theme="luminary"] {
+      --primary-bg: #f2f3f5;
+      --text-color: #1e293b;
+      --text-light: #475569;
+      --accent-color: #1e3a8a;
       --accent-light: #a78bfa;
-      --highlight: #ec4899;
+      --highlight: #facc15;
       --card-bg: #ffffff;
-      --card-shadow: rgba(0, 0, 0, 0.1);
-      --nav-bg: #ffffff;
-      --footer-bg: #f4eaff;
-      --section-bg: #ffffff;
+      --nav-bg: rgba(242, 243, 245, 0.95);
+      --footer-bg: linear-gradient(135deg, #1e3a8a 0%, #a78bfa 50%);
+      --section-bg: #f2f3f5;
+      --section-alt-bg: #ffffff;
+      --pastel-blue: #f2f3f5;
+    }
+
+    [data-theme="cosmic"] {
+      --primary-bg: #f8f4f6;
+      --text-color: #2c1810;
+      --text-light: #4a3628;
+      --accent-color: #800020;
+      --accent-light: #a52a2a;
+      --highlight: #d4af37;
+      --card-bg: #ffffff;
+      --nav-bg: rgba(248, 244, 246, 0.95);
+      --footer-bg: linear-gradient(135deg, #800020 0%, #a52a2a 50%);
+      --section-bg: #f8f4f6;
+      --section-alt-bg: #e8d5d5;
+      --pastel-blue: #f8f4f6;
+    }
+
+    [data-theme="ocean"] {
+      --primary-bg: #f0f8ff;
+      --text-color: #0f4c75;
+      --text-light: #4a7a95;
+      --accent-color: #0077be;
+      --accent-light: #0096c7;
+      --highlight: #00bfff;
+      --card-bg: #ffffff;
+      --nav-bg: rgba(240, 248, 255, 0.95);
+      --footer-bg: linear-gradient(135deg, #0077be 0%, #0096c7 50%);
+      --section-bg: #f0f8ff;
+      --section-alt-bg: #e6f3ff;
+      --pastel-blue: #f0f8ff;
+    }
+
+    [data-theme="blush"] {
+      --primary-bg: #fdf2f8;
+      --text-color: #881337;
+      --text-light: #9a144b;
+      --accent-color: #ec4899;
+      --accent-light: #f472b6;
+      --highlight: #f9a8d4;
+      --card-bg: #ffffff;
+      --nav-bg: rgba(253, 242, 248, 0.95);
+      --footer-bg: linear-gradient(135deg, #ec4899 0%, #f472b6 50%);
+      --section-bg: #fdf2f8;
+      --section-alt-bg: #fce7f3;
+      --pastel-blue: #fdf2f8;
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      transition: background-color var(--transition-speed), color var(--transition-speed);
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -108,72 +136,52 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      scroll-behavior: smooth;
       overflow-x: hidden;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      visibility: visible !important;
+      overflow-y: auto !important;
     }
 
     h1, h2, h3, h4, .logo {
       font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      line-height: 1.2;
     }
 
-    /* Custom Cursor */
-    .custom-cursor {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      background: radial-gradient(circle, var(--accent-color) 30%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 8px var(--accent-light);
-      animation: pulse-cursor 2s infinite;
+    h1 {
+      font-size: 3.5rem;
     }
 
-    .custom-cursor.active {
-      transform: translate(-50%, -50%) scale(1.5);
-      background: radial-gradient(circle, var(--accent-light) 30%, transparent 70%);
+    h2 {
+      font-size: 2.5rem;
     }
 
-    @keyframes pulse-cursor {
-      0%, 100% { opacity: 0.8; }
-      50% { opacity: 1; }
+    h3 {
+      font-size: 1.75rem;
     }
 
-    /* Preloader */
+    h4 {
+      font-size: 1.4rem;
+    }
+
+    p {
+      margin-bottom: 1.25rem;
+    }
+
+    /* Section Divider */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+      margin: 3rem auto;
+      width: 80px;
+      opacity: 0.6;
+    }
+
+    /* Preloader - معطل مؤقتًا */
     .loader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--primary-bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2000;
-      opacity: 1;
-      transition: opacity 0.6s ease;
-    }
-
-    .loader.hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .loader::before {
-      content: '';
-      width: 40px;
-      height: 40px;
-      border: 3px solid transparent;
-      border-top: 3px solid var(--accent-color);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      display: none !important;
     }
 
     /* Navbar */
@@ -183,427 +191,439 @@
       width: 100%;
       background-color: var(--nav-bg);
       backdrop-filter: blur(10px);
-      box-shadow: 0 2px 5px var(--card-shadow);
+      box-shadow: var(--card-shadow);
       z-index: 1000;
       padding: 1rem 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      padding: 0.8rem 5%;
+    }
+
+    .navbar-left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
     .logo {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       color: var(--accent-color);
       cursor: pointer;
       transition: color 0.3s ease;
+      font-weight: 700;
+      text-decoration: none;
     }
 
     .logo:hover {
       color: var(--accent-light);
     }
 
-    .nav-menu {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
+    .tagline {
+      font-size: 0.8rem;
+      color: var(--text-color);
+      font-style: italic;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+      height: 1.2rem;
+      line-height: 1.2rem;
     }
 
-    .dropdown {
-      position: relative;
-    }
-
-    .dropdown-toggle {
+    .sidebar-toggle {
       background: none;
       border: none;
       color: var(--text-color);
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
-      padding: 0.5rem 1rem;
+      font-size: 1.25rem;
       cursor: pointer;
-      border-radius: 5px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.3s ease;
-    }
-
-    .dropdown-toggle:hover {
-      background: var(--accent-color);
-      color: #ffffff;
-    }
-
-    .dropdown-menu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: var(--nav-bg);
-      border-radius: 5px;
-      box-shadow: 0 5px 15px var(--card-shadow);
-      display: none;
-      flex-direction: column;
+      transition: color 0.3s ease;
       padding: 0.5rem;
-      min-width: 180px;
-      z-index: 1001;
+      border-radius: 4px;
     }
 
-    .dropdown:hover .dropdown-menu {
-      display: flex;
-    }
-
-    .dropdown-menu a,
-    .dropdown-menu .theme-option {
-      text-decoration: none;
-      color: var(--text-color);
-      font-size: 0.9rem;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.3s ease;
-    }
-
-    .dropdown-menu a:hover,
-    .dropdown-menu .theme-option:hover {
-      background: var(--accent-light);
-      color: #ffffff;
-    }
-
-    /* Back to Top Button */
-    #myBtn {
-      display: none;
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      z-index: 99;
-      border: none;
+    .sidebar-toggle:hover,
+    .sidebar-toggle:focus {
+      color: var(--accent-color);
+      background-color: rgba(0, 0, 0, 0.03);
       outline: none;
-      background-color: var(--accent-color);
-      color: white;
-      cursor: pointer;
-      padding: 15px;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      font-size: 1.2rem;
-      box-shadow: 0 4px 15px var(--card-shadow);
-      transition: all 0.3s;
     }
 
-    #myBtn:hover {
-      background-color: var(--accent-light);
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px var(--card-shadow);
-    }
-
-    /* Intro Section */
-    .intro-section {
-      margin-top: 80px;
-      padding: 4rem 5%;
-      background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
-      color: #ffffff;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .intro-content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .intro-content h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .intro-content p {
-      font-size: 1.1rem;
-      opacity: 0.9;
-    }
-
-    /* About Section */
-    #about {
-      padding: 3rem 5%;
-      background-color: var(--secondary-bg);
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      color: var(--accent-color);
-      margin-bottom: 2rem;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.5s ease;
-    }
-
-    .section-title.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    #about .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .about-container {
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 300px;
+      height: 100%;
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      box-shadow: 5px 0 25px rgba(0, 0, 0, 0.1);
+      z-index: 1001;
+      padding: 2rem;
+      transition: left 0.4s ease;
+      overflow-y: auto;
       display: flex;
-      flex-direction: row;
-      gap: 1.5rem;
-      align-items: center;
-      justify-content: space-between;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.5s ease;
+      flex-direction: column;
     }
 
-    .about-container.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .sidebar.active {
+      left: 0;
     }
 
-    #about .about-content {
-      background: var(--card-bg);
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px var(--card-shadow);
-      transition: transform var(--transition-speed);
-      flex: 2;
-    }
-
-    #about .about-content:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 5px 15px var(--card-shadow), 0 0 10px var(--accent-light);
-    }
-
-    #about .about-text {
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-      color: var(--text-color);
-    }
-
-    #about .about-text p {
-      margin-bottom: 0.5rem;
-    }
-
-    #about strong {
-      color: var(--accent-color);
-    }
-
-    .about-skills {
-      margin-top: 1rem;
-    }
-
-    .skills-title {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.25rem;
-      color: var(--accent-color);
-      margin-bottom: 0.5rem;
-      text-align: center;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 0.5rem;
-    }
-
-    .skill-item {
-      text-align: center;
-      padding: 0.5rem;
-      background: var(--secondary-bg);
-      border-radius: 5px;
-      transition: transform var(--transition-speed);
-    }
-
-    .skill-item:hover {
-      transform: scale(1.05);
-      background: var(--accent-light);
-    }
-
-    .skill-icon i {
-      font-size: 1.25rem;
-      color: var(--accent-color);
-      margin-bottom: 0.25rem;
-    }
-
-    .skill-name {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-color);
-    }
-
-    .luminary-tag {
-      display: block;
-      margin-top: 1rem;
-      font-family: 'Caveat', cursive;
-      font-size: 1.5rem;
-      color: var(--accent-light);
-      text-align: center;
-      font-weight: 700;
-    }
-
-    #about .about-image {
-      flex: 1;
-      max-width: 300px;
-      text-align: center;
-    }
-
-    #about img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      border-radius: 8px;
-      border: 4px solid var(--accent-color);
-      box-shadow: 0 5px 15px var(--card-shadow);
-      transition: transform var(--transition-speed);
-    }
-
-    #about img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 5px 15px var(--card-shadow), 0 0 10px var(--accent-light);
-    }
-
-    .founder-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--accent-color);
-      margin-bottom: 0.5rem;
-      transition: color var(--transition-speed);
-    }
-
-    .founder-name:hover {
-      color: var(--highlight);
-    }
-
-    .portfolio-link a {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      background-color: var(--accent-color);
-      color: var(--card-bg);
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: background-color var(--transition-speed), color var(--transition-speed), transform var(--transition-speed);
-    }
-
-    .portfolio-link a:hover {
-      background-color: var(--accent-light);
-      color: var(--highlight);
-      transform: translateY(-3px);
-    }
-
-
-.divider {
-  height: 50px; /* Controls the spacing between sections */
-  background: transparent; /* No background to avoid white color */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.divider::before {
-  content: '';
-  width: 50%; /* Width of the gradient line */
-  height: 2px; /* Thickness of the line */
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accent-color), /* Uses theme's accent color (e.g., #6a3093 for Luminary) */
-    transparent
-  );
-}
-
-    /* Footer Section */
-    .footer-section {
-      padding: 2rem 5%;
-      background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 100%);
-      color: #ffffff;
-      position: relative;
-      overflow: hidden;
-      margin-top: auto;
-    }
-
-    .footer-section::before {
-      content: '';
-      position: absolute;
+    .sidebar-overlay {
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      opacity: 0.2;
-      z-index: 0;
-    }
-
-    .footer-content {
-      position: relative;
-      z-index: 1;
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      padding: 1rem 0;
-    }
-
-    .footer-column h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .footer-column p,
-    .footer-column a {
-      font-size: 1rem;
-      color: #ffffff;
-      text-decoration: none;
-      margin-bottom: 0.4rem;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
       transition: all 0.3s ease;
     }
 
-    .footer-column a:hover {
-      color: var(--highlight);
-      transform: translateX(5px);
+    .sidebar-overlay.active {
+      opacity: 1;
+      visibility: visible;
     }
 
-    .footer-column a i {
-      font-size: 1.2rem;
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
 
-    .footer-column.socials a i {
-      font-size: 1.2rem;
+    .sidebar-close {
+      background: none;
+      border: none;
+      color: var(--text-color);
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      padding: 0.5rem;
+      border-radius: 4px;
     }
 
-    .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-      padding-top: 0.8rem;
-      text-align: center;
+    .sidebar-close:hover,
+    .sidebar-close:focus {
+      color: var(--accent-color);
+      background-color: rgba(0, 0, 0, 0.03);
+      outline: none;
+    }
+
+    .sidebar-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      flex-grow: 1;
+    }
+
+    .sidebar-menu h3 {
       font-size: 1rem;
-      margin-top: 1rem;
+      color: var(--accent-color);
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-family: 'Playfair Display', serif;
+      padding-left: 0.5rem;
+      font-weight: 600;
     }
 
-    .footer-bottom p {
-      margin: 0;
+    .sidebar-menu a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-size: 0.9rem;
+      padding: 0.75rem 1rem;
+      border-radius: var(--border-radius);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar-menu a:hover,
+    .sidebar-menu a:focus {
+      background: rgba(0, 0, 0, 0.03);
+      color: var(--accent-color);
+      outline: none;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 8rem 5% 4rem;
+      background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-light) 50%);
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .hero-text h1 {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-text .subheadline {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--highlight);
+      position: relative;
+      display: inline-block;
+      font-weight: 500;
+    }
+
+    .hero-text .subheadline::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100px;
+      height: 3px;
+      background: var(--highlight);
+      border-radius: 2px;
+    }
+
+    .hero-text p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
       opacity: 0.9;
+      max-width: 500px;
     }
 
-    /* Animations */
-    @keyframes slideIn {
+    .hero-text .cta-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .hero-logo-container {
+      flex: 0 0 320px;
+      text-align: center;
+      margin-left: -1.5rem;
+    }
+
+    .hero-logo {
+      display: block;
+      width: 300px;
+      height: auto;
+      margin: 0 auto;
+    }
+
+    .hero-content .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: var(--border-radius);
+      transition: all 0.3s ease;
+      box-shadow: var(--box-shadow);
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .hero-content .cta-button:hover,
+    .hero-content .cta-button:focus {
+      background: var(--highlight);
+      color: var(--text-color);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+    .hero-content .cta-button i {
+      font-size: 1rem;
+      transition: transform 0.3s ease;
+    }
+
+    .hero-content .cta-button:hover i,
+    .hero-content .cta-button:focus i {
+      transform: translateX(3px);
+    }
+
+    /* About Section */
+    .about-section {
+      padding: 5rem 0;
+      background: var(--pastel-blue);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+      background: var(--background-light);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--primary-light);
+      animation: fadeInUp 0.6s ease-out;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-image {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      z-index: 2;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform var(--transition-normal);
+    }
+
+    .about-image:hover img {
+      transform: scale(1.08);
+    }
+
+    .about-content {
+      padding: var(--space-md);
+      background: var(--pastel-blue);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      z-index: 2;
+    }
+
+    .about-content h3 {
+      font-size: 1.9rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+      position: relative;
+      padding-bottom: var(--space-xs);
+    }
+
+    .about-content h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--primary-light);
+    }
+
+    .about-role {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      margin-bottom: var(--space-sm);
+      font-style: italic;
+    }
+
+    .about-text p {
+      font-size: var(--text-base);
+      margin-bottom: var(--space-sm);
+      color: var(--text-dark);
+    }
+
+    .contact-info {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: var(--space-lg);
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--accent-color), var(--accent-light));
+      color: white;
+      border-radius: 50%;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all var(--transition-fast), transform var(--transition-fast);
+      box-shadow: 0 2px 8px rgba(30, 58, 138, 0.2);
+    }
+
+    .contact-info-item:hover {
+      background: linear-gradient(135deg, var(--accent-light), var(--accent-color));
+      transform: translateX(5px) scale(1.1);
+      box-shadow: 0 6px 16px rgba(30, 58, 138, 0.4);
+    }
+
+    .contact-info-item i {
+      color: white;
+      font-size: 1rem;
+    }
+
+    .contact-info-item.portfolio {
+      width: auto;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      gap: 0.5rem;
+      display: inline-flex;
+      background: var(--highlight);
+      color: var(--text-color);
+    }
+
+    .contact-info-item.portfolio:hover {
+      background: var(--accent-light);
+      color: white;
+    }
+
+    .contact-info-item.portfolio i {
+      color: var(--text-color);
+    }
+
+    .contact-info-item.portfolio:hover i {
+      color: white;
+    }
+
+    .about-decoration {
+      position: absolute;
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--primary-light) 0%, transparent 70%);
+      opacity: 0.12;
+      bottom: -120px;
+      left: -120px;
+      z-index: 1;
+    }
+
+    @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(20px);
       }
       to {
         opacity: 1;
@@ -611,262 +631,314 @@
       }
     }
 
-    /* Responsive Design */
-    @media (max-width: 992px) {
-      .about-container {
-        flex-direction: column;
-        text-align: center;
-      }
+    /* Footer Section */
+    .footer-section {
+      padding: 3rem 5% 1rem;
+      background: var(--footer-bg);
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+    }
 
-      #about .about-image {
-        max-width: 260px;
-        margin: 1rem auto;
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      gap: 2rem;
+      padding: 1rem 0;
+    }
+
+    .footer-column h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+      font-weight: 600;
+    }
+
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--highlight);
+    }
+
+    .footer-column p {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      margin-bottom: 0.8rem;
+      opacity: 0.9;
+    }
+
+    .footer-column.socials {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .footer-column.socials .social-icons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .footer-column.socials a {
+      font-size: 1.5rem;
+      color: #ffffff;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-column.socials a:hover {
+      color: var(--highlight);
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-column.links {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem 1rem;
+    }
+
+    .footer-column.links a {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      padding: 0.25rem 0;
+    }
+
+    .footer-column.links a:hover {
+      color: var(--highlight);
+      transform: translateX(3px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    .footer-bottom p {
+      margin: 0;
+      opacity: 0.8;
+    }
+
+    /* Theme Toggle and Scroll to Top */
+    .theme-toggle, .scroll-to-top {
+      position: fixed;
+      bottom: 7rem;
+      right: 2rem;
+      width: 40px;
+      height: 40px;
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      z-index: 999;
+      box-shadow: var(--box-shadow);
+    }
+
+    .scroll-to-top {
+      bottom: 2rem;
+    }
+
+    .theme-toggle.visible, .scroll-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .theme-toggle:hover, .scroll-to-top:hover {
+      background: var(--accent-light);
+      transform: translateY(-3px);
+    }
+
+    .theme-menu {
+      position: fixed;
+      bottom: 8rem;
+      right: 2rem;
+      background: var(--card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 1rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      z-index: 1000;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: all 0.3s ease;
+    }
+
+    .theme-menu.active {
+      display: flex;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .theme-circle {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .theme-circle:hover {
+      transform: scale(1.1);
+      border-color: var(--accent-color);
+    }
+
+    .theme-circle.luminary { background: #f2f3f5; color: #1e3a8a; }
+    .theme-circle.cosmic { background: #f8f4f6; color: #800020; }
+    .theme-circle.ocean { background: #f0f8ff; color: #0077be; }
+    .theme-circle.blush { background: #fdf2f8; color: #ec4899; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-content { flex-direction: column; gap: 2rem; text-align: center; }
+      .hero-text h1 { font-size: 3.5rem; }
+      .hero-logo { width: 250px; }
+      .about-container { 
+        grid-template-columns: 1fr; 
+        gap: 3rem; 
+        text-align: center; 
       }
+      .contact-info { justify-content: center; }
+      .tagline { text-align: center; }
     }
 
     @media (max-width: 768px) {
-      .navbar {
-        padding: 1rem;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      .nav-menu {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .intro-content h1 {
-        font-size: 2rem;
-      }
-
-      .intro-content p {
-        font-size: 1rem;
-      }
-
-      .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .footer-column a {
-        justify-content: center;
-      }
-
-      .footer-column h3 {
-        font-size: 1.3rem;
-      }
-
-      .footer-column p,
-      .footer-column a {
-        font-size: 0.9rem;
-      }
-
-      .footer-column a i,
-      .footer-column.socials a i {
-        font-size: 1.1rem;
-      }
-
-      .footer-bottom {
-        font-size: 0.9rem;
-      }
+      .hero-section { padding: 6rem 4% 3rem; }
+      .hero-text h1 { font-size: 3rem; }
+      .about-section { padding: 3rem 0; }
     }
 
     @media (max-width: 480px) {
-      .logo {
-        font-size: 1.5rem;
-      }
-
-      .dropdown-toggle {
-        font-size: 0.9rem;
-        padding: 0.4rem 0.8rem;
-      }
-
-      .intro-content h1 {
-        font-size: 1.8rem;
-      }
-
-      .section-title {
-        font-size: 1.8rem;
-      }
-
-      .founder-name {
-        font-size: 1rem;
-      }
-
-      .portfolio-link a {
-        font-size: 0.8rem;
-        padding: 0.4rem 0.8rem;
-      }
-
-      .footer-column h3 {
-        font-size: 1.3rem;
-      }
-
-      .footer-column p,
-      .footer-column a {
-        font-size: 0.9rem;
-      }
-
-      .footer-column a i,
-      .footer-column.socials a i {
-        font-size: 1.1rem;
-      }
-
-      .footer-bottom {
-        font-size: 0.9rem;
-      }
+      .hero-text h1 { font-size: 2.5rem; }
+      .about-container { padding: var(--space-md); }
     }
   </style>
 </head>
-<body>
-  <!-- Custom Cursor -->
-  <div class="custom-cursor" id="customCursor"></div>
-
-  <!-- Preloader -->
-  <div class="loader" id="loader"></div>
-
-  <!-- Back to Top Button -->
-  <button onclick="topFunction()" id="myBtn" title="Go to top">
-    <i class="fas fa-arrow-up"></i>
-  </button>
+<body data-theme="luminary">
 
   <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo" onclick="window.location.href='index.html'">Dear Future Luminary</div>
-    <div class="nav-menu">
-      <div class="dropdown">
-        <button class="dropdown-toggle"><i class="fas fa-bars"></i> Menu</button>
-        <div class="dropdown-menu">
-          <a href="index.html"><i class="fas fa-home"></i> Home</a>
-          <a href="scholarships-Kit.html"><i class="fas fa-graduation-cap"></i> Scholarships</a>
-          <a href="roadmaps.html"><i class="fas fa-map-signs"></i> Roadmaps</a>
-          <a href="profile-building.html"><i class="fas fa-user-tie"></i> Profile Building</a>
-          <a href="my-story.html"><i class="fas fa-star"></i> My Story</a>
-          <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
-        </div>
-      </div>
-      <div class="dropdown">
-        <button class="dropdown-toggle"><i class="fas fa-palette"></i> Themes</button>
-        <div class="dropdown-menu">
-          <div class="theme-option" data-theme="luminary"><i class="fas fa-sun"></i> Luminary</div>
-          <div class="theme-option" data-theme="elegant"><i class="fas fa-gem"></i> Elegant</div>
-          <div class="theme-option" data-theme="cosmic"><i class="fas fa-star"></i> Cosmic</div>
-          <div class="theme-option" data-theme="bright"><i class="fas fa-lightbulb"></i> Bright</div>
-          <div class="theme-option" data-theme="vibrant"><i class="fas fa-bolt"></i> Vibrant</div>
-        </div>
-      </div>
+  <nav class="navbar" id="navbar">
+    <div class="navbar-left">
+      <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+      <div class="tagline" id="tagline"></div>
     </div>
+    <a href="index.html" class="logo">Dear Future Luminary</a>
   </nav>
 
-  <!-- Intro Section -->
-  <section class="intro-section">
-    <div class="intro-content">
-      <h1>Meet Our Team</h1>
-      <p>Discover the passionate individuals driving Dear Future Luminary to empower students worldwide.</p>
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h3>Menu</h3>
+      <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="sidebar-menu">
+      <h3>Pages</h3>
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="scholarships-Kit.html"><i class="fas fa-graduation-cap"></i> Scholarships</a>
+      <a href="roadmaps.html"><i class="fas fa-map-signs"></i> Roadmaps</a>
+      <a href="profile-building.html"><i class="fas fa-user-tie"></i> Profile Building</a>
+      <a href="my-story.html"><i class="fas fa-star"></i> My Story</a>
+      <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="heroSection">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Meet Our Team</h1>
+        <div class="subheadline">Passionate Minds Empowering Futures</div>
+        <p>Discover the dedicated individuals behind Dear Future Luminary, committed to inspiring and guiding students toward extraordinary achievements.</p>
+        <div class="cta-buttons">
+          <a href="#aboutSection" class="cta-button"><i class="fas fa-users"></i> Learn More</a>
+        </div>
+      </div>
+      <div class="hero-logo-container">
+        <img src="F:\Dear Future Luminary\Hero Section.svg\INFO.svg" alt="Dear Future Luminary Logo" class="hero-logo">
+      </div>
     </div>
   </section>
 
-<!-- About Section -->
-<section id="about">
-  <h2 class="section-title">Our Team</h2>
+  <div class="section-divider"></div>
 
-  <!-- Malak Emad - Founder -->
-  <div class="container">
+  <!-- About Section -->
+  <section class="about-section" id="aboutSection">
     <div class="about-container">
-      <div class="about-content">
-        <div class="about-text">
-          <p>STEM enthusiast, social media strategist, and community leader with experience in content creation, marketing, and project management.</p>
-          <p>Skilled in event organization, team leadership, and audience engagement. Passionate about education, sustainability, and innovation, with a track record of driving impactful initiatives.</p>
-        </div>
-        <div class="about-skills">
-  <h2 class="skills-title">Skills</h2>
-  <div class="skills-grid">
-    <div class="skill-item">
-      <div class="skill-icon"><i class="fas fa-users"></i></div>
-      <span class="skill-name">Leadership</span>
-    </div>
-    <div class="skill-item">
-      <div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
-      <span class="skill-name">Web Development</span>
-    </div>
-    <div class="skill-item">
-      <div class="skill-icon"><i class="fas fa-microphone"></i></div>
-      <span class="skill-name">Public Speaking</span>
-    </div>
-    <div class="skill-item">
-      <div class="skill-icon"><i class="fas fa-lightbulb"></i></div>
-      <span class="skill-name">Problem-Solving</span>
-    </div>
-    <div class="skill-item">
-      <div class="skill-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-      <span class="skill-name">Mentorship</span>
-    </div>
-<div class="skill-item">
-      <div class="skill-icon"><i class="fas fa-flask"></i></div>
-      <span class="skill-name">STEM Research</span>
-        </div>
-        </div>
-        </div>
-        </div>
       <div class="about-image">
-        <div class="founder-name">Malak Emad | Founder</div>
-        <img src="Formal-purple.jpg" alt="Malak Emad" loading="lazy">
-        <div class="portfolio-link">
-          <a href="https://malakemad2007.github.io/My-portfolio/" target="_blank">View Portfolio</a>
-        </div>
+        <img src="D:\Others\Formal-purple.jpg" alt="Malak Emad">
       </div>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- Ahmed Salah - Co-Founder 
-  <div class="container">
-    <div class="about-container">
+      
       <div class="about-content">
+        <h3>Hello, I'm Malak</h3>
+        <div class="about-role">Founder & Visionary Leader</div>
         <div class="about-text">
-          <p>Obsessed with innovation, driven by systems thinking, and deeply in love with mathematics. I believe in turning problems into prototypes & prototypes into scalable solutions.</p>
-          <p>At 11, he closed his first freelance deal. At 13, he was training 500+ students in mental math. At 17, he developed an economic theory to rethink how wealth sustains societies.</p>
+          <p>A dedicated STEM enthusiast, social media strategist, and community leader with expertise in content creation, project management, and team leadership.</p>
+          <p>Proficient in driving impactful initiatives focused on education, sustainability, and technological innovation.</p>
         </div>
-        <div class="about-skills">
-          <h2 class="skills-title">Skills</h2>
-          <div class="skills-grid">
-            <div class="skill-item">
-              <div class="skill-icon"><i class="fas fa-project-diagram"></i></div>
-              <span class="skill-name">Systems Thinking</span>
-            </div>
-            <div class="skill-item">
-              <div class="skill-icon"><i class="fas fa-chalkboard"></i></div>
-              <span class="skill-name">Educational Program Design</span>
-            </div>
-            <div class="skill-item">
-              <div class="skill-icon"><i class="fas fa-user-tie"></i></div>
-              <span class="skill-name">Leadership</span>
-            </div>
-            <div class="skill-item">
-              <div class="skill-icon"><i class="fas fa-comments"></i></div>
-              <span class="skill-name">Strategic Communication</span>
-            </div>
-            <div class="skill-item">
-              <div class="skill-icon"><i class="fas fa-lightbulb"></i></div>
-              <span class="skill-name">Social Innovation</span>
-            </div>
-            <div class="skill-item">
-              <div class="skill-icon"><i class="fas fa-tasks"></i></div>
-              <span class="skill-name">Project Management</span>
-            </div>
-          </div>
+        
+        <div class="contact-info">
+          <a href="mailto:malakemad7777777@gmail.com" class="contact-info-item" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-envelope"></i>
+          </a>
+          <a href="https://wa.me/201090879843" class="contact-info-item" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/malak-savvy-t" class="contact-info-item" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://www.youtube.com/@malak_luminary" class="contact-info-item" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-youtube"></i>
+          </a>
+          <a href="https://malakemad2007.github.io/My-portfolio/" class="contact-info-item portfolio" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-briefcase"></i> Visit Portfolio
+          </a>
         </div>
-      </div>
-      <div class="about-image">
-        <div class="founder-name">Ahmed Salah | Co-Founder</div>
-        <img src="ahmed-salah-formal-pic.jpeg" alt="Ahmed Salah" loading="lazy">
+        
       </div>
     </div>
-  </div>
-</section> -->
-
+    <div class="about-decoration"></div>
+  </section>
 
   <!-- Footer Section -->
   <section class="footer-section" id="footer">
@@ -875,7 +947,7 @@
         <h3>Dear Future Luminary</h3>
         <p>Guiding you to an inspiring future.</p>
       </div>
-      <div class="footer-column">
+      <div class="footer-column links">
         <h3>Quick Links</h3>
         <a href="index.html"><i class="fas fa-home"></i> Home</a>
         <a href="scholarships-Kit.html"><i class="fas fa-graduation-cap"></i> Scholarships</a>
@@ -886,10 +958,12 @@
       </div>
       <div class="footer-column socials">
         <h3>Connect With Us</h3>
-        <a href="mailto:dear.future.luminary@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-        <a href="https://www.facebook.com/profile.php?id=61579085334238" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
-        <a href="https://www.instagram.com/dear.future.luminary/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-        <a href="https://www.linkedin.com/company/dear-future-luminary" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+        <div class="social-icons">
+          <a href="mailto:dear.future.luminary@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61579085334238" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/dear.future.luminary/" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/company/dear-future-luminary" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        </div>
       </div>
     </div>
     <div class="footer-bottom">
@@ -897,65 +971,153 @@
     </div>
   </section>
 
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle"><i class="fas fa-palette"></i></button>
+
+  <!-- Theme Menu -->
+  <div class="theme-menu" id="themeMenu">
+    <div class="theme-circle luminary" data-theme="luminary" title="Luminary Glow"><i class="fas fa-star"></i></div>
+    <div class="theme-circle cosmic" data-theme="cosmic" title="Cosmic Burgundy"><i class="fas fa-heart"></i></div>
+    <div class="theme-circle ocean" data-theme="ocean" title="Ocean Blue"><i class="fas fa-water"></i></div>
+    <div class="theme-circle blush" data-theme="blush" title="Blush Pink"><i class="fas fa-ribbon"></i></div>
+  </div>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" id="scrollToTop"><i class="fas fa-chevron-up"></i></button>
+
   <script>
-    // Custom Cursor
-    const customCursor = document.getElementById('customCursor');
-    document.addEventListener('mousemove', (e) => {
-      customCursor.style.left = `${e.clientX}px`;
-      customCursor.style.top = `${e.clientY}px`;
-    });
-
-    document.querySelectorAll('a, button, .about-container').forEach(el => {
-      el.addEventListener('mouseenter', () => customCursor.classList.add('active'));
-      el.addEventListener('mouseleave', () => customCursor.classList.remove('active'));
-    });
-
-    // Preloader
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('loader').classList.add('hidden');
-        document.body.style.overflow = 'auto';
-      }, 800);
-    });
-
-    // Theme Selector
-    document.querySelectorAll('.theme-option').forEach(option => {
-      option.addEventListener('click', () => {
-        const theme = option.getAttribute('data-theme');
-        document.body.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
+    // Navbar Scroll Effect
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
       });
-    });
+    }
 
-    // Load Saved Theme
+    // Sidebar Functionality
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarClose = document.getElementById('sidebarClose');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    if (sidebarToggle && sidebar && sidebarClose && sidebarOverlay) {
+      sidebarToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        sidebar.classList.add('active');
+        sidebarOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+
+      sidebarClose.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+        sidebarOverlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+
+      sidebarOverlay.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+        sidebarOverlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      });
+    }
+
+    // Theme Functionality
+    const themeToggle = document.getElementById('themeToggle');
+    const themeMenu = document.getElementById('themeMenu');
+
+    if (themeToggle && themeMenu) {
+      themeToggle.addEventListener('click', () => {
+        themeMenu.classList.toggle('active');
+      });
+
+      document.querySelectorAll('.theme-circle').forEach(option => {
+        option.addEventListener('click', () => {
+          const theme = option.getAttribute('data-theme');
+          document.body.setAttribute('data-theme', theme);
+          localStorage.setItem('theme', theme);
+          themeMenu.classList.remove('active');
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!themeToggle.contains(e.target) && !themeMenu.contains(e.target)) {
+          themeMenu.classList.remove('active');
+        }
+      });
+    }
+
     const savedTheme = localStorage.getItem('theme') || 'luminary';
     document.body.setAttribute('data-theme', savedTheme);
 
-    // Back to Top Button
-    window.onscroll = function() {scrollFunction()};
-
-    function scrollFunction() {
-      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        document.getElementById("myBtn").style.display = "block";
-      } else {
-        document.getElementById("myBtn").style.display = "none";
-      }
-    }
-
-    function topFunction() {
-      document.body.scrollTop = 0;
-      document.documentElement.scrollTop = 0;
-    }
-
-    // Scroll Animations
-    window.addEventListener('scroll', () => {
-      document.querySelectorAll('.about-container, .section-title').forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight * 0.9) {
-          el.classList.add('visible');
+    // Scroll to Top
+    const scrollToTopButton = document.getElementById('scrollToTop');
+    if (scrollToTopButton && themeToggle) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          scrollToTopButton.classList.add('visible');
+          themeToggle.classList.add('visible');
+        } else {
+          scrollToTopButton.classList.remove('visible');
+          themeToggle.classList.remove('visible');
         }
       });
-    });
+
+      scrollToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // Typewriter Tagline
+    const taglines = [
+      "Student-led, just like you.",
+      "Your spark, our mission.",
+      "Gen Z for Gen Z.",
+      "We light the way.",
+      "You are the future.",
+      "Dreams deserve action.",
+      "Step into extraordinary.",
+      "Just begin today.",
+      "Glow to the world."
+    ];
+
+    const taglineElement = document.getElementById('tagline');
+    if (taglineElement) {
+      let currentTagline = 0;
+      let i = 0;
+      let typing = true;
+      let text = '';
+
+      function typeWriter() {
+        if (typing) {
+          if (i < taglines[currentTagline].length) {
+            text += taglines[currentTagline].charAt(i);
+            taglineElement.textContent = text;
+            i++;
+            setTimeout(typeWriter, 60);
+          } else {
+            typing = false;
+            setTimeout(typeWriter, 2500);
+          }
+        } else {
+          if (i > 0) {
+            text = text.slice(0, -1);
+            taglineElement.textContent = text;
+            i--;
+            setTimeout(typeWriter, 40);
+          } else {
+            typing = true;
+            currentTagline = (currentTagline + 1) % taglines.length;
+            setTimeout(typeWriter, 600);
+          }
+        }
+      }
+
+      typeWriter();
+    }
   </script>
 </body>
 </html>
