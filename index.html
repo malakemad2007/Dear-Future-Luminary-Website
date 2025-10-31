@@ -56,12 +56,29 @@
       --text-light: #4a3628;
       --accent-color: #800020;
       --accent-light: #a52a2a;
-      --highlight: #d4af37;
+      --highlight: #d4af37; /* Gold/Yellow for highlight */
       --card-bg: #ffffff;
       --nav-bg: rgba(248, 244, 246, 0.95);
       --footer-bg: #3d1b1b;
       --section-bg: #f8f4f6;
       --section-alt-bg: #e8d5d5;
+    }
+
+    /* Cosmic Theme Hover Fix */
+    [data-theme="cosmic"] .tile a:hover,
+    [data-theme="cosmic"] .tile a:focus {
+      background: var(--highlight); /* Use Gold for hover background */
+      color: var(--text-color); /* Dark text on Gold */
+      transform: translateX(3px);
+      outline: none;
+    }
+
+    [data-theme="cosmic"] .hero-content .cta-button:hover,
+    [data-theme="cosmic"] .hero-content .cta-button:focus {
+      background: var(--highlight); /* Use Gold for hover background */
+      color: var(--text-color); /* Dark text on Gold */
+      transform: translateY(-2px);
+      outline: none;
     }
 
     [data-theme="ocean"] {
@@ -158,6 +175,8 @@
     .loader.hidden {
       opacity: 0;
       pointer-events: none;
+      visibility: hidden;
+      display: none;
     }
 
     .loader-spinner {
@@ -703,26 +722,26 @@
     }
 
     .contact-form {
-      max-width: 500px;
+      max-width: 600px; /* Increased width for better look */
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      padding: 2rem;
+      gap: 1.5rem;
+      padding: 2.5rem;
       background: var(--card-bg);
-      border-radius: var(--border-radius);
-      box-shadow: var(--card-shadow);
+      border-radius: 16px; /* Rounded edges */
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* Softer shadow */
     }
 
     .contact-form input,
     .contact-form textarea {
-      padding: 1rem;
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      border-radius: var(--border-radius);
+      padding: 1.2rem;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
       font-size: 1rem;
-      background: var(--primary-bg);
+      background: #f9fafb;
       color: var(--text-color);
-      transition: all 0.3s ease;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
       font-family: 'Inter', sans-serif;
     }
 
@@ -730,19 +749,25 @@
     .contact-form textarea:focus {
       outline: none;
       border-color: var(--accent-color);
-      box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.1);
+      box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 120px;
     }
 
     .contact-form button {
-      padding: 1rem;
+      padding: 1.2rem;
       background: var(--accent-color);
       color: #ffffff;
       border: none;
-      border-radius: var(--border-radius);
+      border-radius: 8px;
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: background 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .contact-form button:hover,
@@ -750,6 +775,7 @@
       background: var(--accent-light);
       transform: translateY(-2px);
       outline: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     }
 
     /* Footer Section - Compact */
@@ -888,56 +914,97 @@
 
     .popup-content {
       background: var(--card-bg);
-      padding: 2.5rem;
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
-      max-width: 500px;
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      max-width: 700px; /* Increased width for wider popup */
       width: 90%;
       text-align: center;
       position: relative;
       transform: scale(0.9);
       transition: transform 0.3s ease;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem; /* Organized spacing */
     }
 
     .popup.active .popup-content {
       transform: scale(1);
     }
 
-    .popup-content i {
-      font-size: 3rem;
+    .popup-content .popup-close-x {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text-light);
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .popup-content .popup-close-x:hover {
       color: var(--accent-color);
-      margin-bottom: 1rem;
+    }
+
+    .popup-content i {
+      font-size: 2rem;
+      color: var(--accent-color);
+      margin-bottom: 0.75rem;
     }
 
     .popup-content h1 {
-      font-size: 1.8rem;
+      font-size: 1.4rem;
       color: var(--text-color);
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
 
     .popup-content p {
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-      line-height: 1.6;
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
     }
 
-    .popup-content button {
-      padding: 1rem 2rem;
+    .popup-content ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 0.75rem;
+      text-align: left;
+      max-width: 350px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .popup-content ul li {
+      margin-bottom: 0.4rem;
+      font-size: 0.9rem;
+    }
+
+    .popup-content ul li i {
+      color: var(--highlight);
+      margin-right: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .popup-content .cta-button {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.8rem 1.5rem;
       background: var(--accent-color);
       color: #ffffff;
-      border: none;
-      border-radius: var(--border-radius);
-      font-size: 1rem;
+      text-decoration: none;
       font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
+      border-radius: 8px;
+      transition: background 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      justify-content: center; /* Centered text */
     }
 
-    .popup-content button:hover,
-    .popup-content button:focus {
+    .popup-content .cta-button:hover {
       background: var(--accent-light);
       transform: translateY(-2px);
-      outline: none;
     }
 
     /* Theme Toggle Button and Menu */
@@ -1284,6 +1351,27 @@
         font-size: 1rem;
       }
     }
+
+    /* Additional Styles for Professional Button */
+    .story-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.6rem;
+      background: var(--accent-color);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .story-button:hover {
+      background: var(--accent-light);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
   </style>
 </head>
 <body data-theme="luminary">
@@ -1312,13 +1400,15 @@
       <button class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></button>
     </div>
     <div class="sidebar-menu">
-      <h3>Pages</h3>
+      <h3>Journey</h3>
       <a href="index.html"><i class="fas fa-home"></i> Home</a>
-      <a href="scholarships-Kit.html"><i class="fas fa-graduation-cap"></i> Scholarships</a>
       <a href="roadmaps.html"><i class="fas fa-map-signs"></i> Roadmaps</a>
+      <a href="scholarships-kit.html"><i class="fas fa-graduation-cap"></i> Scholarship Hub</a>
       <a href="profile-building.html"><i class="fas fa-user-tie"></i> Profile Building</a>
-      <a href="my-story.html"><i class="fas fa-star"></i> My Story</a>
-      <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+      <a href="our-story.html"><i class="fas fa-lightbulb"></i> Our Story & Vision</a>
+      <h3>Community</h3>
+      <a href="community-space.html"><i class="fas fa-handshake"></i> Community Space</a>
+      <a href="mentorship.html"><i class="fas fa-chalkboard-teacher"></i> Mentorship</a>
     </div>
   </div>
 
@@ -1327,11 +1417,12 @@
     <div class="hero-content">
       <div class="hero-text">
         <h1>Dear Future Luminary</h1>
-        <div class="subheadline">"For the Future that is waiting ♡"</div>
-        <p>A youth-led hub helping Gen Z students find global opportunities, build their profiles, and level up.</p>
+        <div class="subheadline">For the Future that's Watching.</div>
+        <p>Discover Your Inner Light. Build Your Conscious Path. Share Your Impact. We're here to help you find your spark, build your path, and make your mark on the world. You're not alone on this journey.</p>
         <div class="cta-buttons">
-          <a href="#tilesSection" class="cta-button"><i class="fas fa-compass"></i> Explore Opportunities</a>
-          <button class="cta-button" id="joinMovement"><i class="fas fa-handshake"></i> Join the Movement</button>
+          <a href="roadmaps.html" class="cta-button"><i class="fas fa-route"></i> Roadmaps</a>
+          <a href="scholarships-kit.html" class="cta-button"><i class="fas fa-graduation-cap"></i> Scholarship Hub</a>
+          <a href="community-space.html" class="cta-button"><i class="fas fa-handshake"></i> Community</a>
         </div>
       </div>
       <div class="hero-logo-container">
@@ -1341,6 +1432,24 @@
   </section>
 
   <!-- Who Are We Section -->
+  <section class="who-we-are-section section-padding">
+    <div class="section-container">
+      <div class="section-title">
+        <h2>We Get It. We're Just Like You.</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="who-we-are-content">
+        <div class="who-we-are-text">
+          <p>Hey there! We know the journey can feel overwhelming. That's why <span class="highlight">Dear Future Luminary</span> was started by Malak Emad—a student who felt the same way and decided to light a path for all of us.</p>
+          <p>I am not an expert from a distance; I am your big sister in this journey. My mission is simple: to help you see the incredible potential you already have and connect you with the resources (and the right mindset!) to make your dreams happen.</p>
+          <p><strong>"Your profile is not a list of achievements; it's the narrative of your potential impact."</strong></p>
+          <a href="our-story.html" class="story-button">Read Our Story <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <!-- Who Are We Section -->
   <section class="who-we-are-section section-padding">
     <div class="section-container">
       <div class="section-title">
@@ -1400,41 +1509,41 @@
   <section class="tiles-section section-padding" id="tilesSection">
     <div class="section-container">
       <div class="section-title">
-        <h2>Explore Opportunities</h2>
+        <h2>Ready to Shine? Start Here.</h2>
         <div class="divider"></div>
       </div>
       <div class="tile-container">
         <div class="tile">
           <div class="tile-header">
-            <i class="fas fa-graduation-cap"></i>
-            <h3>Scholarships Kit</h3>
-          </div>
-          <p>Your go-to zone for everything scholarships are about.</p>
-          <a href="scholarships-Kit.html">Learn More <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="tile">
-          <div class="tile-header">
             <i class="fas fa-map-signs"></i>
             <h3>Roadmaps</h3>
           </div>
-          <p>We've mapped the journey for you—from confused to confident.</p>
-          <a href="roadmaps.html">Learn More <i class="fas fa-arrow-right"></i></a>
+          <p>Feeling lost? We've mapped out the best learning paths for you—from finding your passion to building high-demand skills.</p>
+          <a href="roadmaps.html">Explore Roadmaps <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="tile">
+          <div class="tile-header">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>Scholarship Hub</h3>
+          </div>
+          <p>Your go-to guide for finding and applying for those life-changing scholarships and global programs. Let's make your application shine!</p>
+          <a href="scholarships-kit.html">Find Opportunities <i class="fas fa-arrow-right"></i></a>
         </div>
         <div class="tile">
           <div class="tile-header">
             <i class="fas fa-user-tie"></i>
             <h3>Profile Building</h3>
           </div>
-          <p>Build a strong, clear presence for applications, interviews, and beyond.</p>
-          <a href="profile-building.html">Learn More <i class="fas fa-arrow-right"></i></a>
+          <p>Stop stressing over your CV! We'll show you how to build a strong profile that tells your unique story and potential.</p>
+          <a href="profile-building.html">Build Your Profile <i class="fas fa-arrow-right"></i></a>
         </div>
         <div class="tile">
           <div class="tile-header">
-            <i class="fas fa-star"></i>
-            <h3>My Story</h3>
+            <i class="fas fa-handshake"></i>
+            <h3>Community Space</h3>
           </div>
-          <p>Learn about my journey!</p>
-          <a href="my-story.html">Learn More <i class="fas fa-arrow-right"></i></a>
+          <p>You don't have to walk alone. Join our supportive community of students who get it and are ready to collaborate and cheer you on.</p>
+          <a href="community-space.html">Join the Community <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
     </div>
@@ -1462,16 +1571,16 @@
       <div class="footer-content">
         <div class="footer-column">
           <h3>Dear Future Luminary</h3>
-          <p>Guiding you to an inspiring future.</p>
+          <p>Luminaries don't shine alone. We light the way for each other.</p>
         </div>
         <div class="footer-column links">
           <h3>Quick Links</h3>
           <a href="index.html"><i class="fas fa-home"></i> Home</a>
-          <a href="scholarships-Kit.html"><i class="fas fa-graduation-cap"></i> Scholarships</a>
           <a href="roadmaps.html"><i class="fas fa-map-signs"></i> Roadmaps</a>
+             <a href="scholarships-kit.html"><i class="fas fa-graduation-cap"></i> Scholarship Hub</a>
           <a href="profile-building.html"><i class="fas fa-user-tie"></i> Profile Building</a>
-          <a href="my-story.html"><i class="fas fa-star"></i> My Story</a>
-          <a href="about.html"><i class="fas fa-info-circle"></i> About Us</a>
+          <a href="our-story.html"><i class="fas fa-lightbulb"></i> Our Story & Vision</a>
+          <a href="community-space.html"><i class="fas fa-handshake"></i> Community Space</a>
         </div>
         <div class="footer-column socials">
           <h3>Connect With Us</h3>
@@ -1481,6 +1590,8 @@
             <a href="https://www.instagram.com/dear.future.luminary/" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://www.linkedin.com/company/dear-future-luminary" target="_blank"><i class="fab fa-linkedin-in"></i></a>
           </div>
+          <button id="joinTeamButton" class="cta-button" style="margin-top: 1rem; padding: 0.75rem 1.5rem; background: var(--highlight); color: var(--text-color); text-decoration: none; font-weight: 600; border-radius: var(--border-radius); transition: all 0.3s ease; font-size: 0.9rem; border: none; cursor: pointer;">Join Us (Team) <i class="fas fa-arrow-right"></i></button>
+          <button id="newsletterButton" class="cta-button" style="margin-top: 1rem; padding: 0.75rem 1.5rem; background: var(--highlight); color: var(--text-color); text-decoration: none; font-weight: 600; border-radius: var(--border-radius); transition: all 0.3s ease; font-size: 0.9rem; border: none; cursor: pointer;">Join Our Newsletter <i class="fas fa-arrow-right"></i></button>
         </div>
       </div>
       <div class="footer-bottom">
@@ -1513,26 +1624,45 @@
     </div>
   </div>
 
-  <!-- Join Movement Popup -->
-  <div class="popup" id="joinPopup">
+  <!-- Join Team Popup -->
+  <div class="popup" id="joinTeamPopup">
     <div class="popup-content">
-      <i class="fas fa-heart"></i>
-      <h1>Thank You!</h1>
-      <p>We're not hiring right now, but stay tuned for future opportunities!</p>
-      <button class="popup-close" id="joinPopupClose">Close</button>
+      <button class="popup-close-x" id="joinTeamPopupClose"><i class="fas fa-times"></i></button>
+      <i class="fas fa-lightbulb"></i>
+      <h1>Welcome to Dear Future Luminary!</h1>
+      <p>We are building a community of students who act, grow, and support each other. If you value honesty, consistency, and purpose, you'll fit here.</p>
+      <h3>Here is what we look for:</h3>
+      <ul>
+        <li><i class="fas fa-check-circle"></i> A positive attitude toward learning.</li>
+        <li><i class="fas fa-check-circle"></i> Clear communication and reliability.</li>
+        <li><i class="fas fa-check-circle"></i> Respect for others’ time and ideas.</li>
+        <li><i class="fas fa-check-circle"></i> A genuine interest in the mission.</li>
+      </ul>
+      <p>If this feels like you, apply below. Let’s build something meaningful together.</p>
+      <a href="https://forms.gle/jPNB9qX1WrwcFsKX8" target="_blank" class="cta-button">Fill out the Application Form</a>
     </div>
   </div>
 
+  <script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/unique-methods/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script>
+
   <script>
-    // Preloader
+    // Preloader Fix: Ensure the loader disappears after content loads
     const loader = document.getElementById('loader');
     if (loader) {
-      window.addEventListener('load', () => {
+      const hideLoader = () => {
+        loader.classList.add('hidden');
         setTimeout(() => {
-          loader.classList.add('hidden');
+          loader.style.display = 'none';
           document.body.style.overflow = 'auto';
-        }, 800);
-      });
+        }, 600);
+      };
+
+      if (document.readyState === 'complete') {
+        hideLoader();
+      } else {
+        window.addEventListener('load', hideLoader);
+        setTimeout(hideLoader, 2000);
+      }
     }
 
     // Navbar scroll effect
@@ -1643,23 +1773,26 @@
       });
     }
 
-    // Join Movement Popup
-    const joinMovementButton = document.getElementById('joinMovement');
-    const joinPopup = document.getElementById('joinPopup');
-    const joinPopupClose = document.getElementById('joinPopupClose');
+    // Join Team Popup Functionality
+    const joinTeamButton = document.getElementById('joinTeamButton');
+    const joinTeamPopup = document.getElementById('joinTeamPopup');
+    const joinTeamPopupClose = document.getElementById('joinTeamPopupClose');
 
-    if (joinMovementButton && joinPopup && joinPopupClose) {
-      joinMovementButton.addEventListener('click', () => {
-        joinPopup.classList.add('active');
+    if (joinTeamButton && joinTeamPopup && joinTeamPopupClose) {
+      joinTeamButton.addEventListener('click', () => {
+        joinTeamPopup.classList.add('active');
+        document.body.style.overflow = 'hidden';
       });
 
-      joinPopupClose.addEventListener('click', () => {
-        joinPopup.classList.remove('active');
+      joinTeamPopupClose.addEventListener('click', () => {
+        joinTeamPopup.classList.remove('active');
+        document.body.style.overflow = 'auto';
       });
 
-      document.addEventListener('click', (e) => {
-        if (joinPopup.classList.contains('active') && !joinPopup.querySelector('.popup-content').contains(e.target) && e.target !== joinMovementButton) {
-          joinPopup.classList.remove('active');
+      joinTeamPopup.addEventListener('click', (e) => {
+        if (e.target === joinTeamPopup) {
+          joinTeamPopup.classList.remove('active');
+          document.body.style.overflow = 'auto';
         }
       });
     }
@@ -1688,15 +1821,15 @@
 
     // Typewriter Effect for Taglines
     const taglines = [
-      "Student-led, just like you.",
-      "Your spark, our mission.",
-      "Gen Z for Gen Z.",
-      "We light the way.",
-      "You are the future.",
-      "Dreams deserve action.",
-      "Step into extraordinary.",
-      "Just begin today.",
-      "Glow to the world."
+      "Discover Your Inner Light. Build Your Conscious Path. Share Your Impact.",
+      "We help you become the person opportunities seek.",
+      "Your journey to conscious leadership starts here.",
+      "Beyond the grades. Beyond the scholarship. Build your impact.",
+      "The future belongs to those who align their passion with their purpose.",
+      "Luminaries don't shine alone. We light the way for each other.",
+      "Preparation is the silent language of opportunity. Speak it fluently.",
+      "Don't just follow a path. Illuminate one.",
+      "Your profile is not a list of achievements; it's the narrative of your potential impact.",
     ];
 
     const taglineElement = document.getElementById('tagline');
@@ -1733,7 +1866,21 @@
 
       typeWriter();
     }
+
+    // Newsletter Popup Trigger
+    function openNewsletterPopup() {
+      window.dojoRequire(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us20.list-manage.com","uuid":"de910d6670f6455b0791bcbb2","lid":"8d285b924df69f29dd98ce32e","uniqueMethods":true}) })
+      document.cookie = "MCPopupClosed=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      document.cookie = "MCPopupSubscribed=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+    const newsletterButton = document.getElementById('newsletterButton');
+    if (newsletterButton) {
+      newsletterButton.addEventListener('click', openNewsletterPopup);
+    }
   </script>
+  <!-- Mailchimp integration script -->
+  <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/de910d6670f6455b0791bcbb2/8d285b924df69f29dd98ce32e.js");</script>
 </body>
 </html>
+
 
